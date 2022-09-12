@@ -1,0 +1,51 @@
+{
+  "name": "vue-geshanzsq-blog-admin",
+  "version": "1.0.0",
+  "description": "格姗知识圈后台博客管理系统",
+  "author": "geshanzsq",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@kangc/v-md-editor": "^2.3.15",
+    "@vueuse/core": "^8.6.0",
+    "@wangeditor/editor": "^5.1.15",
+    "@wangeditor/editor-for-vue": "^5.1.12",
+    "axios": "^0.27.2",
+    "core-js": "^3.8.3",
+    "element-plus": "^2.2.16",
+    "fuse.js": "^6.6.2",
+    "js-cookie": "^3.0.1",
+    "nprogress": "^0.2.0",
+    "save": "^2.5.0",
+    "svg-sprite-loader": "^6.0.11",
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.16",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "lint-staged": "^11.1.2",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "vue-cli-plugin-element-plus": "~0.0.13"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  }
+}

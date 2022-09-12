@@ -1,0 +1,67 @@
+/**
+ * 通用css样式布局处理
+ */
+
+/** 基础通用 **/
+.pt5 {
+  padding-top: 5px;
+}
+.pr5 {
+  padding-right: 5px;
+}
+.pb5 {
+  padding-bottom: 5px;
+}
+.mt5 {
+  margin-top: 5px;
+}
+.mr5 {
+  margin-right: 5px;
+}
+.mb5 {
+  margin-bottom: 5px;
+}
+.mb8 {
+  margin-bottom: 8px;
+}
+.ml5 {
+  margin-left: 5px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mr10 {
+  margin-right: 10px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.mt20 {
+  margin-top: 20px;
+}
+.mr20 {
+  margin-right: 20px;
+}
+.mb20 {
+  margin-bottom: 20px;
+}
+.ml20 {
+  margin-left: 20px;
+}
+
+/* 树形边框 */
+.tree-border {
+  margin-top: 5px;
+  border: 1px solid #e5e6e7;
+  background: #ffffff none;
+}
+
+/** 自定义全局样式 */
+.no-data {
+  line-height: 60px;
+  text-align: center;
+  color: #909399;
+}

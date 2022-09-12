@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>geshanzsq-blog</artifactId>
+        <groupId>com.geshanzsq</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>geshanzsq-blog-common</artifactId>
+    <name>geshanzsq-blog-common</name>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>geshanzsq-blog-common-core</module>
+        <module>geshanzsq-blog-common-framework</module>
+        <module>geshanzsq-blog-common-limiter</module>
+        <module>geshanzsq-blog-common-log</module>
+        <module>geshanzsq-blog-common-redis</module>
+        <module>geshanzsq-blog-common-security</module>
+        <module>geshanzsq-blog-common-swagger</module>
+    </modules>
+
+
+</project>
