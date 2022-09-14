@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.geshanzsq.blog.system.api.mapper.SysApiMapper">
+<mapper namespace="com.geshanzsq.system.api.mapper.SysApiMapper">
 
-    <resultMap id="BaseResultMap" type="com.geshanzsq.blog.system.api.vo.SysApiVO" >
+    <resultMap id="BaseResultMap" type="com.geshanzsq.system.api.vo.SysApiVO" >
         <result column="id" property="id" />
         <result column="api_name" property="apiName" />
         <result column="api_url" property="apiUrl" />
@@ -17,7 +17,7 @@
         <result column="fk_modify_user_id" property="modifyUserId" />
     </resultMap>
 
-    <resultMap id="SysMenuAuthApiMap" type="com.geshanzsq.blog.system.menu.vo.SysMenuAuthApiVO" >
+    <resultMap id="SysMenuAuthApiMap" type="com.geshanzsq.system.menu.vo.SysMenuAuthApiVO" >
         <result column="api_id" property="apiId" />
         <result column="api_name" property="apiName" />
         <result column="fk_api_category_id" property="apiCategoryId" />

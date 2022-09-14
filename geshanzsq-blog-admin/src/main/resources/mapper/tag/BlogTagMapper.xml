@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.geshanzsq.blog.admin.blog.tag.mapper.BlogTagMapper">
+<mapper namespace="com.geshanzsq.admin.blog.tag.mapper.BlogTagMapper">
 
-    <resultMap id="BaseResultMap" type="com.geshanzsq.blog.admin.blog.tag.vo.BlogTagVO" >
+    <resultMap id="BaseResultMap" type="com.geshanzsq.admin.blog.tag.vo.BlogTagVO" >
         <result column="id" property="id" />
         <result column="tag_name" property="tagName" />
         <result column="sort" property="sort" />

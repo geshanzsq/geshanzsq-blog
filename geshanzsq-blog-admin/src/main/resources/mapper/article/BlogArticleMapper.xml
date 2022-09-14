@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.geshanzsq.blog.admin.blog.article.mapper.BlogArticleMapper">
+<mapper namespace="com.geshanzsq.admin.blog.article.mapper.BlogArticleMapper">
 
-    <resultMap id="BaseResultMap" type="com.geshanzsq.blog.admin.blog.article.vo.BlogArticleVO" >
+    <resultMap id="BaseResultMap" type="com.geshanzsq.admin.blog.article.vo.BlogArticleVO" >
         <result column="id" property="id" />
         <result column="article_title" property="articleTitle" />
         <result column="article_description" property="articleDescription" />
@@ -27,7 +27,7 @@
     </resultMap>
 
     <!-- 分页列表 -->
-    <select id="selectPage" parameterType="com.geshanzsq.blog.admin.blog.article.dto.BlogArticlePageDTO" resultMap="BaseResultMap">
+    <select id="selectPage" parameterType="com.geshanzsq.admin.blog.article.dto.BlogArticlePageDTO" resultMap="BaseResultMap">
         SELECT
             a.id,
             a.article_title,

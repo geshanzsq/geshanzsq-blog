@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.geshanzsq.blog.system.log.operation.mapper.LogOperationMapper">
+<mapper namespace="com.geshanzsq.system.log.operation.mapper.LogOperationMapper">
 
-    <resultMap id="BaseResultMap" type="com.geshanzsq.blog.system.log.operation.vo.LogOperationVo" >
+    <resultMap id="BaseResultMap" type="com.geshanzsq.system.log.operation.vo.LogOperationVo" >
         <result column="id" property="id" />
         <result column="module_name" property="moduleName" />
         <result column="business_type" property="businessType" />
@@ -24,7 +24,7 @@
     </resultMap>
 
     <!-- 分页列表 -->
-    <select id="pageList" parameterType="com.geshanzsq.blog.system.log.operation.dto.LogOperationPageDto" resultMap="BaseResultMap">
+    <select id="pageList" parameterType="com.geshanzsq.system.log.operation.dto.LogOperationPageDto" resultMap="BaseResultMap">
         select
             lo.id,
             lo.module_name,

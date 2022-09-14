@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.geshanzsq.blog.system.dictionary.mapper.SysDictionaryMapper">
+<mapper namespace="com.geshanzsq.system.dictionary.mapper.SysDictionaryMapper">
 
-    <resultMap id="BaseResultMap" type="com.geshanzsq.blog.system.dictionary.vo.SysDictionaryVO" >
+    <resultMap id="BaseResultMap" type="com.geshanzsq.system.dictionary.vo.SysDictionaryVO" >
         <result column="id" property="id" />
         <result column="dictionary_name" property="dictionaryName" />
         <result column="dictionary_code" property="dictionaryCode" />
@@ -15,14 +15,14 @@
         <result column="fk_modify_user_id" property="modifyUserId" />
     </resultMap>
 
-    <resultMap id="DictionaryInfoMap" type="com.geshanzsq.blog.system.dictionary.vo.DictionaryInfoVO" >
+    <resultMap id="DictionaryInfoMap" type="com.geshanzsq.system.dictionary.vo.DictionaryInfoVO" >
         <result column="id" property="id" />
         <result column="dictionary_name" property="dictionaryName" />
         <result column="dictionary_code" property="dictionaryCode" />
         <collection property="dictionaryDataList" javaType="java.util.List" resultMap="DictionaryDataInfoMap"/>
     </resultMap>
 
-    <resultMap id="DictionaryDataInfoMap" type="com.geshanzsq.blog.system.dictionary.vo.DictionaryDataInfoVO">
+    <resultMap id="DictionaryDataInfoMap" type="com.geshanzsq.system.dictionary.vo.DictionaryDataInfoVO">
         <result column="dictionary_data_id" property="id" />
         <result column="dictionary_label" property="dictionaryLabel" />
         <result column="dictionary_value" property="dictionaryValue" />

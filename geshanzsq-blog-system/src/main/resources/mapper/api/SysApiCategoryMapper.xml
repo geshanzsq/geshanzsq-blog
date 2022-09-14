@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.geshanzsq.blog.system.api.mapper.SysApiCategoryMapper">
+<mapper namespace="com.geshanzsq.system.api.mapper.SysApiCategoryMapper">
 
-    <resultMap id="BaseResultMap" type="com.geshanzsq.blog.system.api.vo.SysApiCategoryVO" >
+    <resultMap id="BaseResultMap" type="com.geshanzsq.system.api.vo.SysApiCategoryVO" >
         <result column="id" property="id" />
         <result column="category_name" property="categoryName" />
         <result column="sort" property="sort" />
