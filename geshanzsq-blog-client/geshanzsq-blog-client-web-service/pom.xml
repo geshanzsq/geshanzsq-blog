@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>geshanzsq-blog-client-web</artifactId>
-    <name>geshanzsq-blog-client-web</name>
+    <artifactId>geshanzsq-blog-client-web-service</artifactId>
+    <name>geshanzsq-blog-client-web-service</name>
     <description>客户端网页端模块</description>
     <version>1.0.0</version>
 
