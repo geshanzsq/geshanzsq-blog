@@ -13,7 +13,7 @@
         <module>geshanzsq-blog-admin</module>
         <module>geshanzsq-blog-common</module>
         <module>geshanzsq-blog-front</module>
-        <module>geshanzsq-blog-system</module>
+        <module>geshanzsq-blog-client</module>
     </modules>
 
     <properties>

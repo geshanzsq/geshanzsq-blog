@@ -3,22 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>geshanzsq-blog</artifactId>
+        <artifactId>geshanzsq-blog-client</artifactId>
         <groupId>com.geshanzsq</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>geshanzsq-blog-admin</artifactId>
-    <name>geshanzsq-blog-admin</name>
-    <description>后台管理</description>
+    <artifactId>geshanzsq-blog-client-web</artifactId>
+    <name>geshanzsq-blog-client-web</name>
+    <description>客户端网页端模块</description>
     <version>1.0.0</version>
-    <packaging>pom</packaging>
 
-    <modules>
-        <module>geshanzsq-blog-admin-service</module>
-        <module>geshanzsq-blog-system</module>
-    </modules>
+    <dependencies>
+        <!-- 通用核心模块 -->
+        <dependency>
+            <groupId>com.geshanzsq</groupId>
+            <artifactId>geshanzsq-blog-common-core</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>
