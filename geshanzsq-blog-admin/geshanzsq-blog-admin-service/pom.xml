@@ -21,6 +21,12 @@
             <artifactId>geshanzsq-blog-system</artifactId>
         </dependency>
 
+        <!-- 客户端网页数据库实体类 -->
+        <dependency>
+            <groupId>com.geshanzsq</groupId>
+            <artifactId>geshanzsq-blog-client-web-po</artifactId>
+        </dependency>
+
         <!-- MySQL 数据库 -->
         <dependency>
             <groupId>mysql</groupId>

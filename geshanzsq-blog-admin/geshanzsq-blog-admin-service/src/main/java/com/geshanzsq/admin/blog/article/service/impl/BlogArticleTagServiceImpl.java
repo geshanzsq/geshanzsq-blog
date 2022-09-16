@@ -2,7 +2,7 @@ package com.geshanzsq.admin.blog.article.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.geshanzsq.admin.blog.article.mapper.BlogArticleTagMapper;
-import com.geshanzsq.admin.blog.article.po.BlogArticleTag;
+import com.geshanzsq.client.web.po.blog.article.BlogArticleTag;
 import com.geshanzsq.admin.blog.article.service.BlogArticleTagService;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.geshanzsq.admin.blog.article.mapper;
 
-import com.geshanzsq.admin.blog.article.po.BlogArticleContent;
+import com.geshanzsq.client.web.po.blog.article.BlogArticleContent;
 import com.geshanzsq.common.framework.web.mapper.BaseMapperPlus;
 import org.apache.ibatis.annotations.Mapper;
 

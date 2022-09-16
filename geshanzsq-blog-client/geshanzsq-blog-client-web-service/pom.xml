@@ -11,7 +11,7 @@
 
     <artifactId>geshanzsq-blog-client-web-service</artifactId>
     <name>geshanzsq-blog-client-web-service</name>
-    <description>客户端网页端模块</description>
+    <description>客户端网页模块</description>
     <version>1.0.0</version>
 
     <dependencies>
@@ -20,6 +20,19 @@
             <groupId>com.geshanzsq</groupId>
             <artifactId>geshanzsq-blog-common-core</artifactId>
         </dependency>
+
+        <!-- 客户端网页数据库实体类 -->
+        <dependency>
+            <groupId>com.geshanzsq</groupId>
+            <artifactId>geshanzsq-blog-client-web-po</artifactId>
+        </dependency>
+
+        <!-- MySQL 数据库 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
     </dependencies>
 
 

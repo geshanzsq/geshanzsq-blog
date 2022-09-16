@@ -2,7 +2,7 @@ package com.geshanzsq.admin.blog.category.mapstruct;
 
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryAddDTO;
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryUpdateDTO;
-import com.geshanzsq.admin.blog.category.po.BlogCategory;
+import com.geshanzsq.client.web.po.blog.category.BlogCategory;
 import com.geshanzsq.admin.blog.category.vo.BlogCategoryVO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import org.mapstruct.Mapper;

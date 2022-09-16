@@ -1,4 +1,4 @@
-package com.geshanzsq.admin.blog.article.po;
+package com.geshanzsq.client.web.po.blog.tag;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,32 +8,41 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * 文章推荐
+ * 博客标签
  *
  * @author geshanzsq
- * @date 2022/8/20
+ * @date 2022/8/16
  */
 @Data
-public class BlogArticleRecommend implements Serializable {
+public class BlogTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 推荐 id
+     * 标签 id
      */
     @TableId
     private Long id;
 
     /**
-     * 推荐等级
+     * 标签名称
      */
-    private Integer recommendLevel;
+    private String tagName;
 
     /**
-     * 文章 id
+     * 排序
      */
-    @TableField("fk_article_id")
-    private Long articleId;
+    private Integer sort;
+
+    /**
+     * 点击数
+     */
+    private Long clickCount;
+
+    /**
+     * 状态（1 正常，2 停用）
+     */
+    private Integer status;
 
     /**
      * 创建时间
@@ -56,4 +65,5 @@ public class BlogArticleRecommend implements Serializable {
      */
     @TableField("fk_modify_user_id")
     private Long modifyUserId;
+
 }

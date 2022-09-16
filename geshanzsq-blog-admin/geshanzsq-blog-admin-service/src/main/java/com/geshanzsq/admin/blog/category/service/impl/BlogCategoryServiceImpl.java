@@ -2,12 +2,12 @@ package com.geshanzsq.admin.blog.category.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.geshanzsq.admin.blog.article.mapper.BlogArticleMapper;
-import com.geshanzsq.admin.blog.article.po.BlogArticle;
+import com.geshanzsq.client.web.po.blog.article.BlogArticle;
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryListDTO;
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryPageDTO;
 import com.geshanzsq.admin.blog.category.mapper.BlogCategoryMapper;
 import com.geshanzsq.admin.blog.category.mapstruct.BlogCategoryConverter;
-import com.geshanzsq.admin.blog.category.po.BlogCategory;
+import com.geshanzsq.client.web.po.blog.category.BlogCategory;
 import com.geshanzsq.admin.blog.category.service.BlogCategoryService;
 import com.geshanzsq.admin.blog.category.vo.BlogCategoryVO;
 import com.geshanzsq.common.core.exception.ParamException;

@@ -2,7 +2,7 @@ package com.geshanzsq.admin.blog.tag.mapstruct;
 
 import com.geshanzsq.admin.blog.tag.dto.BlogTagAddDTO;
 import com.geshanzsq.admin.blog.tag.dto.BlogTagUpdateDTO;
-import com.geshanzsq.admin.blog.tag.po.BlogTag;
+import com.geshanzsq.client.web.po.blog.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import org.mapstruct.Mapper;

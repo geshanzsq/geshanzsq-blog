@@ -14,7 +14,7 @@ public class GeshanzsqBlogWebApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GeshanzsqBlogWebApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  格姗知识圈博客前台启动成功   ლ(´ڡ`ლ)ﾞ ");
+        System.out.println("(♥◠‿◠)ﾉﾞ  格姗知识圈博客客户端网页启动成功   ლ(´ڡ`ლ)ﾞ ");
     }
 
 }

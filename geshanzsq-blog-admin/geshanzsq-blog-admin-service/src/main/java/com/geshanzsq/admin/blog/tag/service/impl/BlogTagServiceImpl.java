@@ -5,7 +5,7 @@ import com.geshanzsq.admin.blog.tag.dto.BlogTagListDTO;
 import com.geshanzsq.admin.blog.tag.dto.BlogTagPageDTO;
 import com.geshanzsq.admin.blog.tag.mapper.BlogTagMapper;
 import com.geshanzsq.admin.blog.tag.mapstruct.BlogTagConverter;
-import com.geshanzsq.admin.blog.tag.po.BlogTag;
+import com.geshanzsq.client.web.po.blog.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.service.BlogTagService;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
 import com.geshanzsq.common.core.exception.ParamException;

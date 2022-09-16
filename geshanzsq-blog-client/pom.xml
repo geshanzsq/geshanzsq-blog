@@ -17,6 +17,7 @@
 
     <modules>
         <module>geshanzsq-blog-client-web-service</module>
+        <module>geshanzsq-blog-client-web-po</module>
     </modules>
 
 

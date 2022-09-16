@@ -2,7 +2,7 @@ package com.geshanzsq.admin.blog.article.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.geshanzsq.admin.blog.article.mapper.BlogArticleRecommendMapper;
-import com.geshanzsq.admin.blog.article.po.BlogArticleRecommend;
+import com.geshanzsq.client.web.po.blog.article.BlogArticleRecommend;
 import com.geshanzsq.admin.blog.article.service.BlogArticleRecommendService;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

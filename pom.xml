@@ -12,7 +12,6 @@
     <modules>
         <module>geshanzsq-blog-admin</module>
         <module>geshanzsq-blog-common</module>
-        <module>geshanzsq-blog-front</module>
         <module>geshanzsq-blog-client</module>
     </modules>
 
@@ -29,6 +28,7 @@
         <geshanzsq.blog.common.security.version>1.0.0</geshanzsq.blog.common.security.version>
         <geshanzsq.blog.common.framework.version>1.0.0</geshanzsq.blog.common.framework.version>
         <geshanzsq.blog.system.version>1.0.0</geshanzsq.blog.system.version>
+        <geshanzsq.blog.client.web.po.version>1.0.0</geshanzsq.blog.client.web.po.version>
 
         <spring.boot.version>2.3.12.RELEASE</spring.boot.version>
         <knife4j.version>3.0.3</knife4j.version>
@@ -100,6 +100,13 @@
                 <groupId>com.geshanzsq</groupId>
                 <artifactId>geshanzsq-blog-system</artifactId>
                 <version>${geshanzsq.blog.system.version}</version>
+            </dependency>
+
+            <!-- 客户端网页数据库实体类 -->
+            <dependency>
+                <groupId>com.geshanzsq</groupId>
+                <artifactId>geshanzsq-blog-client-web-po</artifactId>
+                <version>${geshanzsq.blog.client.web.po.version}</version>
             </dependency>
 
             <!-- spring boot-->

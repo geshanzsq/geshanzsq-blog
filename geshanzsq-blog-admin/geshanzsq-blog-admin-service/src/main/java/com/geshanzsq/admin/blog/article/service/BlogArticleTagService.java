@@ -1,6 +1,6 @@
 package com.geshanzsq.admin.blog.article.service;
 
-import com.geshanzsq.admin.blog.article.po.BlogArticleTag;
+import com.geshanzsq.client.web.po.blog.article.BlogArticleTag;
 import com.geshanzsq.common.framework.web.service.BaseService;
 
 import java.util.List;

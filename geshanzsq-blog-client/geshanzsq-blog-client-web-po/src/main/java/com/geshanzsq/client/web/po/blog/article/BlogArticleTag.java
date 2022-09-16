@@ -1,4 +1,4 @@
-package com.geshanzsq.admin.blog.article.po;
+package com.geshanzsq.client.web.po.blog.article;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;

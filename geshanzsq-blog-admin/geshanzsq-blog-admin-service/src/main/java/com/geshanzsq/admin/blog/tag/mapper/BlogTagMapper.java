@@ -1,7 +1,7 @@
 package com.geshanzsq.admin.blog.tag.mapper;
 
 import com.geshanzsq.admin.blog.tag.dto.BlogTagPageDTO;
-import com.geshanzsq.admin.blog.tag.po.BlogTag;
+import com.geshanzsq.client.web.po.blog.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;

@@ -1,7 +1,7 @@
 package com.geshanzsq.admin.blog.article.service.impl;
 
 import com.geshanzsq.admin.blog.article.mapper.BlogArticleContentMapper;
-import com.geshanzsq.admin.blog.article.po.BlogArticleContent;
+import com.geshanzsq.client.web.po.blog.article.BlogArticleContent;
 import com.geshanzsq.admin.blog.article.service.BlogArticleContentService;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
