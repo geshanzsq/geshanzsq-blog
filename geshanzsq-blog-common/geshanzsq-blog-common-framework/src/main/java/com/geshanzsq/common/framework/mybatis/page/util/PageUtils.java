@@ -19,12 +19,7 @@ public class PageUtils {
     /**
      * 开始分页
      */
-    public static <D> void startPage(D d) {
-        if (d == null || !(d instanceof PageDTO)) {
-            startPage(null, null);
-            return;
-        }
-        PageDTO pageDTO = (PageDTO) d;
+    public static void startPage(PageDTO pageDTO) {
         startPage(pageDTO.getPageNum(), pageDTO.getPageSize());
     }
 

@@ -27,8 +27,9 @@
         <geshanzsq.blog.common.log.version>1.0.0</geshanzsq.blog.common.log.version>
         <geshanzsq.blog.common.security.version>1.0.0</geshanzsq.blog.common.security.version>
         <geshanzsq.blog.common.framework.version>1.0.0</geshanzsq.blog.common.framework.version>
-        <geshanzsq.blog.system.version>1.0.0</geshanzsq.blog.system.version>
-        <geshanzsq.blog.client.web.po.version>1.0.0</geshanzsq.blog.client.web.po.version>
+        <geshanzsq.blog.admin.system.version>1.0.0</geshanzsq.blog.admin.system.version>
+        <geshanzsq.blog.admin.system.common.version>1.0.0</geshanzsq.blog.admin.system.common.version>
+        <geshanzsq.blog.client.common.version>1.0.0</geshanzsq.blog.client.common.version>
 
         <spring.boot.version>2.3.12.RELEASE</spring.boot.version>
         <knife4j.version>3.0.3</knife4j.version>
@@ -42,6 +43,8 @@
         <bitwalker.version>1.21</bitwalker.version>
         <hutool.all.version>5.8.5</hutool.all.version>
         <commons.io.version>2.11.0</commons.io.version>
+        <flexmark.version>0.62.2</flexmark.version>
+        <just.auth.version>1.16.5</just.auth.version>
     </properties>
 
     <dependencyManagement>
@@ -98,15 +101,22 @@
             <!-- 系统模块 -->
             <dependency>
                 <groupId>com.geshanzsq</groupId>
-                <artifactId>geshanzsq-blog-system</artifactId>
-                <version>${geshanzsq.blog.system.version}</version>
+                <artifactId>geshanzsq-blog-admin-system</artifactId>
+                <version>${geshanzsq.blog.admin.system.version}</version>
             </dependency>
 
-            <!-- 客户端网页数据库实体类 -->
+            <!-- 系统通用模块 -->
             <dependency>
                 <groupId>com.geshanzsq</groupId>
-                <artifactId>geshanzsq-blog-client-web-po</artifactId>
-                <version>${geshanzsq.blog.client.web.po.version}</version>
+                <artifactId>geshanzsq-blog-admin-system-common</artifactId>
+                <version>${geshanzsq.blog.admin.system.common.version}</version>
+            </dependency>
+
+            <!-- 客户端通用模块 -->
+            <dependency>
+                <groupId>com.geshanzsq</groupId>
+                <artifactId>geshanzsq-blog-client-common</artifactId>
+                <version>${geshanzsq.blog.client.common.version}</version>
             </dependency>
 
             <!-- spring boot-->
@@ -193,6 +203,26 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>${commons.io.version}</version>
+            </dependency>
+
+            <!-- Markdown 转 Html -->
+            <dependency>
+                <groupId>com.vladsch.flexmark</groupId>
+                <artifactId>flexmark-all</artifactId>
+                <version>${flexmark.version}</version>
+            </dependency>
+            <!--表格渲染插件-->
+            <dependency>
+                <groupId>com.vladsch.flexmark</groupId>
+                <artifactId>flexmark-ext-tables</artifactId>
+                <version>${flexmark.version}</version>
+            </dependency>
+
+            <!-- JustAuth 第三方登录模块-->
+            <dependency>
+                <groupId>me.zhyd.oauth</groupId>
+                <artifactId>JustAuth</artifactId>
+                <version>${just.auth.version}</version>
             </dependency>
 
         </dependencies>

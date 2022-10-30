@@ -16,7 +16,7 @@
     </resultMap>
 
     <!-- 获取最大排序 -->
-    <select id="getMaxSort" resultType="Integer">
+    <select id="selectMaxSort" resultType="Integer">
         select max(sort) from blog_tag
     </select>
 

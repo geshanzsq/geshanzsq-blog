@@ -4,7 +4,7 @@ import com.geshanzsq.common.core.util.servlet.ServletUtils;
 import com.geshanzsq.common.core.util.string.StrUtils;
 import com.geshanzsq.framework.security.domain.ApiPermission;
 import com.geshanzsq.framework.security.domain.LoginUserDetail;
-import com.geshanzsq.framework.security.utils.SecurityUtils;
+import com.geshanzsq.framework.security.util.SecurityUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;

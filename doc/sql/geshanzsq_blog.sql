@@ -11,18 +11,37 @@
  Target Server Version : 80029
  File Encoding         : 65001
 
- Date: 12/09/2022 17:19:00
+ Date: 31/10/2022 00:03:58
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for blog_about_me
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_about_me`;
+CREATE TABLE `blog_about_me`  (
+  `id` bigint NOT NULL COMMENT '关于 id',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '内容',
+  `editor_type` tinyint(1) NULL DEFAULT 1 COMMENT '编辑器类型（1 Markdown编辑器，2 富文本编辑器）',
+  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '关于我' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_about_me
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for blog_article
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article`;
 CREATE TABLE `blog_article`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '文章 id',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '文章 id',
   `article_title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '文章标题',
   `article_description` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '文章描述',
   `cover_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '封面地址',
@@ -42,10 +61,26 @@ CREATE TABLE `blog_article`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_article
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for blog_article_collect
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_article_collect`;
+CREATE TABLE `blog_article_collect`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '收藏 id',
+  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
+  `fk_create_user_id` bigint NOT NULL COMMENT '创建人用户 id',
+  `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1580904419548086274 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章收藏' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_article_collect
 -- ----------------------------
 
 -- ----------------------------
@@ -53,13 +88,46 @@ CREATE TABLE `blog_article`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_content`;
 CREATE TABLE `blog_article_content`  (
-  `id` bigint(20) NOT NULL COMMENT '文章 id',
+  `id` bigint NOT NULL COMMENT '文章 id',
   `article_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '文章内容',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章内容' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章内容' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_article_content
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for blog_article_footprint
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_article_footprint`;
+CREATE TABLE `blog_article_footprint`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '足迹 id',
+  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
+  `fk_create_user_id` bigint NOT NULL COMMENT '创建人用户 id',
+  `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1581144307853824001 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章足迹' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_article_footprint
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for blog_article_like
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_article_like`;
+CREATE TABLE `blog_article_like`  (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '点赞 id',
+  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
+  `fk_create_user_id` bigint NOT NULL COMMENT '创建人用户 id',
+  `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1581269177640058883 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章点赞' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_article_like
 -- ----------------------------
 
 -- ----------------------------
@@ -67,7 +135,7 @@ CREATE TABLE `blog_article_content`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_recommend`;
 CREATE TABLE `blog_article_recommend`  (
-  `id` bigint(20) NOT NULL COMMENT '推荐 id',
+  `id` bigint NOT NULL COMMENT '推荐 id',
   `recommend_level` tinyint(1) NULL DEFAULT 1 COMMENT '推荐等级',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `fk_article_id` bigint NULL DEFAULT NULL COMMENT '文章 id',
@@ -76,7 +144,7 @@ CREATE TABLE `blog_article_recommend`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章推荐' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章推荐' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_article_recommend
@@ -87,11 +155,11 @@ CREATE TABLE `blog_article_recommend`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_tag`;
 CREATE TABLE `blog_article_tag`  (
-  `id` bigint(20) NOT NULL COMMENT '文章标签 id',
+  `id` bigint NOT NULL COMMENT '文章标签 id',
   `fk_article_id` bigint NULL DEFAULT NULL COMMENT '文章 id',
   `fk_tag_id` bigint NULL DEFAULT NULL COMMENT '标签 id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章标签' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章标签' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_article_tag
@@ -102,7 +170,7 @@ CREATE TABLE `blog_article_tag`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_category`;
 CREATE TABLE `blog_category`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '分类 id',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '分类 id',
   `category_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '分类名称',
   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `click_count` bigint NULL DEFAULT 0 COMMENT '点击数',
@@ -112,18 +180,65 @@ CREATE TABLE `blog_category`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53433832048689153 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 63597109596651521 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_category
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for blog_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_comment`;
+CREATE TABLE `blog_comment`  (
+  `id` bigint NOT NULL COMMENT '评论 id',
+  `parent_id` bigint NULL DEFAULT 0 COMMENT '上级 id',
+  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
+  `has_sticky` tinyint(1) NULL DEFAULT 2 COMMENT '是否置顶（1 是，2 否） ',
+  `comment_content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论内容',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+  `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 待审核，2 通过，3 驳回）',
+  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '评论表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for blog_friendship_link
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_friendship_link`;
+CREATE TABLE `blog_friendship_link`  (
+  `id` bigint NOT NULL COMMENT '链接 id',
+  `link_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接名称',
+  `link_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '链接简介',
+  `link_url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接地址',
+  `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
+  `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
+  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '友情链接' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_friendship_link
+-- ----------------------------
+INSERT INTO `blog_friendship_link` VALUES (70588185381437440, '格姗知识圈', '专注于技术分享的博客平台', 'https://geshanzsq.com', 1, 1, 43728307660783616, '2022-10-06 18:52:15', 43728307660783616, '2022-10-06 18:53:19');
+INSERT INTO `blog_friendship_link` VALUES (70590991626665984, '格姗导航', '可自定义的简洁导航网站', 'https://gesdh.cn', 2, 1, 43728307660783616, '2022-10-06 19:03:24', NULL, NULL);
+
+-- ----------------------------
 -- Table structure for blog_picture
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_picture`;
 CREATE TABLE `blog_picture`  (
-  `id` bigint(20) NOT NULL COMMENT '图片 id',
+  `id` bigint NOT NULL COMMENT '图片 id',
   `picture_original_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '图片原名称',
   `picture_path` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '图片路径',
   `picture_md5` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '图片 md5',
@@ -133,7 +248,7 @@ CREATE TABLE `blog_picture`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '图片' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '图片' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_picture
@@ -144,7 +259,7 @@ CREATE TABLE `blog_picture`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_picture_category`;
 CREATE TABLE `blog_picture_category`  (
-  `id` bigint(20) NOT NULL COMMENT '分类 id',
+  `id` bigint NOT NULL COMMENT '分类 id',
   `category_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '分类名称',
   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
@@ -153,7 +268,7 @@ CREATE TABLE `blog_picture_category`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '图片分类' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '图片分类' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_picture_category
@@ -166,7 +281,7 @@ INSERT INTO `blog_picture_category` VALUES (55080822486597632, '标题', 2, 1, 4
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_tag`;
 CREATE TABLE `blog_tag`  (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '标签 id',
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '标签 id',
   `tag_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标签名称',
   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `click_count` bigint NULL DEFAULT 0 COMMENT '点击数',
@@ -176,10 +291,53 @@ CREATE TABLE `blog_tag`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53433868568494081 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 63597496722522113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_tag
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for blog_third_login_config
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_third_login_config`;
+CREATE TABLE `blog_third_login_config`  (
+  `id` bigint NOT NULL COMMENT '配置 id',
+  `third_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '第三方名称',
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方来源',
+  `client_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方 id',
+  `client_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方密钥',
+  `has_open_login` tinyint(1) NULL DEFAULT NULL COMMENT '是否开启登录（1 是，2 否）',
+  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '第三方登录配置' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_third_login_config
+-- ----------------------------
+INSERT INTO `blog_third_login_config` VALUES (78259887838068736, 'QQ', 'QQ', 'qq clientId', 'qq clientSecret', 1, 43728307660783616, '2022-10-27 22:56:51', 43728307660783616, '2022-10-27 23:22:17');
+INSERT INTO `blog_third_login_config` VALUES (78260986619887616, '码云', 'Gitee', 'gitee clientId', 'gitee clientSecret', 1, 43728307660783616, '2022-10-27 23:01:13', 43728307660783616, '2022-10-27 23:23:38');
+INSERT INTO `blog_third_login_config` VALUES (78261101506068480, 'Github', 'Github', 'github clientId', 'github clientSecret', 1, 43728307660783616, '2022-10-27 23:01:41', 43728307660783616, '2022-10-27 23:29:56');
+
+-- ----------------------------
+-- Table structure for blog_third_user
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_third_user`;
+CREATE TABLE `blog_third_user`  (
+  `id` bigint NOT NULL COMMENT '博客用户 id',
+  `fk_user_id` bigint NULL DEFAULT NULL COMMENT '用户 id',
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方账号来源',
+  `uuid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '第三方平台 uuid',
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '第三方用户名',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `uni_uuid`(`uuid`) USING BTREE COMMENT '第三方平台 uuid 唯一索引'
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客第三方用户' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of blog_third_user
 -- ----------------------------
 
 -- ----------------------------
@@ -187,7 +345,7 @@ CREATE TABLE `blog_tag`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `log_login`;
 CREATE TABLE `log_login`  (
-  `id` bigint(20) NOT NULL COMMENT '登录日志 id',
+  `id` bigint NOT NULL COMMENT '登录日志 id',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '登录用户名',
   `ip_address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录 ip 地址',
   `login_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '登录位置',
@@ -197,7 +355,7 @@ CREATE TABLE `log_login`  (
   `hint_message` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '提示消息',
   `gmt_login` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '登录日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '登录日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of log_login
@@ -208,7 +366,7 @@ CREATE TABLE `log_login`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `log_operation`;
 CREATE TABLE `log_operation`  (
-  `id` bigint(20) NOT NULL COMMENT '操作日志 id',
+  `id` bigint NOT NULL COMMENT '操作日志 id',
   `module_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '模块名称',
   `business_type` tinyint(1) NULL DEFAULT 1 COMMENT '业务类型（1 其它，2 新增，3 修改，4 删除）',
   `operate_type` tinyint(1) NULL DEFAULT 1 COMMENT '操作类型（1 其它，2 后台用户，3 手机端用户，4 博客用户）',
@@ -226,7 +384,7 @@ CREATE TABLE `log_operation`  (
   `browser_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '浏览器类型',
   `operate_system` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '操作系统',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '操作日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '操作日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of log_operation
@@ -237,7 +395,7 @@ CREATE TABLE `log_operation`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_api`;
 CREATE TABLE `sys_api`  (
-  `id` bigint(20) NOT NULL COMMENT '接口 id',
+  `id` bigint NOT NULL COMMENT '接口 id',
   `api_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '接口名称',
   `api_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '接口地址',
   `api_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '接口请求方式（如：get，post）',
@@ -250,7 +408,7 @@ CREATE TABLE `sys_api`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_api
@@ -342,13 +500,32 @@ INSERT INTO `sys_api` VALUES (61849533935517696, '获取最大排序', '/blog/pi
 INSERT INTO `sys_api` VALUES (61849626013073408, '分页列表', '/blog/picture/page', 'GET', '61847660100845568', 1, 1, '', 43728307660783616, '2022-09-12 16:08:20', NULL, NULL);
 INSERT INTO `sys_api` VALUES (61849706564681728, '上传', '/blog/picture/upload', 'POST', '61847660100845568', 2, 1, '', 43728307660783616, '2022-09-12 16:08:39', NULL, NULL);
 INSERT INTO `sys_api` VALUES (61849779214221312, '删除', '/blog/picture/delete/*', 'DELETE', '61847660100845568', 3, 1, '', 43728307660783616, '2022-09-12 16:08:56', NULL, NULL);
+INSERT INTO `sys_api` VALUES (70575017208840192, '分页列表', '/blog/friendship/page', 'GET', '70574816393953280', 1, 1, '', 43728307660783616, '2022-10-06 17:59:55', NULL, NULL);
+INSERT INTO `sys_api` VALUES (70575082941972480, '详情', '/blog/friendship/getById/*', 'GET', '70574816393953280', 2, 1, '', 43728307660783616, '2022-10-06 18:00:11', NULL, NULL);
+INSERT INTO `sys_api` VALUES (70575146867359744, '新增', '/blog/friendship', 'POST', '70574816393953280', 3, 1, '', 43728307660783616, '2022-10-06 18:00:26', NULL, NULL);
+INSERT INTO `sys_api` VALUES (70575186964905984, '修改', '/blog/friendship', 'PUT', '70574816393953280', 4, 1, '', 43728307660783616, '2022-10-06 18:00:36', NULL, NULL);
+INSERT INTO `sys_api` VALUES (70575233257439232, '删除', '/blog/friendship/delete/*', 'DELETE', '70574816393953280', 5, 1, '', 43728307660783616, '2022-10-06 18:00:47', NULL, NULL);
+INSERT INTO `sys_api` VALUES (70575309300170752, '获取最大排序', '/blog/friendship/getMaxSort', 'GET', '70574816393953280', 6, 1, '', 43728307660783616, '2022-10-06 18:01:05', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78231761150017536, '分页列表', '/blog/comment/page', 'GET', '78231613502128128', 1, 1, '', 43728307660783616, '2022-10-27 21:05:05', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78231849494642688, '详情', '/blog/comment/getById/*', 'GET', '78231613502128128', 2, 1, '', 43728307660783616, '2022-10-27 21:05:26', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78231919132672000, '审核', '/blog/comment/audit', 'PUT', '78231613502128128', 3, 1, '', 43728307660783616, '2022-10-27 21:05:43', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78231989534064640, '删除', '/blog/comment/delete/*', 'DELETE', '78231613502128128', 4, 1, '', 43728307660783616, '2022-10-27 21:06:00', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78261557221392384, '分页列表', '/blog/third/config/page', 'GET', '78261458097405952', 1, 1, '', 43728307660783616, '2022-10-27 23:03:29', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78261623420092416, '详情', '/blog/third/config/getById/*', 'GET', '78261458097405952', 2, 1, '', 43728307660783616, '2022-10-27 23:03:45', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78261660229304320, '新增', '/blog/third/config', 'POST', '78261458097405952', 3, 1, '', 43728307660783616, '2022-10-27 23:03:54', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78261687618109440, '修改', '/blog/third/config', 'PUT', '78261458097405952', 4, 1, '', 43728307660783616, '2022-10-27 23:04:00', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78261740994822144, '删除', '/blog/third/config/delete/*', 'DELETE', '78261458097405952', 5, 1, '', 43728307660783616, '2022-10-27 23:04:13', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78594147014934528, '获取内容', '/blog/about/getContent', 'GET', '78594014642700288', 1, 1, '', 43728307660783616, '2022-10-28 21:05:05', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78594285489881088, '编辑', '/blog/about/edit', 'POST', '78594014642700288', 2, 1, '', 43728307660783616, '2022-10-28 21:05:38', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78867282280841216, '列表', '/blog/recommend/list', 'GET', '78866987261886464', 1, 1, '', 43728307660783616, '2022-10-29 15:10:25', NULL, NULL);
+INSERT INTO `sys_api` VALUES (78867348030750720, '更新排序', '/blog/recommend/updateSort', 'PUT', '78866987261886464', 2, 1, '', 43728307660783616, '2022-10-29 15:10:41', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_api_category
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_api_category`;
 CREATE TABLE `sys_api_category`  (
-  `id` bigint(20) NOT NULL COMMENT '接口分类 id',
+  `id` bigint NOT NULL COMMENT '接口分类 id',
   `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '分类名称',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
@@ -358,7 +535,7 @@ CREATE TABLE `sys_api_category`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口分类' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口分类' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_api_category
@@ -378,17 +555,22 @@ INSERT INTO `sys_api_category` VALUES (61847515535769600, '博客分类管理', 
 INSERT INTO `sys_api_category` VALUES (61847552537919488, '博客标签管理', 13, 1, '', 43728307660783616, '2022-09-12 16:00:06', NULL, NULL);
 INSERT INTO `sys_api_category` VALUES (61847614164828160, '博客图片分类管理', 14, 1, '', 43728307660783616, '2022-09-12 16:00:20', NULL, NULL);
 INSERT INTO `sys_api_category` VALUES (61847660100845568, '博客图片管理', 15, 1, '', 43728307660783616, '2022-09-12 16:00:31', NULL, NULL);
+INSERT INTO `sys_api_category` VALUES (70574816393953280, '友情链接', 16, 1, '', 43728307660783616, '2022-10-06 17:59:07', NULL, NULL);
+INSERT INTO `sys_api_category` VALUES (78231613502128128, '评论管理', 17, 1, '', 43728307660783616, '2022-10-27 21:04:30', NULL, NULL);
+INSERT INTO `sys_api_category` VALUES (78261458097405952, '第三方登录配置', 18, 1, '', 43728307660783616, '2022-10-27 23:03:06', NULL, NULL);
+INSERT INTO `sys_api_category` VALUES (78594014642700288, '关于我', 19, 1, '', 43728307660783616, '2022-10-28 21:04:33', NULL, NULL);
+INSERT INTO `sys_api_category` VALUES (78866987261886464, '推荐管理', 20, 1, '', 43728307660783616, '2022-10-29 15:09:15', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_api_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_api_menu`;
 CREATE TABLE `sys_api_menu`  (
-  `id` bigint(20) NOT NULL COMMENT '接口菜单 id',
+  `id` bigint NOT NULL COMMENT '接口菜单 id',
   `fk_api_id` bigint NOT NULL COMMENT '接口 id',
   `fk_menu_id` bigint NOT NULL COMMENT '菜单 id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口菜单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口菜单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_api_menu
@@ -493,13 +675,32 @@ INSERT INTO `sys_api_menu` VALUES (61852306055888896, 61849257535078400, 6185166
 INSERT INTO `sys_api_menu` VALUES (61852306055888897, 61849626013073408, 61851660971933696);
 INSERT INTO `sys_api_menu` VALUES (61852336573644800, 61849706564681728, 61851798276669440);
 INSERT INTO `sys_api_menu` VALUES (61852362548969472, 61849779214221312, 61851972713578496);
+INSERT INTO `sys_api_menu` VALUES (70577613185220608, 70575017208840192, 70575761538416640);
+INSERT INTO `sys_api_menu` VALUES (70591990315614208, 70575146867359744, 70591784899575808);
+INSERT INTO `sys_api_menu` VALUES (70591990324002816, 70575309300170752, 70591784899575808);
+INSERT INTO `sys_api_menu` VALUES (70592031403016192, 70575082941972480, 70591842319597568);
+INSERT INTO `sys_api_menu` VALUES (70592031415599104, 70575186964905984, 70591842319597568);
+INSERT INTO `sys_api_menu` VALUES (70592031423987712, 70575309300170752, 70591842319597568);
+INSERT INTO `sys_api_menu` VALUES (70592061300015104, 70575233257439232, 70591937538686976);
+INSERT INTO `sys_api_menu` VALUES (78232707716349952, 78231849494642688, 78232604175761408);
+INSERT INTO `sys_api_menu` VALUES (78232707724738560, 78231919132672000, 78232604175761408);
+INSERT INTO `sys_api_menu` VALUES (78232738980691968, 78231989534064640, 78232661448982528);
+INSERT INTO `sys_api_menu` VALUES (78261840311746560, 78261557221392384, 78243661845889024);
+INSERT INTO `sys_api_menu` VALUES (78262187121967104, 78261660229304320, 78261905201823744);
+INSERT INTO `sys_api_menu` VALUES (78262232294621184, 78261623420092416, 78261973308932096);
+INSERT INTO `sys_api_menu` VALUES (78262232294621185, 78261687618109440, 78261973308932096);
+INSERT INTO `sys_api_menu` VALUES (78262259926695936, 78261740994822144, 78262028635996160);
+INSERT INTO `sys_api_menu` VALUES (78594360760860672, 78594147014934528, 78582377730801664);
+INSERT INTO `sys_api_menu` VALUES (78594494852759552, 78594285489881088, 78594439798325248);
+INSERT INTO `sys_api_menu` VALUES (78867418193068032, 78867282280841216, 78595081065463808);
+INSERT INTO `sys_api_menu` VALUES (78867418205650944, 78867348030750720, 78595081065463808);
 
 -- ----------------------------
 -- Table structure for sys_dictionary
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dictionary`;
 CREATE TABLE `sys_dictionary`  (
-  `id` bigint(20) NOT NULL COMMENT '字典 id',
+  `id` bigint NOT NULL COMMENT '字典 id',
   `dictionary_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典名称',
   `dictionary_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典编码',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
@@ -510,7 +711,7 @@ CREATE TABLE `sys_dictionary`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_dictionary
@@ -531,13 +732,15 @@ INSERT INTO `sys_dictionary` VALUES (52090055367327744, '系统参数配置类�
 INSERT INTO `sys_dictionary` VALUES (53847856938745856, '博客文章标识', 'blogArticleFlag', 14, 1, '', 43728307660783616, '2022-08-21 14:12:10', NULL, NULL);
 INSERT INTO `sys_dictionary` VALUES (54337945687031808, '博客文章推荐等级', 'blogArticleRecommendLevel', 15, 1, '', 43728307660783616, '2022-08-22 22:39:36', NULL, NULL);
 INSERT INTO `sys_dictionary` VALUES (61592750092451840, '博客文章状态', 'blogArticleStatus', 16, 1, '', 43728307660783616, '2022-09-11 23:07:36', NULL, NULL);
+INSERT INTO `sys_dictionary` VALUES (77901314503213056, '评论状态', 'blogCommentStatus', 17, 1, '', 43728307660783616, '2022-10-26 23:12:01', NULL, NULL);
+INSERT INTO `sys_dictionary` VALUES (78246041425543168, '通用是否', 'yesNo', 1, 1, '', 43728307660783616, '2022-10-27 22:01:50', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_dictionary_data
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dictionary_data`;
 CREATE TABLE `sys_dictionary_data`  (
-  `id` bigint(20) NOT NULL COMMENT '字典数据 id',
+  `id` bigint NOT NULL COMMENT '字典数据 id',
   `dictionary_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典标签',
   `dictionary_value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典值',
   `fk_dictionary_id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属字典 id',
@@ -550,7 +753,7 @@ CREATE TABLE `sys_dictionary_data`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典数据' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典数据' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_dictionary_data
@@ -601,15 +804,21 @@ INSERT INTO `sys_dictionary_data` VALUES (54338131029131264, '四级推荐', '4'
 INSERT INTO `sys_dictionary_data` VALUES (61592813778763776, '草稿', '1', '61592750092451840', 'primary', 1, 1, '', 43728307660783616, '2022-09-11 23:07:51', NULL, NULL);
 INSERT INTO `sys_dictionary_data` VALUES (61592860348121088, '发布', '2', '61592750092451840', 'success', 2, 1, '', 43728307660783616, '2022-09-11 23:08:02', 43728307660783616, '2022-09-11 23:08:20');
 INSERT INTO `sys_dictionary_data` VALUES (61592899577446400, '下架', '3', '61592750092451840', 'danger', 3, 1, '', 43728307660783616, '2022-09-11 23:08:12', NULL, NULL);
+INSERT INTO `sys_dictionary_data` VALUES (67409162056761344, '博客文章', '2', '52090055367327744', 'info', 2, 1, '', 43728307660783616, '2022-09-28 00:19:57', 43728307660783616, '2022-10-06 17:10:58');
+INSERT INTO `sys_dictionary_data` VALUES (77901485827948544, '待审核', '1', '77901314503213056', 'primary', 1, 1, '', 43728307660783616, '2022-10-26 23:12:42', NULL, NULL);
+INSERT INTO `sys_dictionary_data` VALUES (77901539477291008, '通过', '2', '77901314503213056', 'success', 2, 1, '', 43728307660783616, '2022-10-26 23:12:54', NULL, NULL);
+INSERT INTO `sys_dictionary_data` VALUES (77901592140972032, '驳回', '3', '77901314503213056', 'info', 3, 1, '', 43728307660783616, '2022-10-26 23:13:07', NULL, NULL);
+INSERT INTO `sys_dictionary_data` VALUES (78246089743925248, '是', '1', '78246041425543168', 'primary', 1, 1, '', 43728307660783616, '2022-10-27 22:02:02', NULL, NULL);
+INSERT INTO `sys_dictionary_data` VALUES (78246125886242816, '否', '2', '78246041425543168', 'danger', 2, 1, '', 43728307660783616, '2022-10-27 22:02:10', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
-  `id` bigint(20) NOT NULL COMMENT '菜单 id',
+  `id` bigint NOT NULL COMMENT '菜单 id',
   `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '菜单名称',
-  `parent_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '0' COMMENT '父菜单ID',
+  `parent_id` bigint NULL DEFAULT 0 COMMENT '父菜单ID',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `menu_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '菜单类型（D 目录，M 菜单，B 按钮）',
   `permission_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '权限标识',
@@ -626,79 +835,93 @@ CREATE TABLE `sys_menu`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES (43737833021636608, '系统管理', '0', 1, 'D', NULL, 'system', NULL, NULL, 2, 1, 'system', 1, 1, 43728307660783616, '2022-07-24 16:38:32', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43738261293629440, '用户管理', '43737833021636608', 1, 'M', 'system:user:page', 'user', 'system/user/index', NULL, 2, 1, 'user', 1, 1, 43728307660783616, '2022-07-24 16:40:14', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43738420110950400, '角色管理', '43737833021636608', 2, 'M', 'system:role:page', 'role', 'system/role/index', NULL, 2, 1, 'peoples', 1, 1, 43728307660783616, '2022-07-24 16:40:52', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43738641683447808, '菜单管理', '43737833021636608', 3, 'M', 'system:menu:list', 'menu', 'system/menu/index', NULL, 2, 1, 'menu', 1, 1, 43728307660783616, '2022-07-24 16:41:45', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43738896395141120, '数据字典', '43737833021636608', 4, 'M', 'system:dictionary:page', 'dictionary', 'system/dictionary/index', NULL, 2, 1, 'dict', 1, 1, 43728307660783616, '2022-07-24 16:42:46', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43739074015526912, 'API 管理', '43737833021636608', 5, 'M', 'system:apiCatetory:page', 'api', 'system/api/category', NULL, 2, 1, 'documentation', 1, 1, 43728307660783616, '2022-07-24 16:43:28', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43746238872420352, '日志审计', '0', 2, 'D', '', 'log', '', '', 2, 1, 'edit', 1, 1, 43728307660783616, '2022-07-24 17:11:56', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43746395802304512, '登录日志', '43746238872420352', 1, 'M', 'log:login:page', 'login', 'system/log/login/index', '', 2, 1, 'logininfor', 1, 1, 43728307660783616, '2022-07-24 17:12:34', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43746859121901568, '操作日志', '43746238872420352', 2, 'M', 'log:operation:page', 'operation', 'system/log/operation/index', '', 2, 1, 'form', 1, 1, 43728307660783616, '2022-07-24 17:14:24', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43779604086784000, '新增', '43738261293629440', 1, 'B', 'system:user:add', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:24:31', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43779675532558336, '修改', '43738261293629440', 2, 'B', 'system:user:update', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:24:48', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43779734387032064, '删除', '43738261293629440', 3, 'B', 'system:user:delete', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:25:02', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43779823738290176, '重置密码', '43738261293629440', 4, 'B', 'system:user:resetPassword', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:25:23', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43779962246791168, '新增', '43738420110950400', 1, 'B', 'system:role:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:25:56', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780015896133632, '修改', '43738420110950400', 2, 'B', 'system:role:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:26:09', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780063644090368, '删除', '43738420110950400', 3, 'B', 'system:role:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:26:21', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780156136882176, '分配用户', '43738420110950400', 4, 'B', 'system:role:authUser', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:26:43', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780326794723328, '取消用户授权', '43738420110950400', 5, 'B', 'system:user:deleteAuthUser', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:27:23', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780526653308928, '新增', '43738641683447808', 1, 'B', 'system:menu:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:11', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780571997929472, '修改', '43738641683447808', 2, 'B', 'system:menu:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:22', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780625399808000, '删除', '43738641683447808', 3, 'B', 'system:menu:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:35', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780699760623616, '分配 API', '43738641683447808', 4, 'B', 'system:menu:allocateApi', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:52', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43780957378969600, '新增', '43738896395141120', 1, 'B', 'system:dictionary:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:29:54', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43781009912627200, '修改', '43738896395141120', 2, 'B', 'system:dictionary:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:30:06', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43781060101668864, '删除', '43738896395141120', 3, 'B', 'system:dictionary:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:30:18', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43781692732735488, '分配数据', '43738896395141120', 4, 'B', 'system:dictionary:data:page', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:32:49', 43728307660783616, '2022-09-12 16:32:11');
-INSERT INTO `sys_menu` VALUES (43781756515516416, '数据新增', '43738896395141120', 5, 'B', 'system:dictionaryData:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:33:04', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43781829500600320, '数据修改', '43738896395141120', 6, 'B', 'system:dictionary:data:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:33:22', 43728307660783616, '2022-09-12 16:32:18');
-INSERT INTO `sys_menu` VALUES (43781877487632384, '数据删除', '43738896395141120', 7, 'B', 'system:dictionary:data:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:33:33', 43728307660783616, '2022-09-12 16:32:23');
-INSERT INTO `sys_menu` VALUES (43820727559782400, '分类新增', '43739074015526912', 1, 'B', 'system:apiCategory:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:07:56', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43820963283861504, '分类修改', '43739074015526912', 2, 'B', 'system:apiCategory:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:08:52', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43821061610930176, '分类删除', '43739074015526912', 3, 'B', 'system:apiCategory:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:09:15', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43821227462098944, '分配数据', '43739074015526912', 4, 'B', 'system:api:page', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:09:55', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43821354134274048, '数据新增', '43739074015526912', 5, 'B', 'system:api:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:10:25', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43821418193879040, '数据修改', '43739074015526912', 6, 'B', 'system:api:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:10:40', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (43821478692519936, '数据删除', '43739074015526912', 7, 'B', 'system:api:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:10:55', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52073868344426496, '参数配置', '43737833021636608', 6, 'M', 'system:param:page', 'param', 'system/param/index', '', 2, 1, 'edit', 1, 1, 43728307660783616, '2022-08-16 16:42:58', 43728307660783616, '2022-08-16 16:59:24');
-INSERT INTO `sys_menu` VALUES (52099144042414080, '博客管理', '0', 3, 'D', '', 'blog', '', '', 2, 1, 'theme', 1, 1, 43728307660783616, '2022-08-16 18:23:24', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52099447332536320, '写文章', '52099144042414080', 1, 'M', 'blog:aritcle:add', 'article/write', 'blog/article/write', '', 2, 1, 'edit', 1, 1, 43728307660783616, '2022-08-16 18:24:36', 43728307660783616, '2022-09-12 09:47:29');
-INSERT INTO `sys_menu` VALUES (52099788358811648, '文章管理', '52099144042414080', 2, 'M', 'blog:article:page', 'article', 'blog/article/index', '', 2, 1, 'list', 1, 1, 43728307660783616, '2022-08-16 18:25:58', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52099936145113088, '新增', '52099788358811648', 1, 'B', 'blog:article:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 18:26:33', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52100202487611392, '修改', '52099788358811648', 2, 'B', 'blog:article:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 18:27:36', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52100286625349632, '删除', '52099788358811648', 3, 'B', 'blog:article:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 18:27:56', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52114381915291648, '分类管理', '52099144042414080', 3, 'M', 'blog:category:page', 'category', 'blog/category/index', '', 2, 1, 'rate', 1, 1, 43728307660783616, '2022-08-16 19:23:57', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52114517684912128, '新增', '52114381915291648', 1, 'B', 'blog:category:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:24:29', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52114568226275328, '修改', '52114381915291648', 2, 'B', 'blog:category:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:24:41', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52114614602694656, '删除', '52114381915291648', 3, 'B', 'blog:category:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:24:52', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52114878701240320, '标签管理', '52099144042414080', 4, 'M', 'blog:tag:page', 'tag', 'blog/tag/index', '', 2, 1, 'tag', 1, 1, 43728307660783616, '2022-08-16 19:25:55', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52114929196466176, '新增', '52114878701240320', 1, 'B', 'blog:tag:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:26:07', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52114968178327552, '修改', '52114878701240320', 2, 'B', 'blog:tag:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:26:17', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52115022117076992, '删除', '52114878701240320', 3, 'B', 'blog:tag:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:26:30', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52132922030817280, '新增', '52073868344426496', 1, 'B', 'system:param:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 20:37:37', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52133024904511488, '修改', '52073868344426496', 2, 'B', 'system:param:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 20:38:02', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (52133076263763968, '删除', '52073868344426496', 3, 'B', 'system:param:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 20:38:14', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (55073494739714048, '图片分类管理', '52099144042414080', 4, 'M', 'blog:picture:category:page', 'picture/category', 'blog/picture/category', '', 2, 1, 'validCode', 1, 1, 43728307660783616, '2022-08-24 23:22:24', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (61851202979102720, '新增', '55073494739714048', 1, 'B', 'blog:picture:category:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:14:36', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (61851247690383360, '修改', '55073494739714048', 2, 'B', 'blog:picture:category:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:14:47', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (61851299972382720, '删除', '55073494739714048', 3, 'B', 'blog:picture:category:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:14:59', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (61851660971933696, '图片管理', '55073494739714048', 4, 'B', 'blog:picture:page', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:16:25', NULL, NULL);
-INSERT INTO `sys_menu` VALUES (61851798276669440, '图片上传', '55073494739714048', 5, 'B', 'blog:picture:upload', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:16:58', 43728307660783616, '2022-09-12 16:17:15');
-INSERT INTO `sys_menu` VALUES (61851972713578496, '图片删除', '55073494739714048', 6, 'B', 'blog:picture:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:17:39', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43737833021636608, '系统管理', 0, 1, 'D', NULL, 'system', NULL, NULL, 2, 1, 'system', 1, 1, 43728307660783616, '2022-07-24 16:38:32', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43738261293629440, '用户管理', 43737833021636608, 1, 'M', 'system:user:page', 'user', 'system/user/index', NULL, 2, 1, 'user', 1, 1, 43728307660783616, '2022-07-24 16:40:14', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43738420110950400, '角色管理', 43737833021636608, 2, 'M', 'system:role:page', 'role', 'system/role/index', NULL, 2, 1, 'peoples', 1, 1, 43728307660783616, '2022-07-24 16:40:52', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43738641683447808, '菜单管理', 43737833021636608, 3, 'M', 'system:menu:list', 'menu', 'system/menu/index', NULL, 2, 1, 'menu', 1, 1, 43728307660783616, '2022-07-24 16:41:45', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43738896395141120, '数据字典', 43737833021636608, 4, 'M', 'system:dictionary:page', 'dictionary', 'system/dictionary/index', NULL, 2, 1, 'dict', 1, 1, 43728307660783616, '2022-07-24 16:42:46', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43739074015526912, 'API 管理', 43737833021636608, 5, 'M', 'system:apiCatetory:page', 'api', 'system/api/category', NULL, 2, 1, 'documentation', 1, 1, 43728307660783616, '2022-07-24 16:43:28', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43746238872420352, '日志审计', 0, 2, 'D', '', 'log', '', '', 2, 1, 'edit', 1, 1, 43728307660783616, '2022-07-24 17:11:56', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43746395802304512, '登录日志', 43746238872420352, 1, 'M', 'log:login:page', 'login', 'system/log/login/index', '', 2, 1, 'logininfor', 1, 1, 43728307660783616, '2022-07-24 17:12:34', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43746859121901568, '操作日志', 43746238872420352, 2, 'M', 'log:operation:page', 'operation', 'system/log/operation/index', '', 2, 1, 'form', 1, 1, 43728307660783616, '2022-07-24 17:14:24', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43779604086784000, '新增', 43738261293629440, 1, 'B', 'system:user:add', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:24:31', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43779675532558336, '修改', 43738261293629440, 2, 'B', 'system:user:update', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:24:48', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43779734387032064, '删除', 43738261293629440, 3, 'B', 'system:user:delete', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:25:02', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43779823738290176, '重置密码', 43738261293629440, 4, 'B', 'system:user:resetPassword', '', 'system/log/operation/index', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:25:23', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43779962246791168, '新增', 43738420110950400, 1, 'B', 'system:role:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:25:56', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780015896133632, '修改', 43738420110950400, 2, 'B', 'system:role:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:26:09', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780063644090368, '删除', 43738420110950400, 3, 'B', 'system:role:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:26:21', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780156136882176, '分配用户', 43738420110950400, 4, 'B', 'system:role:authUser', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:26:43', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780326794723328, '取消用户授权', 43738420110950400, 5, 'B', 'system:user:deleteAuthUser', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:27:23', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780526653308928, '新增', 43738641683447808, 1, 'B', 'system:menu:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:11', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780571997929472, '修改', 43738641683447808, 2, 'B', 'system:menu:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:22', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780625399808000, '删除', 43738641683447808, 3, 'B', 'system:menu:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:35', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780699760623616, '分配 API', 43738641683447808, 4, 'B', 'system:menu:allocateApi', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:28:52', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43780957378969600, '新增', 43738896395141120, 1, 'B', 'system:dictionary:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:29:54', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43781009912627200, '修改', 43738896395141120, 2, 'B', 'system:dictionary:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:30:06', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43781060101668864, '删除', 43738896395141120, 3, 'B', 'system:dictionary:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:30:18', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43781692732735488, '分配数据', 43738896395141120, 4, 'B', 'system:dictionary:data:page', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:32:49', 43728307660783616, '2022-09-12 16:32:11');
+INSERT INTO `sys_menu` VALUES (43781756515516416, '数据新增', 43738896395141120, 5, 'B', 'system:dictionaryData:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:33:04', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43781829500600320, '数据修改', 43738896395141120, 6, 'B', 'system:dictionary:data:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:33:22', 43728307660783616, '2022-09-12 16:32:18');
+INSERT INTO `sys_menu` VALUES (43781877487632384, '数据删除', 43738896395141120, 7, 'B', 'system:dictionary:data:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 19:33:33', 43728307660783616, '2022-09-12 16:32:23');
+INSERT INTO `sys_menu` VALUES (43820727559782400, '分类新增', 43739074015526912, 1, 'B', 'system:apiCategory:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:07:56', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43820963283861504, '分类修改', 43739074015526912, 2, 'B', 'system:apiCategory:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:08:52', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43821061610930176, '分类删除', 43739074015526912, 3, 'B', 'system:apiCategory:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:09:15', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43821227462098944, '分配数据', 43739074015526912, 4, 'B', 'system:api:page', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:09:55', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43821354134274048, '数据新增', 43739074015526912, 5, 'B', 'system:api:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:10:25', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43821418193879040, '数据修改', 43739074015526912, 6, 'B', 'system:api:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:10:40', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (43821478692519936, '数据删除', 43739074015526912, 7, 'B', 'system:api:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-07-24 22:10:55', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52073868344426496, '参数配置', 43737833021636608, 6, 'M', 'system:param:page', 'param', 'system/param/index', '', 2, 1, 'edit', 1, 1, 43728307660783616, '2022-08-16 16:42:58', 43728307660783616, '2022-08-16 16:59:24');
+INSERT INTO `sys_menu` VALUES (52099144042414080, '博客管理', 0, 3, 'D', '', 'blog', '', '', 2, 1, 'theme', 1, 1, 43728307660783616, '2022-08-16 18:23:24', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52099447332536320, '写文章', 52099144042414080, 1, 'M', 'blog:aritcle:add', 'article/write', 'blog/article/write', '', 2, 1, 'edit', 1, 1, 43728307660783616, '2022-08-16 18:24:36', 43728307660783616, '2022-09-12 09:47:29');
+INSERT INTO `sys_menu` VALUES (52099788358811648, '文章管理', 52099144042414080, 2, 'M', 'blog:article:page', 'article', 'blog/article/index', '', 2, 1, 'list', 1, 1, 43728307660783616, '2022-08-16 18:25:58', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52099936145113088, '新增', 52099788358811648, 1, 'B', 'blog:article:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 18:26:33', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52100202487611392, '修改', 52099788358811648, 2, 'B', 'blog:article:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 18:27:36', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52100286625349632, '删除', 52099788358811648, 3, 'B', 'blog:article:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 18:27:56', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52114381915291648, '分类管理', 52099144042414080, 3, 'M', 'blog:category:page', 'category', 'blog/category/index', '', 2, 1, 'rate', 1, 1, 43728307660783616, '2022-08-16 19:23:57', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52114517684912128, '新增', 52114381915291648, 1, 'B', 'blog:category:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:24:29', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52114568226275328, '修改', 52114381915291648, 2, 'B', 'blog:category:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:24:41', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52114614602694656, '删除', 52114381915291648, 3, 'B', 'blog:category:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:24:52', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52114878701240320, '标签管理', 52099144042414080, 4, 'M', 'blog:tag:page', 'tag', 'blog/tag/index', '', 2, 1, 'tag', 1, 1, 43728307660783616, '2022-08-16 19:25:55', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52114929196466176, '新增', 52114878701240320, 1, 'B', 'blog:tag:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:26:07', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52114968178327552, '修改', 52114878701240320, 2, 'B', 'blog:tag:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:26:17', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52115022117076992, '删除', 52114878701240320, 3, 'B', 'blog:tag:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 19:26:30', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52132922030817280, '新增', 52073868344426496, 1, 'B', 'system:param:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 20:37:37', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52133024904511488, '修改', 52073868344426496, 2, 'B', 'system:param:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 20:38:02', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (52133076263763968, '删除', 52073868344426496, 3, 'B', 'system:param:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-08-16 20:38:14', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (55073494739714048, '图片分类管理', 52099144042414080, 4, 'M', 'blog:picture:category:page', 'picture/category', 'blog/picture/category', '', 2, 1, 'validCode', 1, 1, 43728307660783616, '2022-08-24 23:22:24', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (61851202979102720, '新增', 55073494739714048, 1, 'B', 'blog:picture:category:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:14:36', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (61851247690383360, '修改', 55073494739714048, 2, 'B', 'blog:picture:category:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:14:47', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (61851299972382720, '删除', 55073494739714048, 3, 'B', 'blog:picture:category:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:14:59', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (61851660971933696, '图片管理', 55073494739714048, 4, 'B', 'blog:picture:page', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:16:25', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (61851798276669440, '图片上传', 55073494739714048, 5, 'B', 'blog:picture:upload', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:16:58', 43728307660783616, '2022-09-12 16:17:15');
+INSERT INTO `sys_menu` VALUES (61851972713578496, '图片删除', 55073494739714048, 6, 'B', 'blog:picture:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-09-12 16:17:39', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (70575761538416640, '友情链接', 52099144042414080, 5, 'M', 'blog:friendship:page', 'friendship', 'blog/friendship/index', '', 2, 1, 'link', 1, 1, 43728307660783616, '2022-10-06 18:02:53', 43728307660783616, '2022-10-06 18:07:57');
+INSERT INTO `sys_menu` VALUES (70591784899575808, '新增', 70575761538416640, 1, 'B', 'blog:friendship:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-06 19:06:33', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (70591842319597568, '修改', 70575761538416640, 2, 'B', 'blog:friendship:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-06 19:06:47', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (70591937538686976, '删除', 70575761538416640, 3, 'B', 'blog:friendship:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-06 19:07:09', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (77878458918633472, '评论管理', 52099144042414080, 6, 'M', 'blog:comment:page', 'comment', 'blog/comment/index', '', 2, 1, 'message', 1, 1, 43728307660783616, '2022-10-26 21:41:12', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78232604175761408, '审核', 77878458918633472, 1, 'B', 'blog:comment:audit', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-27 21:08:26', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78232661448982528, '删除', 77878458918633472, 2, 'B', 'blog:comment:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-27 21:08:40', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78243661845889024, '第三方登录配置', 52099144042414080, 7, 'M', 'blog:config:page', 'config', 'blog/config/index', '', 2, 1, 'build', 1, 1, 43728307660783616, '2022-10-27 21:52:23', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78261905201823744, '新增', 78243661845889024, 1, 'B', 'blog:config:add', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-27 23:04:52', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78261973308932096, '修改', 78243661845889024, 2, 'B', 'blog:config:update', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-27 23:05:08', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78262028635996160, '删除', 78243661845889024, 3, 'B', 'blog:config:delete', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-27 23:05:22', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78582377730801664, '关于我', 52099144042414080, 8, 'M', 'blog:about:get', 'about', 'blog/about/', '', 2, 1, 'edit', 1, 1, 43728307660783616, '2022-10-28 20:18:19', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78594439798325248, '编辑', 78582377730801664, 1, 'B', 'blog:about:edit', '', '', '', 2, 1, '', 1, 1, 43728307660783616, '2022-10-28 21:06:15', NULL, NULL);
+INSERT INTO `sys_menu` VALUES (78595081065463808, '推荐管理', 52099144042414080, 9, 'M', 'blog:recommend:list', 'recommend', 'blog/recommend', '', 2, 1, 'example', 1, 1, 43728307660783616, '2022-10-28 21:08:48', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_param
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_param`;
 CREATE TABLE `sys_param`  (
-  `id` bigint(20) NOT NULL COMMENT '参数 id',
+  `id` bigint NOT NULL COMMENT '参数 id',
   `param_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '参数名称',
   `param_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '参数键',
   `param_value` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '参数值',
@@ -710,19 +933,25 @@ CREATE TABLE `sys_param`  (
   `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '参数配置' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '参数配置' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_param
 -- ----------------------------
 INSERT INTO `sys_param` VALUES (52091717515476992, '默认密码', 'SYS_DEFAULT_PASSWORD', 'geshanzsq@2022', 1, 1, '管理员默认密码', 43728307660783616, '2022-08-16 17:53:53', NULL, NULL);
+INSERT INTO `sys_param` VALUES (67408901376573440, '文章二级推荐', 'BLOG_ARTICLE_SECOND_RECOMMEND', '2', 2, 3, '首页二级推荐数量', 43728307660783616, '2022-09-28 00:18:54', 43728307660783616, '2022-09-28 23:49:18');
+INSERT INTO `sys_param` VALUES (67409686390898688, '文章三级推荐', 'BLOG_ARTICLE_THIRD_RECOMMEND', '5', 1, 4, '首页右侧三级推荐（好文推荐）数量', 43728307660783616, '2022-09-28 00:22:02', 43728307660783616, '2022-09-28 23:49:43');
+INSERT INTO `sys_param` VALUES (67764089916489728, '文章一级推荐', 'BLOG_ARTICLE_ONE_RECOMMEND', '5', 2, 2, '首页一级推荐数量', 43728307660783616, '2022-09-28 23:50:18', 43728307660783616, '2022-09-28 23:50:56');
+INSERT INTO `sys_param` VALUES (67765734880575488, '留言板', 'BOARD_OPEN_STATUS', 'true', 1, 5, '留言板开启状态', 43728307660783616, '2022-09-28 23:56:50', 43728307660783616, '2022-09-29 00:21:32');
+INSERT INTO `sys_param` VALUES (70629177245564928, '相关文章', 'BLOG_ARTICLE_ABOUT', '6', 2, 6, '相关文章数量', 43728307660783616, '2022-10-06 21:35:08', NULL, NULL);
+INSERT INTO `sys_param` VALUES (70810422013329408, '评论', 'BLOG_ARTICLE_COMMENT_OPEN', 'true', 2, 7, '文章评论是否开启', 43728307660783616, '2022-10-07 09:35:20', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_role
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `id` bigint(20) NOT NULL COMMENT '角色 id',
+  `id` bigint NOT NULL COMMENT '角色 id',
   `role_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色名称',
   `role_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色编码',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
@@ -734,13 +963,13 @@ CREATE TABLE `sys_role`  (
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_role_code`(`role_code`) USING BTREE COMMENT '角色编码唯一索引'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统角色' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统角色' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES (43735562707795968, '超级管理员', 'superAdmin', 1, 1, '', 43728307660783616, '2022-07-24 16:29:31', NULL, NULL);
-INSERT INTO `sys_role` VALUES (43767332559912960, '普通角色', 'commonRole', 2, 1, '', 43728307660783616, '2022-07-24 18:35:45', 43728307660783616, '2022-09-12 16:19:41');
+INSERT INTO `sys_role` VALUES (43767332559912960, '普通角色', 'commonRole', 2, 1, '', 43728307660783616, '2022-07-24 18:35:45', 43728307660783616, '2022-10-31 00:02:36');
 
 -- ----------------------------
 -- Table structure for sys_role_menu
@@ -751,79 +980,21 @@ CREATE TABLE `sys_role_menu`  (
   `fk_role_id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色 id',
   `fk_menu_id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '菜单 id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统角色菜单' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统角色菜单' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_role_menu
 -- ----------------------------
-INSERT INTO `sys_role_menu` VALUES ('61852480702513152', '43767332559912960', '43737833021636608');
-INSERT INTO `sys_role_menu` VALUES ('61852480706707456', '43767332559912960', '43738261293629440');
-INSERT INTO `sys_role_menu` VALUES ('61852480706707457', '43767332559912960', '43779604086784000');
-INSERT INTO `sys_role_menu` VALUES ('61852480710901760', '43767332559912960', '43779675532558336');
-INSERT INTO `sys_role_menu` VALUES ('61852480710901761', '43767332559912960', '43779734387032064');
-INSERT INTO `sys_role_menu` VALUES ('61852480710901762', '43767332559912960', '43779823738290176');
-INSERT INTO `sys_role_menu` VALUES ('61852480715096064', '43767332559912960', '43738420110950400');
-INSERT INTO `sys_role_menu` VALUES ('61852480715096065', '43767332559912960', '43779962246791168');
-INSERT INTO `sys_role_menu` VALUES ('61852480715096066', '43767332559912960', '43780015896133632');
-INSERT INTO `sys_role_menu` VALUES ('61852480719290368', '43767332559912960', '43780063644090368');
-INSERT INTO `sys_role_menu` VALUES ('61852480719290369', '43767332559912960', '43780156136882176');
-INSERT INTO `sys_role_menu` VALUES ('61852480719290370', '43767332559912960', '43780326794723328');
-INSERT INTO `sys_role_menu` VALUES ('61852480723484672', '43767332559912960', '43738641683447808');
-INSERT INTO `sys_role_menu` VALUES ('61852480723484673', '43767332559912960', '43780526653308928');
-INSERT INTO `sys_role_menu` VALUES ('61852480723484674', '43767332559912960', '43780571997929472');
-INSERT INTO `sys_role_menu` VALUES ('61852480723484675', '43767332559912960', '43780625399808000');
-INSERT INTO `sys_role_menu` VALUES ('61852480723484676', '43767332559912960', '43780699760623616');
-INSERT INTO `sys_role_menu` VALUES ('61852480727678976', '43767332559912960', '43738896395141120');
-INSERT INTO `sys_role_menu` VALUES ('61852480727678977', '43767332559912960', '43780957378969600');
-INSERT INTO `sys_role_menu` VALUES ('61852480727678978', '43767332559912960', '43781009912627200');
-INSERT INTO `sys_role_menu` VALUES ('61852480727678979', '43767332559912960', '43781060101668864');
-INSERT INTO `sys_role_menu` VALUES ('61852480727678980', '43767332559912960', '43781692732735488');
-INSERT INTO `sys_role_menu` VALUES ('61852480731873280', '43767332559912960', '43781756515516416');
-INSERT INTO `sys_role_menu` VALUES ('61852480731873281', '43767332559912960', '43781829500600320');
-INSERT INTO `sys_role_menu` VALUES ('61852480731873282', '43767332559912960', '43781877487632384');
-INSERT INTO `sys_role_menu` VALUES ('61852480731873283', '43767332559912960', '43739074015526912');
-INSERT INTO `sys_role_menu` VALUES ('61852480731873284', '43767332559912960', '43820727559782400');
-INSERT INTO `sys_role_menu` VALUES ('61852480736067584', '43767332559912960', '43820963283861504');
-INSERT INTO `sys_role_menu` VALUES ('61852480736067585', '43767332559912960', '43821061610930176');
-INSERT INTO `sys_role_menu` VALUES ('61852480736067586', '43767332559912960', '43821227462098944');
-INSERT INTO `sys_role_menu` VALUES ('61852480736067587', '43767332559912960', '43821354134274048');
-INSERT INTO `sys_role_menu` VALUES ('61852480740261888', '43767332559912960', '43821418193879040');
-INSERT INTO `sys_role_menu` VALUES ('61852480740261889', '43767332559912960', '43821478692519936');
-INSERT INTO `sys_role_menu` VALUES ('61852480740261890', '43767332559912960', '52073868344426496');
-INSERT INTO `sys_role_menu` VALUES ('61852480740261891', '43767332559912960', '52132922030817280');
-INSERT INTO `sys_role_menu` VALUES ('61852480740261892', '43767332559912960', '52133024904511488');
-INSERT INTO `sys_role_menu` VALUES ('61852480740261893', '43767332559912960', '52133076263763968');
-INSERT INTO `sys_role_menu` VALUES ('61852480744456192', '43767332559912960', '43746238872420352');
-INSERT INTO `sys_role_menu` VALUES ('61852480744456193', '43767332559912960', '43746395802304512');
-INSERT INTO `sys_role_menu` VALUES ('61852480744456194', '43767332559912960', '43746859121901568');
-INSERT INTO `sys_role_menu` VALUES ('61852480744456195', '43767332559912960', '52099144042414080');
-INSERT INTO `sys_role_menu` VALUES ('61852480744456196', '43767332559912960', '52099447332536320');
-INSERT INTO `sys_role_menu` VALUES ('61852480748650496', '43767332559912960', '52099788358811648');
-INSERT INTO `sys_role_menu` VALUES ('61852480748650497', '43767332559912960', '52099936145113088');
-INSERT INTO `sys_role_menu` VALUES ('61852480748650498', '43767332559912960', '52100202487611392');
-INSERT INTO `sys_role_menu` VALUES ('61852480748650499', '43767332559912960', '52100286625349632');
-INSERT INTO `sys_role_menu` VALUES ('61852480748650500', '43767332559912960', '52114381915291648');
-INSERT INTO `sys_role_menu` VALUES ('61852480748650501', '43767332559912960', '52114517684912128');
-INSERT INTO `sys_role_menu` VALUES ('61852480752844800', '43767332559912960', '52114568226275328');
-INSERT INTO `sys_role_menu` VALUES ('61852480752844801', '43767332559912960', '52114614602694656');
-INSERT INTO `sys_role_menu` VALUES ('61852480752844802', '43767332559912960', '52114878701240320');
-INSERT INTO `sys_role_menu` VALUES ('61852480752844803', '43767332559912960', '52114929196466176');
-INSERT INTO `sys_role_menu` VALUES ('61852480757039104', '43767332559912960', '52114968178327552');
-INSERT INTO `sys_role_menu` VALUES ('61852480757039105', '43767332559912960', '52115022117076992');
-INSERT INTO `sys_role_menu` VALUES ('61852480757039106', '43767332559912960', '55073494739714048');
-INSERT INTO `sys_role_menu` VALUES ('61852480757039107', '43767332559912960', '61851202979102720');
-INSERT INTO `sys_role_menu` VALUES ('61852480757039108', '43767332559912960', '61851247690383360');
-INSERT INTO `sys_role_menu` VALUES ('61852480757039109', '43767332559912960', '61851299972382720');
-INSERT INTO `sys_role_menu` VALUES ('61852480757039110', '43767332559912960', '61851660971933696');
-INSERT INTO `sys_role_menu` VALUES ('61852480761233408', '43767332559912960', '61851798276669440');
-INSERT INTO `sys_role_menu` VALUES ('61852480761233409', '43767332559912960', '61851972713578496');
+INSERT INTO `sys_role_menu` VALUES ('79363597171425280', '43767332559912960', '43737833021636608');
+INSERT INTO `sys_role_menu` VALUES ('79363597179813888', '43767332559912960', '43746238872420352');
+INSERT INTO `sys_role_menu` VALUES ('79363597184008192', '43767332559912960', '52099144042414080');
 
 -- ----------------------------
 -- Table structure for sys_user
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
-  `id` bigint(20) NOT NULL COMMENT '用户 id',
+  `id` bigint NOT NULL COMMENT '用户 id',
   `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户名',
   `nick_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '昵称',
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '密码',
@@ -841,12 +1012,12 @@ CREATE TABLE `sys_user`  (
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_username`(`username`) USING BTREE COMMENT '用户名唯一索引'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (43728307660783616, 'admin', '管理员', '$2a$10$NbKEKO1fPJvRx1Pto023u.6pGpbFwA4JdWWrtt44nRs9/KO6NX/De', 1, 1, '497301391@qq.com', '', '', 1, '', 1, 43728307660783616, '2022-07-24 16:02:02', 43728307660783616, '2022-08-16 16:41:58');
+INSERT INTO `sys_user` VALUES (43728307660783616, 'admin', '管理员', '$2a$10$NbKEKO1fPJvRx1Pto023u.6pGpbFwA4JdWWrtt44nRs9/KO6NX/De', 1, 1, '497301391@qq.com', '', '', 1, '我是管理员', 1, 43728307660783616, '2022-07-24 16:02:02', 43728307660783616, '2022-08-16 16:41:58');
 INSERT INTO `sys_user` VALUES (43767104519798784, 'geshanzsq', '格姗知识圈', '$2a$10$rm5jwWc6lRM11Q.OOEH2T.t41GnkzITcvVAI19LdAicn5/AJdD0im', 3, 1, '497301391@qq.com', '', '', 1, '', 1, 43728307660783616, '2022-07-24 18:34:51', 43728307660783616, '2022-08-15 00:03:28');
 INSERT INTO `sys_user` VALUES (43767196689629184, 'xgz', '小格子', '$2a$10$mh3A6xcNuwM6zfjQgQ/xHOmilj92Vj1JWbiB9VTktUD7zccynLD02', 2, 1, '497301391@qq.com', '', '', 1, '', 1, 43728307660783616, '2022-07-24 18:35:13', NULL, NULL);
 
@@ -855,11 +1026,11 @@ INSERT INTO `sys_user` VALUES (43767196689629184, 'xgz', '小格子', '$2a$10$mh
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role`  (
-  `id` bigint(20) NOT NULL COMMENT '用户角色 id',
+  `id` bigint NOT NULL COMMENT '用户角色 id',
   `fk_user_id` bigint NOT NULL COMMENT '用户 id',
   `fk_role_id` bigint NOT NULL COMMENT '角色 id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户角色' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户角色' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sys_user_role

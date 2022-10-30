@@ -5,7 +5,7 @@ import com.geshanzsq.admin.blog.tag.dto.BlogTagListDTO;
 import com.geshanzsq.admin.blog.tag.dto.BlogTagPageDTO;
 import com.geshanzsq.admin.blog.tag.mapper.BlogTagMapper;
 import com.geshanzsq.admin.blog.tag.mapstruct.BlogTagConverter;
-import com.geshanzsq.client.web.po.blog.tag.BlogTag;
+import com.geshanzsq.client.common.blog.po.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.service.BlogTagService;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
 import com.geshanzsq.common.core.exception.ParamException;
@@ -79,7 +79,7 @@ public class BlogTagServiceImpl extends BaseServiceImpl<BlogTagMapper, BlogTag> 
      */
     @Override
     public Integer getMaxSort() {
-        return blogTagMapper.getMaxSort();
+        return blogTagMapper.selectMaxSort();
     }
 
     /**

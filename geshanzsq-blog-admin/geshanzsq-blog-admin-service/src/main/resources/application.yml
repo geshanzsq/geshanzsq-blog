@@ -4,7 +4,7 @@ server:
   port: 8080
   servlet:
     # 应用访问路径
-    context-path: /blog-admin-api
+    context-path: /geshanzsq-blog-admin-api
   tomcat:
     # tomcat uri 编码配置
     uri-encoding: UTF-8
@@ -12,14 +12,14 @@ server:
 # spring 配置
 spring:
   profiles:
-    active: dev
+    active: prod
   # 资源信息
   messages:
     # 国际化资源配置文件路径
     basename: i18n/message
     encoding: utf-8
   application:
-    name: geshanzsq-blog-admin
+    name: geshanzsq-blog-admin-service
   servlet:
     multipart:
       # 文件上传最大大小
@@ -48,6 +48,10 @@ token:
   token-param: token
   # 令牌前缀
   token-prefix: Bearer
+  # 存入 redis 前缀
+  token-redis-prefix: "token:admin:"
+  # 刷新权限 redis 前缀
+  permission-refresh-redis-prefix: "permission:refresh:admin:"
 
 # 分页配置
 page:

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.client.blog.like.mapper.BlogArticleLikeMapper">
+
+    <resultMap id="LikeCountResultMap" type="com.geshanzsq.client.blog.like.vo.BlogArticleLikeCountVO" >
+        <result column="article_id" property="articleId" />
+        <result column="count" property="count" />
+    </resultMap>
+
+    <resultMap id="PageResultMap" type="com.geshanzsq.client.blog.article.vo.BlogArticlePageVO" >
+        <result column="id" property="id" />
+        <result column="article_title" property="articleTitle" />
+        <result column="cover_url" property="coverUrl" />
+        <result column="gmt_publish" property="gmtPublish" />
+    </resultMap>
+
+    <!-- 获取点赞数量 -->
+    <select id="selectCountByArticleIds" resultMap="LikeCountResultMap">
+        SELECT
+            fk_article_id AS article_id,
+            count( fk_create_user_id ) AS count
+        FROM
+            blog_article_like
+        WHERE fk_article_id IN
+            <foreach collection="articleIds" item="articleId" open="(" separator="," close=")">
+                #{articleId}
+            </foreach>
+        GROUP BY
+            article_id
+    </select>
+
+
+    <!-- 查询列表 -->
+    <select id="selectList" resultMap="PageResultMap">
+        SELECT
+            a.id,
+            a.article_title,
+            a.cover_url,
+            l.gmt_create AS gmt_publish
+        FROM
+            blog_article_like l
+            INNER JOIN blog_article a ON l.fk_article_id = a.id
+        WHERE
+            a.status = #{articleStatus}
+            AND l.fk_create_user_id = #{userId}
+        ORDER BY
+            gmt_publish DESC
+    </select>
+
+</mapper>

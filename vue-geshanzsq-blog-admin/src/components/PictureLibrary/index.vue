@@ -38,7 +38,7 @@
       </el-form-item>
     </el-form>
 
-    <div class="no-data" v-else>暂无图片分类数据！</div>
+    <el-empty v-else description="暂无图片分类数据！" />
 
     <!--图片显示-->
     <el-row :gutter="18" v-if="dataList.length > 0">
@@ -69,7 +69,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <div class="no-data" v-else>暂无图片数据！</div>
+    <el-empty v-else description="暂无图片分类数据！" />
     <pagination
       v-show="totalCount > 0"
       :total="totalCount"

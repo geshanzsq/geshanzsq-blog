@@ -171,15 +171,8 @@
       </el-row>
 
       <el-form-item class="operator-footer">
-        <el-button type="warning" class="save-button" @click="handleSave()"
-          >保 存</el-button
-        >
-        <el-button
-          type="success"
-          class="publish-button"
-          @click="handlePublish()"
-          >发 布</el-button
-        >
+        <el-button type="warning" @click="handleSave()">保 存</el-button>
+        <el-button type="success" @click="handlePublish()">发 布</el-button>
       </el-form-item>
     </el-form>
 

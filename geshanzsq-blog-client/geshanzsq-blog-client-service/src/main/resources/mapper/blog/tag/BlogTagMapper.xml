@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.client.blog.tag.mapper.BlogTagMapper">
+
+    <!-- 更新点击量 -->
+    <update id="updateClickCountByTagName">
+        update blog_tag set click_count = click_count + 1
+        where tag_name = #{tagName} and status = #{status}
+    </update>
+
+    <!-- 通过文章 id 获取标签名称 -->
+    <select id="selectTagNameByArticleId" parameterType="Long" resultType="String">
+        SELECT DISTINCT
+            bt.tag_name
+        FROM
+            blog_article_tag bat
+            INNER JOIN blog_tag bt ON bat.fk_tag_id = bt.id
+        WHERE
+            bat.fk_article_id = #{articleId}
+    </select>
+</mapper>

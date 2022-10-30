@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.client.blog.footprint.mapper.BlogArticleFootprintMapper">
+
+    <resultMap id="PageResultMap" type="com.geshanzsq.client.blog.article.vo.BlogArticlePageVO" >
+        <result column="id" property="id" />
+        <result column="article_title" property="articleTitle" />
+        <result column="cover_url" property="coverUrl" />
+        <result column="gmt_publish" property="gmtPublish" />
+    </resultMap>
+
+    <!-- 查询列表 -->
+    <select id="selectPage" parameterType="Object" resultMap="PageResultMap">
+        SELECT
+            a.id,
+            a.article_title,
+            a.cover_url,
+            f.gmt_modify AS gmt_publish
+        FROM
+            blog_article_footprint f
+            INNER JOIN blog_article a ON f.fk_article_id = a.id
+        WHERE
+            a.status = #{articleStatus}
+            AND f.fk_create_user_id = #{userId}
+        ORDER BY
+            gmt_publish DESC
+    </select>
+
+</mapper>

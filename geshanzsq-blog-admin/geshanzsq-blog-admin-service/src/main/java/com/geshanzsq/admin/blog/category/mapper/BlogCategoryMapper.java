@@ -1,7 +1,7 @@
 package com.geshanzsq.admin.blog.category.mapper;
 
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryPageDTO;
-import com.geshanzsq.client.web.po.blog.category.BlogCategory;
+import com.geshanzsq.client.common.blog.po.category.BlogCategory;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;
 import com.geshanzsq.common.framework.web.mapper.BaseMapperPlus;
@@ -30,5 +30,5 @@ public interface BlogCategoryMapper extends BaseMapperPlus<BlogCategory> {
     /**
      * 获取最大排序
      */
-    Integer getMaxSort();
+    Integer selectMaxSort();
 }

@@ -8,7 +8,7 @@ import com.geshanzsq.common.log.annotation.Log;
 import com.geshanzsq.common.log.dto.LogDTO;
 import com.geshanzsq.common.log.enums.LogStatus;
 import com.geshanzsq.common.log.factory.LogAsyncFactory;
-import com.geshanzsq.framework.security.utils.SecurityUtils;
+import com.geshanzsq.framework.security.util.SecurityUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;

@@ -8,8 +8,7 @@
   >
     <div>
       <span>所选接口数据：</span>
-      <span v-if="apiMap.size == 0">暂无数据</span>
-      <span v-else>
+      <span>
         <el-tag
           class="api-select-tag"
           v-for="api in apiMap"

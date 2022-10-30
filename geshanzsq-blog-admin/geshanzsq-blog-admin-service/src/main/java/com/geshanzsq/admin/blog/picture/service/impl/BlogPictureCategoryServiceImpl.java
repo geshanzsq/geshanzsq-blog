@@ -53,6 +53,6 @@ public class BlogPictureCategoryServiceImpl extends BaseServiceImpl<BlogPictureC
      */
     @Override
     public Integer getMaxSort() {
-        return blogPictureCategoryMapper.getMaxSort();
+        return blogPictureCategoryMapper.selectMaxSort();
     }
 }

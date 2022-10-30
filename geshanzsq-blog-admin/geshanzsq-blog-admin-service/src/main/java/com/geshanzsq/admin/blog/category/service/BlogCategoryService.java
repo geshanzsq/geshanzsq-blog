@@ -2,7 +2,7 @@ package com.geshanzsq.admin.blog.category.service;
 
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryListDTO;
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryPageDTO;
-import com.geshanzsq.client.web.po.blog.category.BlogCategory;
+import com.geshanzsq.client.common.blog.po.category.BlogCategory;
 import com.geshanzsq.admin.blog.category.vo.BlogCategoryVO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.BaseService;

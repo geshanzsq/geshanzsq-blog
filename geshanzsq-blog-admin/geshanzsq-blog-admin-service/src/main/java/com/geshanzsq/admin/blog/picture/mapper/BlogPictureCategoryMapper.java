@@ -30,7 +30,7 @@ public interface BlogPictureCategoryMapper extends BaseMapperPlus<BlogPictureCat
     /**
      * 获取最大排序
      */
-    Integer getMaxSort();
+    Integer selectMaxSort();
 
     /**
      * 获取默认图片分类 id

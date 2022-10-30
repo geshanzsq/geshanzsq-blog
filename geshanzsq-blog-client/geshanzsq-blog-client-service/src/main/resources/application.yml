@@ -1,0 +1,75 @@
+# 服务配置
+server:
+  # 端口
+  port: 8081
+  servlet:
+    # 应用访问路径
+    context-path: /geshanzsq-blog-client-api
+  tomcat:
+    # tomcat uri 编码配置
+    uri-encoding: UTF-8
+
+# spring 配置
+spring:
+  profiles:
+    active: dev
+  # 资源信息
+  messages:
+    # 国际化资源配置文件路径
+    basename: i18n/message
+    encoding: utf-8
+  application:
+    name: geshanzsq-blog-client-web-service
+  servlet:
+    multipart:
+      # 文件上传最大大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+
+# MyBatis Plus 配置
+mybatis-plus:
+  global-config:
+    db-config:
+      # 配置逻辑删除
+      logic-delete-value: 2
+      logic-not-delete-value: 1
+      # 逻辑删除字段
+      logic-delete-field: delFlag
+  mapper-locations: classpath*:/mapper/**/*Mapper.xml
+
+# token 令牌配置
+token:
+  # 自定义令牌标识
+  header: Authorization
+  # 令牌有效期，默认 3600*24*7 秒，7 天
+  expire-time: 604800
+  # 令牌参数
+  token-param: token
+  # 令牌前缀
+  token-prefix: Bearer
+  # 存入 redis 前缀
+  token-redis-prefix: "token:client:"
+  # 刷新权限 redis 前缀
+  permission-refresh-redis-prefix: "permission:refresh:client:"
+
+# 分页配置
+page:
+  # 默认分页记录数
+  default-page-size: 10
+  # 最大分页记录数
+  max-page-size: 200
+
+# 文件上传配置
+file-upload:
+  # 文件映射前缀
+  map-prefix: /profile
+
+# 接口文档配置
+swagger:
+  title: 格姗知识圈博客前台接口文档
+  description: 包含首页、分类、标签、收藏等功能
+  author: geshanzsq
+  url: http://geshanzsq.com
+  email: 497301391@qq.com
+  version: 1.0.0

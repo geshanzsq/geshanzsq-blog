@@ -67,7 +67,7 @@ async function show(id) {
   visible.value = true
   if (id) {
     title.value = '修改分类'
-    // 获取角色信息
+    // 获取分类信息
     const { data } = await getById(id)
     editForm.value = data
     editForm.value.status = editForm.value.status + ''

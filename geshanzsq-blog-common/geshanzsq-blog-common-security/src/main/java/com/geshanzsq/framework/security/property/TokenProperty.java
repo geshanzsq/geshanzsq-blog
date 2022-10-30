@@ -35,4 +35,14 @@ public class TokenProperty {
      */
     private String tokenPrefix;
 
+    /**
+     * 存入 redis 前缀
+     */
+    private String tokenRedisPrefix;
+
+    /**
+     * 刷新权限 redis 前缀
+     */
+    private String permissionRefreshRedisPrefix;
+
 }

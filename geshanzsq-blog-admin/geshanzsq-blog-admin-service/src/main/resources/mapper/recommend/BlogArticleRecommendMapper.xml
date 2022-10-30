@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.admin.blog.recommend.mapper.BlogArticleRecommendMapper">
+
+    <resultMap id="BaseResultMap" type="com.geshanzsq.admin.blog.recommend.vo.BlogArticleRecommendVO" >
+        <result column="id" property="id" />
+        <result column="article_id" property="articleId" />
+        <result column="article_title" property="articleTitle" />
+        <result column="cover_url" property="coverUrl" />
+    </resultMap>
+
+    <!-- 列表 -->
+    <select id="selectRecommendList" resultType="com.geshanzsq.admin.blog.recommend.dto.BlogArticleRecommendListDTO" resultMap="BaseResultMap">
+        SELECT
+            r.id,
+            r.fk_article_id AS article_id,
+            a.article_title,
+            a.cover_url
+        FROM
+            blog_article_recommend r
+            INNER JOIN blog_article a ON r.fk_article_id = a.id
+        WHERE
+            r.recommend_level = #{recommendLevel}
+        ORDER BY
+            r.sort ASC,
+            a.gmt_publish DESC
+    </select>
+</mapper>

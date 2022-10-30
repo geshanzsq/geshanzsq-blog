@@ -27,7 +27,7 @@ module.exports = defineConfig({
     open: devOpenBrowser,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: 'http://localhost:8080/blog-admin-api',
+        target: 'http://localhost:8080/geshanzsq-blog-admin-api',
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

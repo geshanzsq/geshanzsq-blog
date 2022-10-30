@@ -53,5 +53,5 @@ thread:
 file-upload:
   # 上传基本路径
   base-path: /data/geshanzsq-blog
-  # 文件域名地址
-  domain: https://file.geshanzsq.com
+  # 文件域名地址，可不填写，如填写，图片以域名加上传路径拼接访问
+  domain:

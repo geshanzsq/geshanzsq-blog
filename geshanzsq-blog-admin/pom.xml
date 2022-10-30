@@ -17,7 +17,8 @@
 
     <modules>
         <module>geshanzsq-blog-admin-service</module>
-        <module>geshanzsq-blog-system</module>
+        <module>geshanzsq-blog-admin-system</module>
+        <module>geshanzsq-blog-admin-system-common</module>
     </modules>
 
 

@@ -6,13 +6,13 @@ import com.geshanzsq.admin.blog.article.dto.BlogArticleSaveDTO;
 import com.geshanzsq.admin.blog.article.dto.BlogArticleUpdateDTO;
 import com.geshanzsq.admin.blog.article.mapper.BlogArticleMapper;
 import com.geshanzsq.admin.blog.article.mapstruct.BlogArticleConverter;
-import com.geshanzsq.client.web.po.blog.article.BlogArticle;
-import com.geshanzsq.client.web.po.blog.article.BlogArticleContent;
+import com.geshanzsq.client.common.blog.po.article.BlogArticle;
+import com.geshanzsq.client.common.blog.po.article.BlogArticleContent;
 import com.geshanzsq.admin.blog.article.service.BlogArticleContentService;
-import com.geshanzsq.admin.blog.article.service.BlogArticleRecommendService;
+import com.geshanzsq.admin.blog.recommend.service.BlogArticleRecommendService;
 import com.geshanzsq.admin.blog.article.service.BlogArticleService;
 import com.geshanzsq.admin.blog.article.service.BlogArticleTagService;
-import com.geshanzsq.admin.blog.article.vo.BlogArticleAuthorVo;
+import com.geshanzsq.admin.blog.article.vo.BlogArticleAuthorVO;
 import com.geshanzsq.admin.blog.article.vo.BlogArticleSaveVO;
 import com.geshanzsq.admin.blog.article.vo.BlogArticleVO;
 import com.geshanzsq.admin.blog.tag.service.BlogTagService;
@@ -23,7 +23,7 @@ import com.geshanzsq.common.framework.mybatis.page.util.PageUtils;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import com.geshanzsq.system.user.mapper.SysUserMapper;
-import com.geshanzsq.system.user.po.SysUser;
+import com.geshanzsq.admin.system.common.po.user.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -96,7 +96,7 @@ public class BlogArticleServiceImpl extends BaseServiceImpl<BlogArticleMapper, B
             SysUser sysUser = authorList.stream().filter(author -> author.getId().equals(article.getCreateUserId()))
                     .findFirst().orElse(null);
             if (sysUser != null) {
-                article.setAuthor(new BlogArticleAuthorVo(sysUser.getNickName(), sysUser.getUsername(), sysUser.getAvatar()));
+                article.setAuthor(new BlogArticleAuthorVO(sysUser.getNickName(), sysUser.getUsername(), sysUser.getAvatar()));
             }
         });
 

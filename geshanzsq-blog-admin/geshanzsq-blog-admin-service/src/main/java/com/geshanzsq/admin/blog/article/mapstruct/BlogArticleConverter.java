@@ -2,7 +2,7 @@ package com.geshanzsq.admin.blog.article.mapstruct;
 
 import com.geshanzsq.admin.blog.article.dto.BlogArticleSaveDTO;
 import com.geshanzsq.admin.blog.article.dto.BlogArticleUpdateDTO;
-import com.geshanzsq.client.web.po.blog.article.BlogArticle;
+import com.geshanzsq.client.common.blog.po.article.BlogArticle;
 import com.geshanzsq.admin.blog.article.vo.BlogArticleVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

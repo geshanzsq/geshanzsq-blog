@@ -77,7 +77,7 @@ public class BlogArticleVO extends BaseVO implements Serializable {
     private List<BlogTagVO> tags;
 
     @ApiModelProperty("作者")
-    private BlogArticleAuthorVo author;
+    private BlogArticleAuthorVO author;
 
     @ApiModelProperty("推荐等级")
     private List<Integer> recommendLevels;

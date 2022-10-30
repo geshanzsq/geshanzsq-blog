@@ -199,7 +199,9 @@ public class TokenServiceImpl implements TokenService {
      * @param token 令牌
      */
     private String getTokenKey(String token) {
-        return SecurityConstant.TOKEN_PREFIX + token;
+        String tokenPrefix = StrUtils.isBlank(tokenProperty.getTokenRedisPrefix())
+                ? SecurityConstant.TOKEN_PREFIX : tokenProperty.getTokenRedisPrefix();
+        return tokenPrefix + token;
     }
 
     /**
@@ -208,6 +210,8 @@ public class TokenServiceImpl implements TokenService {
      * @param token
      */
     private String getRefreshPermissionKey(Long userId, String token) {
-        return SecurityConstant.PERMISSION_REFRESH_PREFIX + userId + ":" + token;
+        String permissionRefreshPrefix = StrUtils.isBlank(tokenProperty.getPermissionRefreshRedisPrefix())
+                ? SecurityConstant.PERMISSION_REFRESH_PREFIX : tokenProperty.getPermissionRefreshRedisPrefix();
+        return permissionRefreshPrefix + userId + ":" + token;
     }
 }

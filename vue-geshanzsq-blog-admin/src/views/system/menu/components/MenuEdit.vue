@@ -292,6 +292,10 @@ async function show(id, parentId) {
     // 获取菜单信息
     const { data } = await getById(id)
     editForm.value = data
+    editForm.value.hasFrame = editForm.value.hasFrame + ''
+    editForm.value.hasCache = editForm.value.hasCache + ''
+    editForm.value.showStatus = editForm.value.showStatus + ''
+    editForm.value.status = editForm.value.status + ''
   } else {
     title.value = '新增菜单'
     // 获取排序最大值

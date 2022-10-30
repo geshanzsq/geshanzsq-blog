@@ -2,7 +2,7 @@ package com.geshanzsq.admin.blog.tag.service;
 
 import com.geshanzsq.admin.blog.tag.dto.BlogTagListDTO;
 import com.geshanzsq.admin.blog.tag.dto.BlogTagPageDTO;
-import com.geshanzsq.client.web.po.blog.tag.BlogTag;
+import com.geshanzsq.client.common.blog.po.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.BaseService;

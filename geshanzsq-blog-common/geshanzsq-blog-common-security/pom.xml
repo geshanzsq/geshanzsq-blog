@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>geshanzsq-blog-common-security</artifactId>
-    <packaging>pom</packaging>
     <name>geshanzsq-blog-common-security</name>
     <description>安全模块</description>
     <version>1.0.0</version>

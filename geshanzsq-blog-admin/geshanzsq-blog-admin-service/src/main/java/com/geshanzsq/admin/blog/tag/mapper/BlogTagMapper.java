@@ -1,7 +1,7 @@
 package com.geshanzsq.admin.blog.tag.mapper;
 
 import com.geshanzsq.admin.blog.tag.dto.BlogTagPageDTO;
-import com.geshanzsq.client.web.po.blog.tag.BlogTag;
+import com.geshanzsq.client.common.blog.po.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;
@@ -34,7 +34,7 @@ public interface BlogTagMapper extends BaseMapperPlus<BlogTag> {
     /**
      * 获取最大排序
      */
-    Integer getMaxSort();
+    Integer selectMaxSort();
 
     /**
      * 获取标签

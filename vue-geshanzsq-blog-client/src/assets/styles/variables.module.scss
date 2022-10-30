@@ -1,0 +1,16 @@
+// 头部样式
+$header-background-color-horizontal: rgb(24, 24, 24);
+$header-background-color-vertical: white;
+$header-menu-text-color-horizontal: #bdbdbd;
+$header-menu-text-color-vertical: black;
+$header-menu-text-color-hover-horizontal: white;
+$header-menu-text-color-hover-vertical: #00a7eb;
+$header-height: 60px;
+
+// 导出配置
+:export {
+  headerBackgroundColorHorizontal: $header-background-color-horizontal;
+  headerBackgroundColorVertical: $header-background-color-vertical;
+  headerMenuTextColorHorizontal: $header-menu-text-color-horizontal;
+  headerMenuTextColorVertical: $header-menu-text-color-vertical;
+}

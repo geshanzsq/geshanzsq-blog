@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.client.blog.category.mapper.BlogCategoryMapper">
+
+    <!-- 更新点击量 -->
+    <update id="updateClickCountByCategoryName">
+        update blog_category set click_count = click_count + 1
+        where category_name = #{categoryName} and status = #{status}
+    </update>
+</mapper>

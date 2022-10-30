@@ -154,7 +154,7 @@
       </el-row>
     </div>
 
-    <div class="no-data" v-if="dataList.length === 0">暂无上传图片</div>
+    <el-empty v-if="dataList.length === 0" description="暂无上传图片" />
 
     <pagination
       v-show="totalCount > 0"

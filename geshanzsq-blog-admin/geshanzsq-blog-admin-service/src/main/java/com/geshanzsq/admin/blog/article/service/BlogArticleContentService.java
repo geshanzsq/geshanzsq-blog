@@ -1,6 +1,6 @@
 package com.geshanzsq.admin.blog.article.service;
 
-import com.geshanzsq.client.web.po.blog.article.BlogArticleContent;
+import com.geshanzsq.client.common.blog.po.article.BlogArticleContent;
 import com.geshanzsq.common.framework.web.service.BaseService;
 
 /**

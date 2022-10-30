@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.client.blog.comment.mapper.BlogCommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.geshanzsq.client.blog.comment.vo.BlogCommentPageVO">
+        <result column="id" property="id" />
+        <result column="article_id" property="articleId" />
+        <result column="comment_content" property="commentContent" />
+        <result column="gmt_create" property="gmtCreate" />
+    </resultMap>
+
+    <resultMap id="ArticleCommentListResultMap" type="com.geshanzsq.client.blog.comment.vo.BlogArticleCommentListVO">
+        <result column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="nick_name" property="nickName" />
+        <result column="avatar" property="avatar" />
+        <result column="has_sticky" property="hasSticky" />
+        <result column="comment_content" property="commentContent" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="create_user_id" property="createUserId" />
+    </resultMap>
+
+    <!-- 获取文章评论 -->
+    <select id="selectListByArticleId" resultMap="ArticleCommentListResultMap">
+        SELECT
+            bc.id,
+            bc.parent_id,
+            bc.gmt_create,
+            bc.has_sticky,
+            bc.comment_content,
+            bc.fk_create_user_id as create_user_id,
+            u.nick_name,
+            u.avatar
+        FROM
+            blog_comment bc
+            INNER JOIN sys_user u ON bc.fk_create_user_id = u.id
+        WHERE
+            bc.fk_article_id = #{articleId}
+            AND bc.status = #{status}
+        ORDER BY
+            bc.has_sticky ASC,
+            bc.gmt_create DESC,
+            bc.id ASC
+    </select>
+</mapper>

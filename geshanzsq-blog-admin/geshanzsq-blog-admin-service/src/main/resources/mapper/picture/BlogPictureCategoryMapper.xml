@@ -14,7 +14,7 @@
     </resultMap>
 
     <!-- 获取最大排序 -->
-    <select id="getMaxSort" resultType="java.lang.Integer">
+    <select id="selectMaxSort" resultType="java.lang.Integer">
         select max(sort) from blog_picture_category
     </select>
 

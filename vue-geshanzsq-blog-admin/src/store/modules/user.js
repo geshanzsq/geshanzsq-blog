@@ -28,7 +28,10 @@ const mutations = {
     state.username = username
   },
   setAvatar: (state, avatar) => {
-    state.avatar = avatar
+    state.avatar =
+      avatar === null || avatar === ''
+        ? defaultAvatar
+        : getPictureShowUrl(avatar)
   },
   setRoleCodes: (state, roleCodes) => {
     state.roleCodes = roleCodes
@@ -70,12 +73,7 @@ const actions = {
     commit('setUsername', username)
     commit('setRoleCodes', roleCodes)
     commit('setPermissionCodes', permissionCodes)
-    commit(
-      'setAvatar',
-      avatar === null || avatar === ''
-        ? defaultAvatar
-        : getPictureShowUrl(avatar)
-    )
+    commit('setAvatar', avatar)
   },
 
   // 退出登录

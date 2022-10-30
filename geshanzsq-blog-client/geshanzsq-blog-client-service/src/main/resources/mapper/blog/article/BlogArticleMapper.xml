@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.client.blog.article.mapper.BlogArticleMapper">
+    <resultMap id="PageResultMap" type="com.geshanzsq.client.blog.article.vo.BlogArticlePageVO" >
+        <result column="id" property="id" />
+        <result column="article_title" property="articleTitle" />
+        <result column="article_description" property="articleDescription" />
+        <result column="cover_url" property="coverUrl" />
+        <result column="flag" property="flag" />
+        <result column="has_sticky" property="hasSticky" />
+        <result column="view_count" property="viewCount" />
+        <result column="gmt_publish" property="gmtPublish" />
+        <result column="category_name" property="categoryName" />
+        <association property="author" resultMap="AuthorResultMap" />
+    </resultMap>
+
+    <resultMap id="RecommendResultMap" type="com.geshanzsq.client.blog.article.vo.BlogArticleRecommendVO" >
+        <result column="id" property="id" />
+        <result column="article_title" property="articleTitle" />
+        <result column="cover_url" property="coverUrl" />
+        <result column="gmt_publish" property="gmtPublish" />
+    </resultMap>
+
+    <resultMap id="AuthorResultMap" type="com.geshanzsq.client.blog.article.vo.BlogArticleAuthorVO">
+        <result column="nick_name" property="nickName" />
+        <result column="avatar" property="avatar" />
+    </resultMap>
+
+    <resultMap id="ArticleCategoryCountMap" type="com.geshanzsq.client.blog.article.vo.BlogArticleCategoryCountVO">
+        <result column="fk_category_id" property="categoryId" />
+        <result column="article_count" property="articleCount" />
+    </resultMap>
+
+    <resultMap id="AboutArticleMap" type="com.geshanzsq.client.blog.article.vo.BlogArticleAboutVO">
+        <result column="id" property="id" />
+        <result column="article_title" property="articleTitle" />
+        <result column="cover_url" property="coverUrl" />
+    </resultMap>
+
+    <!-- 分页列表 -->
+    <select id="selectPage" parameterType="com.geshanzsq.client.blog.article.dto.BlogArticlePageDTO" resultMap="PageResultMap">
+        SELECT
+            a.id,
+            a.article_title,
+            a.article_description,
+            a.cover_url,
+            a.flag,
+            a.has_sticky,
+            a.view_count,
+            a.gmt_publish,
+            c.category_name,
+            u.nick_name,
+            u.avatar
+        FROM
+            blog_article a
+            LEFT JOIN blog_category c ON a.fk_category_id = c.id
+            LEFT JOIN sys_user u ON a.fk_create_user_id = u.id
+        WHERE a.status = #{status}
+        ORDER BY
+            has_sticky ASC,
+            gmt_publish DESC,
+            id DESC
+    </select>
+
+    <!-- 搜索分页列表 -->
+    <select id="selectSearchPage" parameterType="com.geshanzsq.client.blog.article.dto.BlogArticleSearchPageDTO" resultMap="PageResultMap">
+        SELECT
+            a.id,
+            a.article_title,
+            a.article_description,
+            a.cover_url,
+            a.flag,
+            a.has_sticky,
+            a.view_count,
+            a.gmt_publish,
+            c.category_name,
+            u.nick_name,
+            u.avatar
+        FROM
+            blog_article a
+        inner join blog_article_content ac ON a.id = ac.id
+        LEFT JOIN blog_category c ON a.fk_category_id = c.id
+        LEFT JOIN sys_user u ON a.fk_create_user_id = u.id
+        <where>
+            a.status = #{status}
+            <if test="articleTitle != null and articleTitle != ''">
+                AND (
+                a.article_title like concat('%', #{articleTitle}, '%')
+                or a.article_description like concat('%', #{articleTitle}, '%')
+                or ac.article_content like concat('%', #{articleTitle}, '%')
+                )
+            </if>
+            <if test="archiveGmPublishLine != null and archiveGmPublishLine != ''">
+                AND a.gmt_publish like concat(#{archiveGmPublishLine},'%')
+            </if>
+            <if test="categoryName != null and categoryName != ''">
+                AND c.category_name = #{categoryName}
+            </if>
+            <if test="authorNickName != null and authorNickName != ''">
+                AND u.nick_name = #{authorNickName}
+            </if>
+            <if test="tagName != null and tagName != ''">
+                AND a.id IN
+                ( SELECT DISTINCT bat.fk_article_id FROM blog_article_tag bat
+                INNER JOIN blog_tag t ON bat.fk_tag_id = t.id WHERE t.tag_name = #{tagName} )
+            </if>
+        </where>
+        ORDER BY
+            gmt_publish DESC,
+            id DESC
+    </select>
+
+    <!-- 文章推荐 -->
+    <select id="selectRecommend" parameterType="Integer" resultMap="RecommendResultMap">
+       SELECT
+            a.id,
+            a.article_title,
+            a.cover_url,
+            a.gmt_publish
+        FROM
+            blog_article a
+            INNER JOIN blog_article_recommend r ON a.id = r.fk_article_id
+        WHERE
+            a.status = #{status}
+            AND r.recommend_level = #{recommendLevel}
+        ORDER BY
+            r.sort asc,
+            a.gmt_publish DESC
+        LIMIT #{limitCount}
+    </select>
+
+    <!-- 点击量排行 -->
+    <select id="selectClickRanking" parameterType="Integer" resultMap="RecommendResultMap">
+        SELECT
+            id,
+            article_title,
+            article_description,
+            cover_url,
+            gmt_publish
+        FROM
+            blog_article
+        WHERE status = #{status}
+        ORDER BY
+            view_count DESC
+            LIMIT #{limitCount}
+    </select>
+
+    <!-- 获取文章分类数 -->
+    <select id="selectArticleCategoryCount" resultMap="ArticleCategoryCountMap">
+        SELECT
+            fk_category_id,
+            count( id ) AS article_count
+        FROM
+            blog_article
+        WHERE status = #{status} AND fk_category_id
+        GROUP BY
+            fk_category_id
+    </select>
+
+    <!-- 归档发布时间线 -->
+    <select id="selectArchiveGmtPublishLine" resultType="java.lang.String">
+        SELECT DISTINCT
+            DATE_FORMAT( gmt_publish, '%Y年%m月' ) gmt_publish
+        FROM
+            blog_article
+        WHERE status = #{status}
+        ORDER BY
+            gmt_publish DESC
+    </select>
+
+    <!-- 更新文章阅读数 -->
+    <update id="updateArticleViewCount">
+        UPDATE blog_article SET view_count = view_count + 1 WHERE id = #{id}
+    </update>
+
+    <!-- 获取相关文章 -->
+    <select id="selectAboutArticleById" resultMap="AboutArticleMap">
+        SELECT
+            id,
+            article_title,
+            cover_url
+        FROM
+            blog_article
+        WHERE
+            fk_category_id = ( SELECT fk_category_id FROM blog_article WHERE id = #{id} AND STATUS = #{status} )
+            AND STATUS = #{status}
+            AND id != #{id}
+        ORDER BY
+            gmt_publish DESC
+        	LIMIT #{limitCount}
+    </select>
+
+</mapper>

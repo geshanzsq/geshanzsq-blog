@@ -16,8 +16,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>geshanzsq-blog-client-web-service</module>
-        <module>geshanzsq-blog-client-web-po</module>
+        <module>geshanzsq-blog-client-common</module>
+        <module>geshanzsq-blog-client-service</module>
     </modules>
 
 

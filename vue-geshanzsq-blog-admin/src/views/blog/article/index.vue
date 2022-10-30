@@ -130,7 +130,7 @@
       </el-row>
     </div>
 
-    <div class="no-data" v-if="dataList.length === 0">暂无文章数据</div>
+    <el-empty v-if="dataList.length === 0" description="暂无文章数据" />
 
     <pagination
       v-show="totalCount > 0"

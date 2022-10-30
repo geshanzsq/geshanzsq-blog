@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.geshanzsq.admin.blog.friendship.mapper.BlogFriendshipLinkMapper">
+
+    <!-- 获取最大排序 -->
+    <select id="selectMaxSort" resultType="java.lang.Integer">
+        select max(sort) from blog_friendship_link
+    </select>
+
+</mapper>

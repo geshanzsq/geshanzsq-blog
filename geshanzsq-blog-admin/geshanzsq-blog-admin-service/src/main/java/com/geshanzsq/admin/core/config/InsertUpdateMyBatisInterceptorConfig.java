@@ -1,7 +1,7 @@
 package com.geshanzsq.admin.core.config;
 
 import com.geshanzsq.common.framework.mybatis.plugin.interceptor.InsertUpdateMyBatisInterceptor;
-import com.geshanzsq.framework.security.utils.SecurityUtils;
+import com.geshanzsq.framework.security.util.SecurityUtils;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.Interceptor;

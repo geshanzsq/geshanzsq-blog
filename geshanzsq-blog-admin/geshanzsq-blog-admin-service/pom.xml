@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>geshanzsq-blog</artifactId>
+        <artifactId>geshanzsq-blog-admin</artifactId>
         <groupId>com.geshanzsq</groupId>
         <version>1.0.0</version>
     </parent>
@@ -18,13 +18,13 @@
         <!-- 系统模块 -->
         <dependency>
             <groupId>com.geshanzsq</groupId>
-            <artifactId>geshanzsq-blog-system</artifactId>
+            <artifactId>geshanzsq-blog-admin-system</artifactId>
         </dependency>
 
-        <!-- 客户端网页数据库实体类 -->
+        <!-- 客户端通用模块 -->
         <dependency>
             <groupId>com.geshanzsq</groupId>
-            <artifactId>geshanzsq-blog-client-web-po</artifactId>
+            <artifactId>geshanzsq-blog-client-common</artifactId>
         </dependency>
 
         <!-- MySQL 数据库 -->
@@ -39,8 +39,25 @@
             <artifactId>easy-captcha</artifactId>
         </dependency>
 
-
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 
 
 </project>
