@@ -1,18 +1,19 @@
-## 开发
+## 安装依赖
 
 ```bash
-# 安装依赖
 npm install
+```
 
-# 启动服务
+## 启动服务
+
+```bash
 npm run serve
 ```
 
-浏览器访问 http://localhost:80
+浏览器访问 [http://localhost:8823](http://localhost:8823)
 
-## 发布
+## 发布构建
 
 ```bash
-# 构建
 npm run build
 ```

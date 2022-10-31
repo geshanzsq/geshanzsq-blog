@@ -1,24 +1,20 @@
-# vue-geshanzsq-blog-client
+## 安装依赖
 
-## Project setup
-```
+```bash
 npm install
 ```
 
-### Compiles and hot-reloads for development
-```
+## 启动服务
+
+```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
+浏览器访问 [http://localhost:8824](http://localhost:8824)
+
+## 发布构建
+
+```bash
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
