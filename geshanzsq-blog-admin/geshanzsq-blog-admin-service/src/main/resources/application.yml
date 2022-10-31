@@ -12,7 +12,7 @@ server:
 # spring 配置
 spring:
   profiles:
-    active: prod
+    active: dev
   # 资源信息
   messages:
     # 国际化资源配置文件路径
