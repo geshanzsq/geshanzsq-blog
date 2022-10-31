@@ -70,7 +70,7 @@ file-upload:
 # 接口文档配置
 swagger:
   title: 格姗知识圈博客管理后台接口文档
-  description: 包含用户管理、菜单管理、角色管理、文章管理等功能
+  description: 包含用户管理、菜单管理、角色管理、数据字典、API 管理、参数配置、登录日志、操作日志、文章管理、分类管理、标签管理、友情链接、评论管理、第三方登录配置等功能
   author: geshanzsq
   url: http://geshanzsq.com
   email: 497301391@qq.com
