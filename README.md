@@ -2,6 +2,16 @@
 
 一个基于 Spring Boot、Spring Security、Vue3、Element Plus 的前后端分离的博客网站！本项目基本上是小格子一个人开发，由于工作和个人能力原因，部分技术都是边学习边开发，特别是前端（工作中是后端开发），基本上不熟悉，代码质量和设计，请大家多多指教。
 
+欢迎加群一起学习交流技术。
+
+QQ 群交流：673465233
+
+微信群：添加我微信：geshanintell，备注：格姗知识圈
+
+码云下载地址（国内推荐）：[https://gitee.com/geshanzsq/geshanzsq-blog](https://gitee.com/geshanzsq/geshanzsq-blog)
+
+Github 下载地址：[https://github.com/geshanzsq/geshanzsq-blog](https://github.com/geshanzsq/geshanzsq-blog)
+
 ## 博客简介
 
 - 前端使用 Vue3、Element Plus UI。
