@@ -68,4 +68,22 @@ public class StrUtils extends StringUtils {
         return StringUtils.startsWithAny(link, CommonConstant.HTTP, CommonConstant.HTTPS);
     }
 
+    /**
+     * 判断是否为空，包含字符串
+     * @param value 值
+     * @return 是否为空
+     */
+    public static boolean isNullBlank(Object value) {
+        return value == null || (value instanceof String && isBlank(String.valueOf(value)));
+    }
+
+    /**
+     * 判断是否不为空，包含字符串
+     * @param value 值
+     * @return 是否不为空
+     */
+    public static boolean isNotNullBlank(Object value) {
+        return !isNullBlank(value);
+    }
+
 }
