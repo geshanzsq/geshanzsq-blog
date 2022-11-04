@@ -54,6 +54,7 @@ public class StrUtils extends StringUtils {
             str = str.substring(end + 1);
             index++;
         }
+        result.append(str);
         return result.toString();
     }
 
