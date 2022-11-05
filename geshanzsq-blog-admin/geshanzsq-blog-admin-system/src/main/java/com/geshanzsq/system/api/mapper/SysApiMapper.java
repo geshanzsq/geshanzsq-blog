@@ -1,9 +1,6 @@
 package com.geshanzsq.system.api.mapper;
 
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
-import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;
 import com.geshanzsq.common.framework.web.mapper.BaseMapperPlus;
-import com.geshanzsq.system.api.dto.SysApiPageDTO;
 import com.geshanzsq.system.api.po.SysApi;
 import com.geshanzsq.system.api.vo.SysApiVO;
 import com.geshanzsq.system.menu.vo.SysMenuAuthApiVO;
@@ -20,20 +17,6 @@ import java.util.List;
  */
 @Mapper
 public interface SysApiMapper extends BaseMapperPlus<SysApi> {
-
-    /**
-     * 分页
-     */
-    default PageVO<SysApi> selectPage(SysApiPageDTO pageDTO) {
-        return selectPage(pageDTO, new LambdaQueryWrapperPlus<SysApi>()
-                .likeIf(SysApi::getApiName, pageDTO.getApiName())
-                .likeIf(SysApi::getApiUrl, pageDTO.getApiUrl())
-                .eqIf(SysApi::getStatus, pageDTO.getStatus())
-                .eqIf(SysApi::getApiMethod, pageDTO.getApiMethod())
-                .eq(SysApi::getApiCategoryId, pageDTO.getApiCategoryId())
-                .orderByAsc(SysApi::getSort, SysApi::getId)
-        );
-    }
 
     /**
      * 通过菜单 id 列表获取接口

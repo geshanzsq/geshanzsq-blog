@@ -1,11 +1,11 @@
 package com.geshanzsq.system.user.mapstruct;
 
+import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.framework.security.domain.LoginUserDetail;
 import com.geshanzsq.system.user.dto.SysUserAddDTO;
 import com.geshanzsq.system.user.dto.SysUserResetPasswordDTO;
 import com.geshanzsq.system.user.dto.SysUserUpdateDTO;
-import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.system.user.vo.SysUserVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

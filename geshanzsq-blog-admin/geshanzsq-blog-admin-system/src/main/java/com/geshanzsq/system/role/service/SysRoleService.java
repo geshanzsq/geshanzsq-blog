@@ -30,11 +30,6 @@ public interface SysRoleService extends BaseService<SysRole> {
     List<SysRoleVO> getRoleByUserIds(List<Long> userIds);
 
     /**
-     * 分页列表
-     */
-    PageVO<SysRoleVO> pageList(SysRolePageDTO pageDTO);
-
-    /**
      * 新增角色
      */
     void add(SysRoleAddDTO addDTO);

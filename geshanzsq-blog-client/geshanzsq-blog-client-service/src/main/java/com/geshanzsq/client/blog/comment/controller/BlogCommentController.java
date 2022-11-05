@@ -1,10 +1,10 @@
 package com.geshanzsq.client.blog.comment.controller;
 
+import com.geshanzsq.client.blog.comment.dto.BlogCommentPageDTO;
 import com.geshanzsq.client.blog.comment.dto.BlogCommentSaveDTO;
 import com.geshanzsq.client.blog.comment.service.BlogCommentService;
 import com.geshanzsq.client.blog.comment.vo.BlogCommentPageVO;
 import com.geshanzsq.common.core.web.response.ResponseResult;
-import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.controller.BaseController;
 import io.swagger.annotations.Api;
@@ -30,7 +30,7 @@ public class BlogCommentController extends BaseController {
 
     @ApiOperation("分页列表")
     @GetMapping("/page")
-    public ResponseResult<PageVO<BlogCommentPageVO>> page(PageDTO pageDTO) {
+    public ResponseResult<PageVO<BlogCommentPageVO>> page(BlogCommentPageDTO pageDTO) {
         PageVO<BlogCommentPageVO> pageVO = articleCommentService.pageList(pageDTO);
         return ResponseResult.success(pageVO);
     }

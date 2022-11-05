@@ -39,8 +39,9 @@ public class SysApiCategoryController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<SysApiCategoryVO>> page(SysApiCategoryPageDTO pageDTO) {
-        PageVO<SysApiCategoryVO> pageVo = sysApiCategoryService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<SysApiCategory> pageVO = sysApiCategoryService.page(pageDTO);
+        return ResponseResult.success(SysApiCategoryConverter.INSTANCE.convert(pageVO));
     }
 
     @ApiOperation("列表")

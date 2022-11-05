@@ -1,5 +1,6 @@
 package com.geshanzsq.system.user.controller;
 
+import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.common.core.web.response.ResponseResult;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.controller.BaseController;
@@ -10,7 +11,6 @@ import com.geshanzsq.system.user.dto.SysUserPageDTO;
 import com.geshanzsq.system.user.dto.SysUserResetPasswordDTO;
 import com.geshanzsq.system.user.dto.SysUserUpdateDTO;
 import com.geshanzsq.system.user.mapstruct.SysUserConverter;
-import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.system.user.service.SysUserService;
 import com.geshanzsq.system.user.vo.SysUserVO;
 import io.swagger.annotations.Api;
@@ -40,8 +40,8 @@ public class SysUserController extends BaseController {
     @ApiOperation(("分页列表"))
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<SysUserVO>> page(SysUserPageDTO pageDto) {
-        PageVO<SysUserVO> pageVo = sysUserService.pageList(pageDto);
-        return ResponseResult.success(pageVo);
+        PageVO<SysUserVO> pageVO = sysUserService.pageList(pageDto);
+        return ResponseResult.success(pageVO);
     }
 
     @GetMapping("/getById/{id}")

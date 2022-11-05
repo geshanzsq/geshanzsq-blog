@@ -1,8 +1,6 @@
 package com.geshanzsq.system.api.service;
 
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.BaseService;
-import com.geshanzsq.system.api.dto.SysApiPageDTO;
 import com.geshanzsq.system.api.po.SysApi;
 import com.geshanzsq.system.api.vo.SysApiVO;
 import com.geshanzsq.system.menu.vo.SysMenuAuthApiVO;
@@ -23,11 +21,6 @@ public interface SysApiService extends BaseService<SysApi> {
      * @return
      */
     List<SysApiVO> getApiByMenuIds(List<Long> menuIds);
-
-    /**
-     * 分页列表
-     */
-    PageVO<SysApiVO> pageList(SysApiPageDTO pageDTO);
 
     /**
      * 删除

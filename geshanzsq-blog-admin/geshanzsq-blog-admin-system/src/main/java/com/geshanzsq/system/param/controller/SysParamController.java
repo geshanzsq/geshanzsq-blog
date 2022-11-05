@@ -1,5 +1,6 @@
 package com.geshanzsq.system.param.controller;
 
+import com.geshanzsq.admin.system.common.po.param.SysParam;
 import com.geshanzsq.common.core.web.response.ResponseResult;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.controller.BaseController;
@@ -9,7 +10,6 @@ import com.geshanzsq.system.param.dto.SysParamAddDTO;
 import com.geshanzsq.system.param.dto.SysParamPageDTO;
 import com.geshanzsq.system.param.dto.SysParamUpdateDTO;
 import com.geshanzsq.system.param.mapstruct.SysParamConverter;
-import com.geshanzsq.admin.system.common.po.param.SysParam;
 import com.geshanzsq.system.param.service.SysParamService;
 import com.geshanzsq.system.param.vo.SysParamVO;
 import io.swagger.annotations.Api;
@@ -39,8 +39,9 @@ public class SysParamController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<SysParamVO>> page(@Valid SysParamPageDTO pageDTO) {
-        PageVO<SysParamVO> pageVo = sysParamService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<SysParam> pageVO = sysParamService.page(pageDTO);
+        return ResponseResult.success(SysParamConverter.INSTANCE.convert(pageVO));
     }
 
     @GetMapping("/getById/{id}")

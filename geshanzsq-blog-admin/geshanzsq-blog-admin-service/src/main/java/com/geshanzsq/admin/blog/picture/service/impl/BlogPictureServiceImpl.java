@@ -1,16 +1,12 @@
 package com.geshanzsq.admin.blog.picture.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.geshanzsq.admin.blog.picture.dto.BlogPicturePageDTO;
 import com.geshanzsq.admin.blog.picture.mapper.BlogPictureCategoryMapper;
 import com.geshanzsq.admin.blog.picture.mapper.BlogPictureMapper;
-import com.geshanzsq.admin.blog.picture.mapstruct.BlogPictureConverter;
 import com.geshanzsq.admin.blog.picture.po.BlogPicture;
 import com.geshanzsq.admin.blog.picture.service.BlogPictureService;
 import com.geshanzsq.admin.blog.picture.vo.BlogPictureUploadVO;
-import com.geshanzsq.admin.blog.picture.vo.BlogPictureVO;
 import com.geshanzsq.common.framework.file.service.FileService;
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,15 +31,6 @@ public class BlogPictureServiceImpl extends BaseServiceImpl<BlogPictureMapper, B
 
     @Autowired
     private FileService fileService;
-
-    /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<BlogPictureVO> pageList(BlogPicturePageDTO pageDTO) {
-        PageVO<BlogPicture> pageVO = blogPictureMapper.selectPage(pageDTO);
-        return BlogPictureConverter.INSTANCE.convert(pageVO);
-    }
 
     /**
      * 上传

@@ -33,8 +33,8 @@ public class LogOperationController extends BaseController {
     @ApiOperation(("分页列表"))
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<LogOperationVo>> page(LogOperationPageDto pageDto) {
-        PageVO<LogOperationVo> pageVo = logOperationService.pageList(pageDto);
-        return ResponseResult.success(pageVo);
+        PageVO<LogOperationVo> pageVO = logOperationService.pageList(pageDto);
+        return ResponseResult.success(pageVO);
     }
 
     @GetMapping("/getById/{id}")

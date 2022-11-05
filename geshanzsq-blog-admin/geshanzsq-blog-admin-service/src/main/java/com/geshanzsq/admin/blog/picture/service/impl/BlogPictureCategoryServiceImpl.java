@@ -1,19 +1,11 @@
 package com.geshanzsq.admin.blog.picture.service.impl;
 
-import com.geshanzsq.admin.blog.picture.dto.BlogPictureCategoryListDTO;
-import com.geshanzsq.admin.blog.picture.dto.BlogPictureCategoryPageDTO;
 import com.geshanzsq.admin.blog.picture.mapper.BlogPictureCategoryMapper;
-import com.geshanzsq.admin.blog.picture.mapstruct.BlogPictureCategoryConverter;
 import com.geshanzsq.admin.blog.picture.po.BlogPictureCategory;
 import com.geshanzsq.admin.blog.picture.service.BlogPictureCategoryService;
-import com.geshanzsq.admin.blog.picture.vo.BlogPictureCategoryVO;
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
-import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * 图片分类
@@ -26,27 +18,6 @@ public class BlogPictureCategoryServiceImpl extends BaseServiceImpl<BlogPictureC
 
     @Autowired
     private BlogPictureCategoryMapper blogPictureCategoryMapper;
-
-    /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<BlogPictureCategoryVO> pageList(BlogPictureCategoryPageDTO pageDTO) {
-        PageVO<BlogPictureCategory> pageVO = blogPictureCategoryMapper.selectPage(pageDTO);
-        return BlogPictureCategoryConverter.INSTANCE.convert(pageVO);
-    }
-
-    /**
-     * 列表
-     */
-    @Override
-    public List<BlogPictureCategory> list(BlogPictureCategoryListDTO listDTO) {
-        LambdaQueryWrapperPlus<BlogPictureCategory> wrapper = new LambdaQueryWrapperPlus<>();
-        wrapper.eqIf(BlogPictureCategory::getStatus, listDTO.getStatus());
-        wrapper.orderByAsc(BlogPictureCategory::getSort);
-        List<BlogPictureCategory> list = blogPictureCategoryMapper.selectList(wrapper);
-        return list;
-    }
 
     /**
      * 获取最大排序

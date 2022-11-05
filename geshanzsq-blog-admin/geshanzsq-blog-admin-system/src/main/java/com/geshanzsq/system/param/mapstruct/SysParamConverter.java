@@ -1,9 +1,9 @@
 package com.geshanzsq.system.param.mapstruct;
 
+import com.geshanzsq.admin.system.common.po.param.SysParam;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.system.param.dto.SysParamAddDTO;
 import com.geshanzsq.system.param.dto.SysParamUpdateDTO;
-import com.geshanzsq.admin.system.common.po.param.SysParam;
 import com.geshanzsq.system.param.vo.SysParamVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

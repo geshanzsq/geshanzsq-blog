@@ -1,10 +1,10 @@
 package com.geshanzsq.client.blog.comment.service;
 
+import com.geshanzsq.client.blog.comment.dto.BlogCommentPageDTO;
 import com.geshanzsq.client.blog.comment.dto.BlogCommentSaveDTO;
 import com.geshanzsq.client.blog.comment.vo.BlogArticleCommentListVO;
 import com.geshanzsq.client.blog.comment.vo.BlogCommentPageVO;
 import com.geshanzsq.client.common.blog.po.comment.BlogComment;
-import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.BaseService;
 
@@ -21,7 +21,7 @@ public interface BlogCommentService extends BaseService<BlogComment> {
     /**
      * 分页列表
      */
-    PageVO<BlogCommentPageVO> pageList(PageDTO pageDTO);
+    PageVO<BlogCommentPageVO> pageList(BlogCommentPageDTO pageDTO);
 
     /**
      * 新增

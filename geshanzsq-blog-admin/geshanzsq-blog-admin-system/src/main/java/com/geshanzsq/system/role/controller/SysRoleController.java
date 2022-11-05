@@ -6,6 +6,8 @@ import com.geshanzsq.common.framework.web.controller.BaseController;
 import com.geshanzsq.common.log.annotation.Log;
 import com.geshanzsq.common.log.enums.BusinessType;
 import com.geshanzsq.system.role.dto.*;
+import com.geshanzsq.system.role.mapstruct.SysRoleConverter;
+import com.geshanzsq.system.role.po.SysRole;
 import com.geshanzsq.system.role.service.SysRoleService;
 import com.geshanzsq.system.role.vo.SysRoleVO;
 import com.geshanzsq.system.user.vo.SysUserVO;
@@ -35,8 +37,9 @@ public class SysRoleController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<SysRoleVO>> page(SysRolePageDTO pageDTO) {
-        PageVO<SysRoleVO> pageVo = sysRoleService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<SysRole> pageVO = sysRoleService.page(pageDTO);
+        return ResponseResult.success(SysRoleConverter.INSTANCE.convert(pageVO));
     }
 
     @GetMapping("/getById/{id}")
@@ -86,16 +89,16 @@ public class SysRoleController extends BaseController {
     @ApiOperation("已分配用户分页")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<SysUserVO> getUserAuthPage(@Valid SysRoleAuthUserPageDTO pageDTO) {
-        PageVO<SysUserVO> pageVo = sysRoleService.getUserAuthPage(pageDTO);
-        return ResponseResult.success(pageVo);
+        PageVO<SysUserVO> pageVO = sysRoleService.getUserAuthPage(pageDTO);
+        return ResponseResult.success(pageVO);
     }
 
     @GetMapping("/auth/user/not/page")
     @ApiOperation("未分配用户分页")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<SysUserVO> getUserUnAuthPage(@Valid SysRoleNotAuthUserPageDTO pageDTO) {
-        PageVO<SysUserVO> pageVo = sysRoleService.getUserUnAuthPage(pageDTO);
-        return ResponseResult.success(pageVo);
+        PageVO<SysUserVO> pageVO = sysRoleService.getUserUnAuthPage(pageDTO);
+        return ResponseResult.success(pageVO);
     }
 
     @PostMapping("/auth/user")

@@ -1,8 +1,6 @@
 package com.geshanzsq.system.dictionary.service;
 
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.BaseService;
-import com.geshanzsq.system.dictionary.dto.SysDictionaryPageDTO;
 import com.geshanzsq.system.dictionary.po.SysDictionary;
 import com.geshanzsq.system.dictionary.vo.DictionaryInfoVO;
 import com.geshanzsq.system.dictionary.vo.SysDictionaryVO;
@@ -16,11 +14,6 @@ import java.util.List;
  * @date 2022/6/26
  */
 public interface SysDictionaryService extends BaseService<SysDictionary> {
-
-    /**
-     * 分页列表
-     */
-    PageVO<SysDictionaryVO> pageList(SysDictionaryPageDTO pageDTO);
 
     /**
      * 列表排序

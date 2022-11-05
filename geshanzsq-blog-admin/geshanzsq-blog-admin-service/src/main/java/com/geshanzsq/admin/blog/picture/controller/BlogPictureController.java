@@ -2,6 +2,8 @@ package com.geshanzsq.admin.blog.picture.controller;
 
 import com.geshanzsq.admin.blog.picture.dto.BlogPicturePageDTO;
 import com.geshanzsq.admin.blog.picture.dto.BlogPictureUploadDTO;
+import com.geshanzsq.admin.blog.picture.mapstruct.BlogPictureConverter;
+import com.geshanzsq.admin.blog.picture.po.BlogPicture;
 import com.geshanzsq.admin.blog.picture.service.BlogPictureService;
 import com.geshanzsq.admin.blog.picture.vo.BlogPictureUploadVO;
 import com.geshanzsq.admin.blog.picture.vo.BlogPictureVO;
@@ -37,8 +39,10 @@ public class BlogPictureController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<BlogPictureVO>> page(BlogPicturePageDTO pageDTO) {
-        PageVO<BlogPictureVO> pageVo = blogPictureService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("gmtCreate");
+        pageDTO.setOrderType("desc");
+        PageVO<BlogPicture> pageVO = blogPictureService.page(pageDTO);
+        return ResponseResult.success(BlogPictureConverter.INSTANCE.convert(pageVO));
     }
 
     @ApiOperation("上传")

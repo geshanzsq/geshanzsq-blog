@@ -3,9 +3,7 @@ package com.geshanzsq.system.api.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.geshanzsq.common.core.exception.ParamException;
 import com.geshanzsq.common.core.util.message.MessageUtils;
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
-import com.geshanzsq.system.api.dto.SysApiCategoryPageDTO;
 import com.geshanzsq.system.api.mapper.SysApiCategoryMapper;
 import com.geshanzsq.system.api.mapper.SysApiMapper;
 import com.geshanzsq.system.api.mapstruct.SysApiCategoryConverter;
@@ -32,15 +30,6 @@ public class SysApiCategoryServiceImpl extends BaseServiceImpl<SysApiCategoryMap
     private SysApiCategoryMapper sysApiCategoryMapper;
     @Autowired
     private SysApiMapper sysApiMapper;
-
-    /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<SysApiCategoryVO> pageList(SysApiCategoryPageDTO pageDTO) {
-        PageVO<SysApiCategory> page = sysApiCategoryMapper.selectPage(pageDTO);
-        return SysApiCategoryConverter.INSTANCE.convert(page);
-    }
 
     /**
      * 列表排序

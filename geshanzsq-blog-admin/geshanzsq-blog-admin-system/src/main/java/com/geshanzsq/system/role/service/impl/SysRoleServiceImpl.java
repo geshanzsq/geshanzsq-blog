@@ -71,15 +71,6 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRoleMapper, SysRole> 
     }
 
     /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<SysRoleVO> pageList(SysRolePageDTO pageDTO) {
-        PageVO<SysRole> page = sysRoleMapper.selectPage(pageDTO);
-        return SysRoleConverter.INSTANCE.convert(page);
-    }
-
-    /**
      * 新增角色
      */
     @Override

@@ -1,8 +1,6 @@
 package com.geshanzsq.system.api.service;
 
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.BaseService;
-import com.geshanzsq.system.api.dto.SysApiCategoryPageDTO;
 import com.geshanzsq.system.api.po.SysApiCategory;
 import com.geshanzsq.system.api.vo.SysApiCategoryVO;
 
@@ -15,11 +13,6 @@ import java.util.List;
  * @date 2022/6/24
  */
 public interface SysApiCategoryService extends BaseService<SysApiCategory> {
-
-    /**
-     * 分页列表
-     */
-    PageVO<SysApiCategoryVO> pageList(SysApiCategoryPageDTO pageDTO);
 
     /**
      * 列表排序

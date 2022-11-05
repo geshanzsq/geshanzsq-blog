@@ -2,11 +2,8 @@ package com.geshanzsq.system.api.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.geshanzsq.common.core.enums.CommonStatus;
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
-import com.geshanzsq.system.api.dto.SysApiPageDTO;
 import com.geshanzsq.system.api.mapper.SysApiMapper;
-import com.geshanzsq.system.api.mapstruct.SysApiConverter;
 import com.geshanzsq.system.api.po.SysApi;
 import com.geshanzsq.system.api.po.SysApiMenu;
 import com.geshanzsq.system.api.service.SysApiMenuService;
@@ -48,15 +45,6 @@ public class SysApiServiceImpl extends BaseServiceImpl<SysApiMapper, SysApi> imp
             return new ArrayList<>();
         }
         return sysApiMapper.getApiByMenuIds(menuIds, CommonStatus.NORMAL.code);
-    }
-
-    /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<SysApiVO> pageList(SysApiPageDTO pageDTO) {
-        PageVO<SysApi> page = sysApiMapper.selectPage(pageDTO);
-        return SysApiConverter.INSTANCE.convert(page);
     }
 
     /**

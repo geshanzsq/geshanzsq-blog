@@ -4,6 +4,8 @@ import com.geshanzsq.common.core.web.response.ResponseResult;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.controller.BaseController;
 import com.geshanzsq.system.log.login.dto.LogLoginPageDTO;
+import com.geshanzsq.system.log.login.mapstruct.LogLoginConverter;
+import com.geshanzsq.system.log.login.po.LogLogin;
 import com.geshanzsq.system.log.login.service.LogLoginService;
 import com.geshanzsq.system.log.login.vo.LogLoginVO;
 import io.swagger.annotations.Api;
@@ -32,8 +34,8 @@ public class LogLoginController extends BaseController {
     @ApiOperation(("分页列表"))
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<LogLoginVO>> page(LogLoginPageDTO pageDto) {
-        PageVO<LogLoginVO> pageVo = logLoginService.pageList(pageDto);
-        return ResponseResult.success(pageVo);
+        PageVO<LogLogin> pageVO = logLoginService.page(pageDto);
+        return ResponseResult.success(LogLoginConverter.INSTANCE.convert(pageVO));
     }
 
 }

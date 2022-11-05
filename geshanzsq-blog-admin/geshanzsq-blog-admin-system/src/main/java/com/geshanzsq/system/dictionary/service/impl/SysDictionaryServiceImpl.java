@@ -4,9 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.geshanzsq.common.core.enums.CommonStatus;
 import com.geshanzsq.common.core.exception.ParamException;
 import com.geshanzsq.common.core.util.message.MessageUtils;
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
-import com.geshanzsq.system.dictionary.dto.SysDictionaryPageDTO;
 import com.geshanzsq.system.dictionary.mapper.SysDictionaryDataMapper;
 import com.geshanzsq.system.dictionary.mapper.SysDictionaryMapper;
 import com.geshanzsq.system.dictionary.mapstruct.SysDictionaryConverter;
@@ -34,15 +32,6 @@ public class SysDictionaryServiceImpl extends BaseServiceImpl<SysDictionaryMappe
     private SysDictionaryMapper sysDictionaryMapper;
     @Autowired
     private SysDictionaryDataMapper sysDictionaryDataMapper;
-
-    /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<SysDictionaryVO> pageList(SysDictionaryPageDTO pageDTO) {
-        PageVO<SysDictionary> page = sysDictionaryMapper.selectPage(pageDTO);
-        return SysDictionaryConverter.INSTANCE.convert(page);
-    }
 
     /**
      * 列表排序

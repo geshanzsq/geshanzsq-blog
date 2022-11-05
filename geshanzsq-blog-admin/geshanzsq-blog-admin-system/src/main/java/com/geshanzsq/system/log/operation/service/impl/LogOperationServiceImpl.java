@@ -39,8 +39,8 @@ public class LogOperationServiceImpl extends BaseServiceImpl<LogOperationMapper,
     public PageVO<LogOperationVo> pageList(LogOperationPageDto pageDto) {
         PageUtils.startPage(pageDto);
         List<LogOperationVo> list = logOperationMapper.pageList(pageDto);
-        PageVO<LogOperationVo> pageVo = PageUtils.getPage(list);
-        return pageVo;
+        PageVO<LogOperationVo> pageVO = PageUtils.getPage(list);
+        return pageVO;
     }
 
     /**

@@ -1,12 +1,12 @@
 package com.geshanzsq.system.user.service;
 
+import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.BaseService;
 import com.geshanzsq.framework.security.domain.LoginUserDetail;
 import com.geshanzsq.system.user.dto.SysUserAddDTO;
 import com.geshanzsq.system.user.dto.SysUserPageDTO;
 import com.geshanzsq.system.user.dto.SysUserResetPasswordDTO;
-import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.system.user.vo.SysUserVO;
 
 import java.util.List;

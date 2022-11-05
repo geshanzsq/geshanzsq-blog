@@ -1,17 +1,12 @@
 package com.geshanzsq.admin.blog.tag.service.impl;
 
 import com.geshanzsq.admin.blog.article.service.BlogArticleTagService;
-import com.geshanzsq.admin.blog.tag.dto.BlogTagListDTO;
-import com.geshanzsq.admin.blog.tag.dto.BlogTagPageDTO;
 import com.geshanzsq.admin.blog.tag.mapper.BlogTagMapper;
-import com.geshanzsq.admin.blog.tag.mapstruct.BlogTagConverter;
-import com.geshanzsq.client.common.blog.po.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.service.BlogTagService;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
+import com.geshanzsq.client.common.blog.po.tag.BlogTag;
 import com.geshanzsq.common.core.exception.ParamException;
 import com.geshanzsq.common.core.util.message.MessageUtils;
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
-import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,26 +30,6 @@ public class BlogTagServiceImpl extends BaseServiceImpl<BlogTagMapper, BlogTag> 
 
     @Autowired
     private BlogArticleTagService blogArticleTagService;
-
-    /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<BlogTagVO> pageList(BlogTagPageDTO pageDTO) {
-        PageVO<BlogTag> pageVO = blogTagMapper.selectPage(pageDTO);
-        return BlogTagConverter.INSTANCE.convert(pageVO);
-    }
-
-    /**
-     * 列表
-     */
-    @Override
-    public List<BlogTag> list(BlogTagListDTO listDTO) {
-        LambdaQueryWrapperPlus<BlogTag> wrapper = new LambdaQueryWrapperPlus<>();
-        wrapper.eqIf(BlogTag::getStatus, listDTO.getStatus());
-        wrapper.orderByAsc(BlogTag::getSort);
-        return blogTagMapper.selectList(wrapper);
-    }
 
     /**
      * 删除

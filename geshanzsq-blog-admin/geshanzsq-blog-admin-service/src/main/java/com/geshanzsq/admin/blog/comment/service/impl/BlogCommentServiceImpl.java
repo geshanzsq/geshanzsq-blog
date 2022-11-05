@@ -41,6 +41,7 @@ public class BlogCommentServiceImpl extends BaseServiceImpl<BlogCommentMapper, B
      */
     @Override
     public PageVO<BlogCommentVO> pageList(BlogCommentPageDTO pageDTO) {
+        pageDTO.setOrderColumn("gmtCreate");
         PageVO<BlogCommentVO> pageVO = BlogCommentConverter.INSTANCE.convert(blogCommentMapper.selectPage(pageDTO));
         if (CollectionUtils.isEmpty(pageVO.getList())) {
             return pageVO;

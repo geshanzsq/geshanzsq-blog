@@ -39,8 +39,9 @@ public class SysDictionaryDataController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<SysDictionaryDataVO>> page(@Valid SysDictionaryDataPageDTO pageDTO) {
-        PageVO<SysDictionaryDataVO> pageVo = sysDictionaryDataService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<SysDictionaryData> pageVO = sysDictionaryDataService.page(pageDTO);
+        return ResponseResult.success(SysDictionaryDataConverter.INSTANCE.convert(pageVO));
     }
 
     @GetMapping("/getById/{id}")

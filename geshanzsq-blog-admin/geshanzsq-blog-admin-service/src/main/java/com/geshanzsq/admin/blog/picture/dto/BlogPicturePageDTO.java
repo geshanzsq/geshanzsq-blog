@@ -1,6 +1,8 @@
 package com.geshanzsq.admin.blog.picture.dto;
 
 import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
+import com.geshanzsq.common.framework.mybatis.plugin.annotation.Query;
+import com.geshanzsq.common.framework.mybatis.plugin.enums.QueryWay;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,5 +25,6 @@ public class BlogPicturePageDTO extends PageDTO implements Serializable {
     private Long categoryId;
 
     @ApiModelProperty("图片原名称")
+    @Query(QueryWay.LIKE)
     private String pictureOriginalName;
 }

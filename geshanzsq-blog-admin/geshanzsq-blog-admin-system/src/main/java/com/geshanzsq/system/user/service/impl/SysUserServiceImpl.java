@@ -1,6 +1,7 @@
 package com.geshanzsq.system.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.common.core.enums.DelFlag;
 import com.geshanzsq.common.core.exception.ParamException;
 import com.geshanzsq.common.core.util.message.MessageUtils;
@@ -22,7 +23,6 @@ import com.geshanzsq.system.user.dto.SysUserPageDTO;
 import com.geshanzsq.system.user.dto.SysUserResetPasswordDTO;
 import com.geshanzsq.system.user.mapper.SysUserMapper;
 import com.geshanzsq.system.user.mapstruct.SysUserConverter;
-import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.system.user.service.SysUserService;
 import com.geshanzsq.system.user.vo.SysUserVO;
 import org.slf4j.Logger;
@@ -150,7 +150,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserMapper, SysUser> 
      */
     @Override
     public PageVO<SysUserVO> pageList(SysUserPageDTO pageDTO) {
-
+        pageDTO.setOrderColumn("gmtCreate,id");
         PageVO<SysUserVO> page = SysUserConverter.INSTANCE.convert(sysUserMapper.selectPage(pageDTO));
         List<SysUserVO> userList = page.getList();
         if (CollectionUtils.isEmpty(userList)) {

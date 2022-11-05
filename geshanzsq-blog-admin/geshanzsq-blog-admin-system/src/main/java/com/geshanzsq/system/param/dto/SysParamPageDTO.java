@@ -1,6 +1,8 @@
 package com.geshanzsq.system.param.dto;
 
 import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
+import com.geshanzsq.common.framework.mybatis.plugin.annotation.Query;
+import com.geshanzsq.common.framework.mybatis.plugin.enums.QueryWay;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,12 +22,15 @@ public class SysParamPageDTO extends PageDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("参数名称")
+    @Query(QueryWay.LIKE)
     private String paramName;
 
     @ApiModelProperty("参数键")
+    @Query(QueryWay.LIKE)
     private String paramKey;
 
     @ApiModelProperty("参数值")
+    @Query(QueryWay.LIKE)
     private String paramValue;
 
 }

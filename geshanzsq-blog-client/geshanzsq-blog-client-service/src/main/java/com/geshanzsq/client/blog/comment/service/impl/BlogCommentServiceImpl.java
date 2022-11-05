@@ -1,7 +1,7 @@
 package com.geshanzsq.client.blog.comment.service.impl;
 
 import com.geshanzsq.client.blog.article.service.BlogArticleService;
-import com.geshanzsq.client.common.blog.util.MarkdownUtils;
+import com.geshanzsq.client.blog.comment.dto.BlogCommentPageDTO;
 import com.geshanzsq.client.blog.comment.dto.BlogCommentSaveDTO;
 import com.geshanzsq.client.blog.comment.mapper.BlogCommentMapper;
 import com.geshanzsq.client.blog.comment.mapstruct.BlogCommentConverter;
@@ -10,8 +10,8 @@ import com.geshanzsq.client.blog.comment.vo.BlogArticleCommentListVO;
 import com.geshanzsq.client.blog.comment.vo.BlogCommentPageVO;
 import com.geshanzsq.client.common.blog.enums.comment.BlogCommentStatus;
 import com.geshanzsq.client.common.blog.po.comment.BlogComment;
+import com.geshanzsq.client.common.blog.util.MarkdownUtils;
 import com.geshanzsq.common.core.enums.YesNo;
-import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import com.geshanzsq.framework.security.util.SecurityUtils;
@@ -42,8 +42,11 @@ public class BlogCommentServiceImpl extends BaseServiceImpl<BlogCommentMapper, B
      * 分页列表
      */
     @Override
-    public PageVO<BlogCommentPageVO> pageList(PageDTO pageDTO) {
-        PageVO<BlogCommentPageVO> pageVO = BlogCommentConverter.INSTANCE.convert(blogCommentMapper.selectPage(pageDTO, SecurityUtils.getUserId()));
+    public PageVO<BlogCommentPageVO> pageList(BlogCommentPageDTO pageDTO) {
+        pageDTO.setOrderColumn("gmtCreate");
+        pageDTO.setOrderType("desc");
+        pageDTO.setUserId(SecurityUtils.getUserId());
+        PageVO<BlogCommentPageVO> pageVO = BlogCommentConverter.INSTANCE.convert(blogCommentMapper.selectPage(pageDTO));
         pageVO.getList().forEach(comment -> {
             // 渲染 Markdown 内容
             comment.setCommentContent(MarkdownUtils.markdownToHtml(comment.getCommentContent()));

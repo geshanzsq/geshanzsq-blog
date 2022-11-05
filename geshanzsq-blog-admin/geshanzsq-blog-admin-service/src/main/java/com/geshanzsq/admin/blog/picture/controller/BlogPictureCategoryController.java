@@ -41,16 +41,18 @@ public class BlogPictureCategoryController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<BlogPictureCategoryVO>> page(BlogPictureCategoryPageDTO pageDTO) {
-        PageVO<BlogPictureCategoryVO> pageVo = blogPictureCategoryService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<BlogPictureCategory> pageVO = blogPictureCategoryService.page(pageDTO);
+        return ResponseResult.success(BlogPictureCategoryConverter.INSTANCE.convert(pageVO));
     }
 
     @ApiOperation("列表")
     @GetMapping("/list")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<List<BlogPictureCategoryVO>> page(BlogPictureCategoryListDTO listDTO) {
+        listDTO.setOrderColumn("sort");
         List<BlogPictureCategory> list = blogPictureCategoryService.list(listDTO);
-        return ResponseResult.success(list);
+        return ResponseResult.success(BlogPictureCategoryConverter.INSTANCE.convert(list));
     }
 
     @GetMapping("/getById/{id}")

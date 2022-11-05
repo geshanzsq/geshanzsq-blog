@@ -40,8 +40,9 @@ public class BlogFriendshipLinkController extends BaseController {
     @ApiOperation("分页列表")
     @GetMapping("/page")
     public ResponseResult<PageVO<BlogFriendshipLinkVO>> page(BlogFriendshipLinkPageDTO pageDTO) {
-        PageVO<BlogFriendshipLinkVO> pageVO = blogFriendshipLinkService.pageList(pageDTO);
-        return ResponseResult.success(pageVO);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<BlogFriendshipLink> pageVO = blogFriendshipLinkService.page(pageDTO);
+        return ResponseResult.success(BlogFriendshipLinkConverter.INSTANCE.convert(pageVO));
     }
 
     @GetMapping("/getById/{id}")

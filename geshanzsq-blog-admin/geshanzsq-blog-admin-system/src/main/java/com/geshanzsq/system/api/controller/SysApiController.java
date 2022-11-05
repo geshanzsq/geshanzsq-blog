@@ -38,8 +38,9 @@ public class SysApiController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<SysApiVO>> page(@Valid SysApiPageDTO pageDTO) {
-        PageVO<SysApiVO> pageVo = sysApiService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<SysApi> pageVO = sysApiService.page(pageDTO);
+        return ResponseResult.success(SysApiConverter.INSTANCE.convert(pageVO));
     }
 
     @GetMapping("/getById/{id}")

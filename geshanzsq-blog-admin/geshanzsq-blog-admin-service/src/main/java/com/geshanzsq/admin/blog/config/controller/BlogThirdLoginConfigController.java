@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.Arrays;
 
@@ -38,8 +39,8 @@ public class BlogThirdLoginConfigController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<BlogThirdLoginConfigVO>> page(BlogThirdLoginConfigPageDTO pageDTO) {
-        PageVO<BlogThirdLoginConfigVO> pageVO = blogThirdLoginConfigService.pageList(pageDTO);
-        return ResponseResult.success(pageVO);
+        PageVO<BlogThirdLoginConfig> pageVO = blogThirdLoginConfigService.page(pageDTO);
+        return ResponseResult.success(BlogThirdLoginConfigConverter.INSTANCE.convert(pageVO));
     }
 
     @GetMapping("/getById/{id}")

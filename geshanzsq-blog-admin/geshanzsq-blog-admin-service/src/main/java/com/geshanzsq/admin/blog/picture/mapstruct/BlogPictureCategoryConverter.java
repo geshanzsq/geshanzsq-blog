@@ -8,6 +8,8 @@ import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 /**
  * 图片分类对象转换
  *
@@ -26,5 +28,7 @@ public interface BlogPictureCategoryConverter {
     BlogPictureCategory convert(BlogPictureCategoryAddDTO addDTO);
 
     BlogPictureCategory convert(BlogPictureCategoryUpdateDTO updateDTO);
+
+    List<BlogPictureCategoryVO> convert(List<BlogPictureCategory> list);
 
 }

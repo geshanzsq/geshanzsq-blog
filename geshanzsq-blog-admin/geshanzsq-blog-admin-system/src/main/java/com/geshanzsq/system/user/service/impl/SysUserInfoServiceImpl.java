@@ -1,10 +1,10 @@
 package com.geshanzsq.system.user.service.impl;
 
+import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.framework.security.domain.LoginUserDetail;
 import com.geshanzsq.framework.security.service.TokenService;
 import com.geshanzsq.framework.security.util.SecurityUtils;
 import com.geshanzsq.system.user.mapstruct.SysUserConverter;
-import com.geshanzsq.admin.system.common.po.user.SysUser;
 import com.geshanzsq.system.user.service.SysUserInfoService;
 import com.geshanzsq.system.user.service.SysUserService;
 import com.geshanzsq.system.user.vo.SysUserVO;

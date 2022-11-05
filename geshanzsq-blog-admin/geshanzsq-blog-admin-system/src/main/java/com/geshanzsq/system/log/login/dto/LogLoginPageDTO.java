@@ -1,6 +1,8 @@
 package com.geshanzsq.system.log.login.dto;
 
 import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
+import com.geshanzsq.common.framework.mybatis.plugin.annotation.Query;
+import com.geshanzsq.common.framework.mybatis.plugin.enums.QueryWay;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,9 +24,11 @@ public class LogLoginPageDTO extends PageDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("登录用户名")
+    @Query(QueryWay.LIKE)
     private String username;
 
     @ApiModelProperty("登录 ip 地址")
+    @Query(QueryWay.LIKE)
     private String ipAddress;
 
     @ApiModelProperty("登录状态（1 成功，2 失败）")
@@ -32,9 +36,11 @@ public class LogLoginPageDTO extends PageDTO implements Serializable {
 
     @ApiModelProperty("开始登录时间")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Query(value = QueryWay.GE, fieldName = "gmtLogin")
     private Date startGmtLogin;
 
     @ApiModelProperty("结束登录时间")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @Query(value = QueryWay.LE, fieldName = "gmtLogin")
     private Date endGmtLogin;
 }

@@ -40,8 +40,9 @@ public class SysDictionaryController extends BaseController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<SysDictionaryVO>> page(SysDictionaryPageDTO pageDTO) {
-        PageVO<SysDictionaryVO> pageVo = sysDictionaryService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<SysDictionary> pageVO = sysDictionaryService.page(pageDTO);
+        return ResponseResult.success( SysDictionaryConverter.INSTANCE.convert(pageVO));
     }
 
     @ApiOperation("列表")

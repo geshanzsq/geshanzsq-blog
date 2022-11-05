@@ -1,6 +1,8 @@
 package com.geshanzsq.system.dictionary.dto;
 
 import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
+import com.geshanzsq.common.framework.mybatis.plugin.annotation.Query;
+import com.geshanzsq.common.framework.mybatis.plugin.enums.QueryWay;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,6 +23,7 @@ public class SysDictionaryDataPageDTO extends PageDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("字典标签")
+    @Query(QueryWay.LIKE)
     private String dictionaryLabel;
 
     @ApiModelProperty(value = "所属字典", required = true)

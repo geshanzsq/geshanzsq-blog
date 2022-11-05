@@ -1,9 +1,6 @@
 package com.geshanzsq.admin.blog.picture.mapper;
 
-import com.geshanzsq.admin.blog.picture.dto.BlogPictureCategoryPageDTO;
 import com.geshanzsq.admin.blog.picture.po.BlogPictureCategory;
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
-import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;
 import com.geshanzsq.common.framework.web.mapper.BaseMapperPlus;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,17 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BlogPictureCategoryMapper extends BaseMapperPlus<BlogPictureCategory> {
-
-    /**
-     * 分页
-     */
-    default PageVO<BlogPictureCategory> selectPage(BlogPictureCategoryPageDTO pageDTO) {
-        return selectPage(pageDTO, new LambdaQueryWrapperPlus<BlogPictureCategory>()
-                .likeIf(BlogPictureCategory::getCategoryName, pageDTO.getCategoryName())
-                .eqIf(BlogPictureCategory::getStatus, pageDTO.getStatus())
-                .orderByAsc(BlogPictureCategory::getSort, BlogPictureCategory::getId)
-        );
-    }
 
     /**
      * 获取最大排序

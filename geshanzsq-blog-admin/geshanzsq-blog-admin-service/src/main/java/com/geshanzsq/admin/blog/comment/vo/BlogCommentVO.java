@@ -1,6 +1,5 @@
 package com.geshanzsq.admin.blog.comment.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.geshanzsq.common.core.web.vo.BaseVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

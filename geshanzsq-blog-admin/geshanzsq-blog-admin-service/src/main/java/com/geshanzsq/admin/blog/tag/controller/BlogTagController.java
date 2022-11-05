@@ -5,9 +5,9 @@ import com.geshanzsq.admin.blog.tag.dto.BlogTagListDTO;
 import com.geshanzsq.admin.blog.tag.dto.BlogTagPageDTO;
 import com.geshanzsq.admin.blog.tag.dto.BlogTagUpdateDTO;
 import com.geshanzsq.admin.blog.tag.mapstruct.BlogTagConverter;
-import com.geshanzsq.client.common.blog.po.tag.BlogTag;
 import com.geshanzsq.admin.blog.tag.service.BlogTagService;
 import com.geshanzsq.admin.blog.tag.vo.BlogTagVO;
+import com.geshanzsq.client.common.blog.po.tag.BlogTag;
 import com.geshanzsq.common.core.web.response.ResponseResult;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.log.annotation.Log;
@@ -39,14 +39,16 @@ public class BlogTagController {
     @GetMapping("/page")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<PageVO<BlogTagVO>> page(BlogTagPageDTO pageDTO) {
-        PageVO<BlogTagVO> pageVo = blogTagService.pageList(pageDTO);
-        return ResponseResult.success(pageVo);
+        pageDTO.setOrderColumn("sort,id");
+        PageVO<BlogTag> pageVO = blogTagService.page(pageDTO);
+        return ResponseResult.success(BlogTagConverter.INSTANCE.convert(pageVO));
     }
 
     @ApiOperation("列表")
     @GetMapping("/list")
     @PreAuthorize("@auth.hasUrl()")
     public ResponseResult<List<BlogTagVO>> list(BlogTagListDTO listDTO) {
+        listDTO.setOrderColumn("sort");
         List<BlogTag> list = blogTagService.list(listDTO);
         return ResponseResult.success(BlogTagConverter.INSTANCE.convertList(list));
     }

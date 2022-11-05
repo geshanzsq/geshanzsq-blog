@@ -1,13 +1,9 @@
 package com.geshanzsq.system.dictionary.service.impl;
 
-import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
-import com.geshanzsq.system.dictionary.dto.SysDictionaryDataPageDTO;
 import com.geshanzsq.system.dictionary.mapper.SysDictionaryDataMapper;
-import com.geshanzsq.system.dictionary.mapstruct.SysDictionaryDataConverter;
 import com.geshanzsq.system.dictionary.po.SysDictionaryData;
 import com.geshanzsq.system.dictionary.service.SysDictionaryDataService;
-import com.geshanzsq.system.dictionary.vo.SysDictionaryDataVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +18,6 @@ public class SysDictionaryDataServiceImpl extends BaseServiceImpl<SysDictionaryD
 
     @Autowired
     private SysDictionaryDataMapper sysDictionaryDataMapper;
-
-    /**
-     * 分页列表
-     */
-    @Override
-    public PageVO<SysDictionaryDataVO> pageList(SysDictionaryDataPageDTO pageDTO) {
-        PageVO<SysDictionaryData> page = sysDictionaryDataMapper.selectPage(pageDTO);
-        return SysDictionaryDataConverter.INSTANCE.convert(page);
-    }
 
     /**
      * 获取最大排序

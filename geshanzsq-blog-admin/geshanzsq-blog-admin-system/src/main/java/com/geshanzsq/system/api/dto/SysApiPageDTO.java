@@ -1,6 +1,8 @@
 package com.geshanzsq.system.api.dto;
 
 import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
+import com.geshanzsq.common.framework.mybatis.plugin.annotation.Query;
+import com.geshanzsq.common.framework.mybatis.plugin.enums.QueryWay;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,9 +23,11 @@ public class SysApiPageDTO extends PageDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("接口名称")
+    @Query(QueryWay.LIKE)
     private String apiName;
 
     @ApiModelProperty("接口地址")
+    @Query(QueryWay.LIKE)
     private String apiUrl;
 
     @ApiModelProperty("接口请求方式（如：get，post）")

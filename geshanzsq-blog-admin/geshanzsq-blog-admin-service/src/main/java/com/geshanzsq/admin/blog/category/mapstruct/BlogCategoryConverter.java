@@ -2,8 +2,8 @@ package com.geshanzsq.admin.blog.category.mapstruct;
 
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryAddDTO;
 import com.geshanzsq.admin.blog.category.dto.BlogCategoryUpdateDTO;
-import com.geshanzsq.client.common.blog.po.category.BlogCategory;
 import com.geshanzsq.admin.blog.category.vo.BlogCategoryVO;
+import com.geshanzsq.client.common.blog.po.category.BlogCategory;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

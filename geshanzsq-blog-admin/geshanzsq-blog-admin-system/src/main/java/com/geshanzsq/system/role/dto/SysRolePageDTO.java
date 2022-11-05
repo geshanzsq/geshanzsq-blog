@@ -1,6 +1,8 @@
 package com.geshanzsq.system.role.dto;
 
 import com.geshanzsq.common.framework.mybatis.page.dto.PageDTO;
+import com.geshanzsq.common.framework.mybatis.plugin.annotation.Query;
+import com.geshanzsq.common.framework.mybatis.plugin.enums.QueryWay;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -20,9 +22,11 @@ public class SysRolePageDTO extends PageDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty("角色名称")
+    @Query(QueryWay.LIKE)
     private String roleName;
 
     @ApiModelProperty("角色编码")
+    @Query(QueryWay.LIKE)
     private String roleCode;
 
     @ApiModelProperty("状态，1 正常，2 停用")

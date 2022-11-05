@@ -8,7 +8,6 @@ import com.geshanzsq.common.core.exception.ParamException;
 import com.geshanzsq.common.core.exception.ServiceException;
 import com.geshanzsq.common.core.util.message.MessageUtils;
 import com.geshanzsq.common.core.util.string.StrUtils;
-import com.geshanzsq.common.framework.mybatis.plugin.query.LambdaQueryWrapperPlus;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
 import com.geshanzsq.framework.security.domain.LoginUserDetail;
 import com.geshanzsq.framework.security.util.SecurityUtils;
@@ -110,12 +109,9 @@ public class SysMenuServiceImpl extends BaseServiceImpl<SysMenuMapper, SysMenu> 
      * 获取菜单列表
      */
     @Override
-    public List<SysMenuVO> getMenuList(SysMenuListDTO sysMenuListDto) {
-        LambdaQueryWrapperPlus<SysMenu> wrapper = new LambdaQueryWrapperPlus<>();
-        wrapper.eqIf(SysMenu::getStatus, sysMenuListDto.getStatus());
-        wrapper.likeIf(SysMenu::getMenuName, sysMenuListDto.getMenuName());
-        wrapper.orderByAsc(SysMenu::getSort, SysMenu::getParentId);
-        List<SysMenu> menus = sysMenuMapper.selectList(wrapper);
+    public List<SysMenuVO> getMenuList(SysMenuListDTO sysMenuListDTO) {
+        sysMenuListDTO.setOrderColumn("sort,parentId");
+        List<SysMenu> menus = sysMenuMapper.selectList(sysMenuListDTO);
         return SysMenuConverter.INSTANCE.convertList(menus);
     }
 

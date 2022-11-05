@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ServiceException.class)
     public ResponseResult serviceException(ServiceException e) {
-        log.error(e.getMessage());
+        e.printStackTrace();
         return ResponseResult.fail(e.getCode(), e.getMessage());
     }
 
@@ -96,7 +96,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseResult handleException(Exception e) {
-        log.error(e.getMessage(), e);
+        e.printStackTrace();
         return ResponseResult.fail(MessageUtils.message("system.exception"));
     }
 
