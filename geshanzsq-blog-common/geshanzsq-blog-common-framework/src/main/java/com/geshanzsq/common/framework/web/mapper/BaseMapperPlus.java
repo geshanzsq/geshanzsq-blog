@@ -80,7 +80,7 @@ public interface BaseMapperPlus<T> extends BaseMapper<T> {
      * 获取 T 类
      */
     default Class<T> getEntityClass() {
-        return (Class<T>) ReflectionKit.getSuperClassGenericType(this.getEntityClass(), BaseMapperPlus.class, 0);
+        return (Class<T>) ReflectionKit.getSuperClassGenericType(getClass(), BaseMapperPlus.class, 0);
     }
 
 }
