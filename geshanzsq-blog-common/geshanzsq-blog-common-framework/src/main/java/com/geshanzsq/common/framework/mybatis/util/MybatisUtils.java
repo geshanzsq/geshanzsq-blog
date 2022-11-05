@@ -16,15 +16,30 @@ public class MybatisUtils {
      * 构建分页
      */
     public static <T> Page<T> buildPage(PageDTO pageDTO) {
-        Long pageNum = 1L;
-        Long pageSize = PageProperty.defaultPageSize;
+        Long pageNum = null;
+        Long pageSize = null;
         if (pageDTO != null) {
-            pageNum = pageDTO.getPageNum() == null ? 1L : pageDTO.getPageNum();
-            pageSize = pageDTO.getPageSize() == null ? PageProperty.defaultPageSize : pageDTO.getPageSize();
-            // 如果超过最大分页数，则设置为最大分页数
-            if (pageSize > PageProperty.maxPageSize) {
-                pageSize = PageProperty.maxPageSize;
-            }
+            pageNum = pageDTO.getPageNum();
+            pageSize = pageDTO.getPageSize();
+        }
+        return buildPage(pageNum, pageSize);
+    }
+
+    /**
+     * 构建分页
+     */
+    public static <T> Page<T> buildPage(Long pageNum, Long pageSize) {
+        // 如果为空，则设置默认值
+        if (pageNum == null) {
+            pageNum = 1L;
+        }
+        if (pageSize == null) {
+            pageSize = PageProperty.defaultPageSize;
+        }
+
+        // 如果超过最大分页数，则设置为最大分页数
+        if (pageSize > PageProperty.maxPageSize) {
+            pageSize = PageProperty.maxPageSize;
         }
         Page<T> page = new Page<>(pageNum, pageSize);
         return page;
