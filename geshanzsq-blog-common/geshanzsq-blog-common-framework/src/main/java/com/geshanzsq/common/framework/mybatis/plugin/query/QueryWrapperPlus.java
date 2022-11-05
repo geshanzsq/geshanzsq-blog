@@ -16,6 +16,7 @@ import com.geshanzsq.common.framework.mybatis.plugin.enums.QueryWay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -196,11 +197,21 @@ public class QueryWrapperPlus<T> extends QueryWrapper<T> {
                 break;
             }
             case IN: {
-                queryWrapper.in(column, value);
+                if (value instanceof Collection) {
+                    Collection coll = (Collection) value;
+                    queryWrapper.in(column, coll);
+                } else {
+                    queryWrapper.in(column, value);
+                }
                 break;
             }
             case NOT_IN: {
-                queryWrapper.notIn(column, value);
+                if (value instanceof Collection) {
+                    Collection coll = (Collection) value;
+                    queryWrapper.notIn(column, coll);
+                } else {
+                    queryWrapper.notIn(column, value);
+                }
                 break;
             }
             default: {
