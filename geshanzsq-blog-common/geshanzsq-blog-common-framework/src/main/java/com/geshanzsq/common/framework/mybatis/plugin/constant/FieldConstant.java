@@ -33,4 +33,14 @@ public class FieldConstant {
      */
     public static final String MODIFY_USER_ID = "modifyUserId";
 
+    /**
+     * 排序列，多个用逗号分开
+     */
+    public static final String ORDER_COLUMN = "orderColumn";
+
+    /**
+     * 排序类型(asc 或 desc)，多个用逗号分开
+     */
+    public static final String ORDER_TYPE = "orderType";
+
 }
