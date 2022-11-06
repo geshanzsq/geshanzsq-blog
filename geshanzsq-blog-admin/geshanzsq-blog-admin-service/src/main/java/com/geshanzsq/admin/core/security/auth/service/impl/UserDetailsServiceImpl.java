@@ -3,7 +3,7 @@ package com.geshanzsq.admin.core.security.auth.service.impl;
 import com.geshanzsq.common.core.exception.ServiceException;
 import com.geshanzsq.common.core.util.message.MessageUtils;
 import com.geshanzsq.framework.security.domain.LoginUserDetail;
-import com.geshanzsq.system.user.service.SysUserService;
+import com.geshanzsq.admin.system.user.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

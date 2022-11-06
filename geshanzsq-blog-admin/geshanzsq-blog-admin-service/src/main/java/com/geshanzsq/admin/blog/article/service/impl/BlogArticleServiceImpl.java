@@ -23,7 +23,7 @@ import com.geshanzsq.common.core.util.message.MessageUtils;
 import com.geshanzsq.common.framework.mybatis.page.util.PageUtils;
 import com.geshanzsq.common.framework.mybatis.page.vo.PageVO;
 import com.geshanzsq.common.framework.web.service.impl.BaseServiceImpl;
-import com.geshanzsq.system.user.mapper.SysUserMapper;
+import com.geshanzsq.admin.system.user.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

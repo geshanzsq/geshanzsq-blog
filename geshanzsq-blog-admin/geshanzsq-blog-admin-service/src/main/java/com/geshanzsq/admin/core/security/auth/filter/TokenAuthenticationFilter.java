@@ -3,7 +3,7 @@ package com.geshanzsq.admin.core.security.auth.filter;
 import com.geshanzsq.framework.security.domain.LoginUserDetail;
 import com.geshanzsq.framework.security.service.TokenService;
 import com.geshanzsq.framework.security.util.SecurityUtils;
-import com.geshanzsq.system.user.service.SysUserService;
+import com.geshanzsq.admin.system.user.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
