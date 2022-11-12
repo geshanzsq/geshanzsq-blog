@@ -46,7 +46,13 @@ public class InsertUpdateMyBatisInterceptor {
         Object clazz = null;
         if (parameter instanceof MapperMethod.ParamMap) {
             // 单个操作
-            clazz = ((Map) parameter).get("param1");
+            String paramKey = "param1";
+            String paramEtKey = "et";
+            if (((Map) parameter).containsKey(paramKey)) {
+                clazz = ((Map) parameter).containsKey(paramKey);
+            } else if (((Map) parameter).containsKey(paramEtKey)) {
+                clazz = ((Map) parameter).containsKey(paramEtKey);
+            }
         } else {
             // 批量操作
             clazz = parameter;
