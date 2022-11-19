@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form
       :model="queryParams"
-      ref="queryRef"
+      ref="queryFormRef"
       :inline="true"
       label-width="68px"
     >
@@ -36,7 +36,7 @@
         <el-button type="primary" icon="Search" @click="handleQuery"
           >搜索</el-button
         >
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
+        <el-button icon="Refresh" @click="handleResetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -200,8 +200,19 @@ const queryParams = ref({
   pictureOriginalName: undefined
 })
 
+/**
+ * 搜索
+ */
 function handleQuery() {
   getPage()
+}
+
+/**
+ * 重置
+ */
+function handleResetQuery() {
+  proxy.resetForm('queryFormRef')
+  handleQuery()
 }
 
 /**

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryRef" :inline="true">
+    <el-form :model="queryParams" ref="queryFormRef" :inline="true">
       <el-form-item label="状态" prop="status">
         <el-select
           style="width: 240px"
@@ -15,7 +15,7 @@
         <el-button type="primary" icon="Search" @click="handleQuery"
           >搜索</el-button
         >
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
+        <el-button icon="Refresh" @click="handleResetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -159,6 +159,14 @@ async function getPage() {
  */
 function handleQuery() {
   getPage()
+}
+
+/**
+ * 重置
+ */
+function handleResetQuery() {
+  proxy.resetForm('queryFormRef')
+  handleQuery()
 }
 
 /**

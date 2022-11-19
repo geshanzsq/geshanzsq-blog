@@ -61,7 +61,7 @@
         <el-button type="primary" icon="Search" @click="handleQuery"
           >搜索</el-button
         >
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
+        <el-button icon="Refresh" @click="handleResetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -257,6 +257,15 @@ const multiple = ref(true)
  */
 function handleQuery() {
   getPage()
+}
+
+/**
+ * 重置
+ */
+function handleResetQuery() {
+  proxy.resetForm('queryFormRef')
+  dateRange.value = undefined
+  handleQuery()
 }
 
 /**

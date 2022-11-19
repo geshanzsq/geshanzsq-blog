@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form
       :model="queryParams"
-      ref="queryRef"
+      ref="queryFormRef"
       :inline="true"
       label-width="68px"
     >
@@ -87,7 +87,7 @@
         >
       </el-col>
       <el-col :span="1.5">
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
+        <el-button icon="Refresh" @click="handleResetQuery">重置</el-button>
       </el-col>
     </el-row>
 
@@ -206,6 +206,14 @@ async function getTagList() {
  */
 function handleQuery() {
   getPage()
+}
+
+/**
+ * 重置
+ */
+function handleResetQuery() {
+  proxy.resetForm('queryFormRef')
+  handleQuery()
 }
 
 /**

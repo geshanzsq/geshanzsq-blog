@@ -26,7 +26,7 @@
       </el-form-item>
       <el-form-item label="操作用户" prop="operateUser">
         <el-input
-          v-model="queryParams.operationUser"
+          v-model="queryParams.operateUser"
           placeholder="请输入用户名或昵称"
           clearable
           style="width: 240px"
@@ -81,7 +81,7 @@
         <el-button type="primary" icon="Search" @click="handleQuery"
           >搜索</el-button
         >
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
+        <el-button icon="Refresh" @click="handleResetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -209,6 +209,15 @@ const totalCount = ref(0)
  */
 function handleQuery() {
   getPage()
+}
+
+/**
+ * 重置
+ */
+function handleResetQuery() {
+  proxy.resetForm('queryFormRef')
+  dateRange.value = undefined
+  handleQuery()
 }
 
 /**

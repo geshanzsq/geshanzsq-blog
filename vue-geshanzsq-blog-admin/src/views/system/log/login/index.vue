@@ -51,7 +51,7 @@
         <el-button type="primary" icon="Search" @click="handleQuery"
           >搜索</el-button
         >
-        <el-button icon="Refresh" @click="resetQuery">重置</el-button>
+        <el-button icon="Refresh" @click="handleResetQuery">重置</el-button>
       </el-form-item>
     </el-form>
 
@@ -123,9 +123,11 @@
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { getCurrentInstance, ref } from 'vue'
 
 import { page } from '@/api/system/log/login'
+
+const { proxy } = getCurrentInstance()
 
 const queryParams = ref({
   pageNum: 1,
@@ -147,6 +149,15 @@ const totalCount = ref(0)
  */
 function handleQuery() {
   getPage()
+}
+
+/**
+ * 重置
+ */
+function handleResetQuery() {
+  proxy.resetForm('queryFormRef')
+  dateRange.value = undefined
+  handleQuery()
 }
 
 /**
