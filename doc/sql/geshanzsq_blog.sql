@@ -22,12 +22,12 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_about_me`;
 CREATE TABLE `blog_about_me`  (
-  `id` bigint NOT NULL COMMENT '关于 id',
+  `id` bigint(20) NOT NULL COMMENT '关于 id',
   `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '内容',
   `editor_type` tinyint(1) NULL DEFAULT 1 COMMENT '编辑器类型（1 Markdown编辑器，2 富文本编辑器）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '关于我' ROW_FORMAT = Dynamic;
@@ -46,7 +46,7 @@ CREATE TABLE `blog_article`  (
   `article_description` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '文章描述',
   `cover_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '封面地址',
   `flag` tinyint(1) NULL DEFAULT 1 COMMENT '标识（1 原创，2 转载，3 整理）',
-  `fk_category_id` bigint NULL DEFAULT NULL COMMENT '分类 id',
+  `fk_category_id` bigint(20) NULL DEFAULT NULL COMMENT '分类 id',
   `has_appreciation` tinyint(1) NULL DEFAULT 1 COMMENT '赞赏是否开启（1 开启，2 不开启）',
   `has_comment` tinyint(1) NULL DEFAULT 1 COMMENT '评论是否开启（1 开启，2 不开启）',
   `has_reprint_statement` tinyint(1) NULL DEFAULT 1 COMMENT '转载声明是否开启（1 开启，2 不开启）',
@@ -56,9 +56,9 @@ CREATE TABLE `blog_article`  (
   `gmt_publish` datetime NULL DEFAULT NULL COMMENT '发布时间',
   `gmt_last_publish` datetime NULL DEFAULT NULL COMMENT '最后发布时间',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态（1 草稿，2 发布，3 下架）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章' ROW_FORMAT = DYNAMIC;
@@ -72,12 +72,12 @@ CREATE TABLE `blog_article`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_collect`;
 CREATE TABLE `blog_article_collect`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '收藏 id',
-  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
-  `fk_create_user_id` bigint NOT NULL COMMENT '创建人用户 id',
+  `id` bigint NOT NULL COMMENT '收藏 id',
+  `fk_article_id` bigint(20) NOT NULL COMMENT '文章 id',
+  `fk_create_user_id` bigint(20) NOT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1580904419548086274 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章收藏' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章收藏' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of blog_article_collect
@@ -88,7 +88,7 @@ CREATE TABLE `blog_article_collect`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_content`;
 CREATE TABLE `blog_article_content`  (
-  `id` bigint NOT NULL COMMENT '文章 id',
+  `id` bigint(20) NOT NULL COMMENT '文章 id',
   `article_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '文章内容',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章内容' ROW_FORMAT = DYNAMIC;
@@ -102,13 +102,13 @@ CREATE TABLE `blog_article_content`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_footprint`;
 CREATE TABLE `blog_article_footprint`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '足迹 id',
-  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
-  `fk_create_user_id` bigint NOT NULL COMMENT '创建人用户 id',
+  `id` bigint NOT NULL COMMENT '足迹 id',
+  `fk_article_id` bigint(20) NOT NULL COMMENT '文章 id',
+  `fk_create_user_id` bigint(20) NOT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1581144307853824001 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章足迹' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章足迹' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of blog_article_footprint
@@ -119,12 +119,12 @@ CREATE TABLE `blog_article_footprint`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_like`;
 CREATE TABLE `blog_article_like`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '点赞 id',
-  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
-  `fk_create_user_id` bigint NOT NULL COMMENT '创建人用户 id',
+  `id` bigint NOT NULL COMMENT '点赞 id',
+  `fk_article_id` bigint(20) NOT NULL COMMENT '文章 id',
+  `fk_create_user_id` bigint(20) NOT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1581269177640058883 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章点赞' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章点赞' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of blog_article_like
@@ -135,13 +135,13 @@ CREATE TABLE `blog_article_like`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_recommend`;
 CREATE TABLE `blog_article_recommend`  (
-  `id` bigint NOT NULL COMMENT '推荐 id',
+  `id` bigint(20) NOT NULL COMMENT '推荐 id',
   `recommend_level` tinyint(1) NULL DEFAULT 1 COMMENT '推荐等级',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
-  `fk_article_id` bigint NULL DEFAULT NULL COMMENT '文章 id',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_article_id` bigint(20) NULL DEFAULT NULL COMMENT '文章 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章推荐' ROW_FORMAT = DYNAMIC;
@@ -155,9 +155,9 @@ CREATE TABLE `blog_article_recommend`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_article_tag`;
 CREATE TABLE `blog_article_tag`  (
-  `id` bigint NOT NULL COMMENT '文章标签 id',
-  `fk_article_id` bigint NULL DEFAULT NULL COMMENT '文章 id',
-  `fk_tag_id` bigint NULL DEFAULT NULL COMMENT '标签 id',
+  `id` bigint(20) NOT NULL COMMENT '文章标签 id',
+  `fk_article_id` bigint(20) NULL DEFAULT NULL COMMENT '文章 id',
+  `fk_tag_id` bigint(20) NULL DEFAULT NULL COMMENT '标签 id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '文章标签' ROW_FORMAT = DYNAMIC;
 
@@ -170,17 +170,17 @@ CREATE TABLE `blog_article_tag`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_category`;
 CREATE TABLE `blog_category`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '分类 id',
+  `id` bigint NOT NULL COMMENT '分类 id',
   `category_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '分类名称',
   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `click_count` bigint NULL DEFAULT 0 COMMENT '点击数',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 63597109596651521 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_category
@@ -191,16 +191,16 @@ CREATE TABLE `blog_category`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_comment`;
 CREATE TABLE `blog_comment`  (
-  `id` bigint NOT NULL COMMENT '评论 id',
-  `parent_id` bigint NULL DEFAULT 0 COMMENT '上级 id',
-  `fk_article_id` bigint NOT NULL COMMENT '文章 id',
+  `id` bigint(20) NOT NULL COMMENT '评论 id',
+  `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '上级 id',
+  `fk_article_id` bigint(20) NOT NULL COMMENT '文章 id',
   `has_sticky` tinyint(1) NULL DEFAULT 2 COMMENT '是否置顶（1 是，2 否） ',
   `comment_content` longtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '评论内容',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 待审核，2 通过，3 驳回）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '评论表' ROW_FORMAT = Dynamic;
@@ -214,15 +214,15 @@ CREATE TABLE `blog_comment`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_friendship_link`;
 CREATE TABLE `blog_friendship_link`  (
-  `id` bigint NOT NULL COMMENT '链接 id',
+  `id` bigint(20) NOT NULL COMMENT '链接 id',
   `link_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接名称',
   `link_description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '链接简介',
   `link_url` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '链接地址',
   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '友情链接' ROW_FORMAT = Dynamic;
@@ -238,14 +238,14 @@ INSERT INTO `blog_friendship_link` VALUES (70590991626665984, '格姗导航', '�
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_picture`;
 CREATE TABLE `blog_picture`  (
-  `id` bigint NOT NULL COMMENT '图片 id',
+  `id` bigint(20) NOT NULL COMMENT '图片 id',
   `picture_original_name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '图片原名称',
   `picture_path` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '图片路径',
   `picture_md5` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '图片 md5',
-  `fk_category_id` bigint NULL DEFAULT NULL COMMENT '图片分类 id',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_category_id` bigint(20) NULL DEFAULT NULL COMMENT '图片分类 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '图片' ROW_FORMAT = DYNAMIC;
@@ -259,13 +259,13 @@ CREATE TABLE `blog_picture`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_picture_category`;
 CREATE TABLE `blog_picture_category`  (
-  `id` bigint NOT NULL COMMENT '分类 id',
+  `id` bigint(20) NOT NULL COMMENT '分类 id',
   `category_name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '分类名称',
   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '图片分类' ROW_FORMAT = DYNAMIC;
@@ -281,17 +281,17 @@ INSERT INTO `blog_picture_category` VALUES (55080822486597632, '标题', 2, 1, 4
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_tag`;
 CREATE TABLE `blog_tag`  (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '标签 id',
+  `id` bigint NOT NULL COMMENT '标签 id',
   `tag_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标签名称',
   `sort` int NOT NULL DEFAULT 0 COMMENT '排序',
   `click_count` bigint NULL DEFAULT 0 COMMENT '点击数',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 63597496722522113 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '博客分类' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of blog_tag
@@ -302,15 +302,15 @@ CREATE TABLE `blog_tag`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_third_login_config`;
 CREATE TABLE `blog_third_login_config`  (
-  `id` bigint NOT NULL COMMENT '配置 id',
+  `id` bigint(20) NOT NULL COMMENT '配置 id',
   `third_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '第三方名称',
   `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方来源',
   `client_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方 id',
   `client_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方密钥',
   `has_open_login` tinyint(1) NULL DEFAULT NULL COMMENT '是否开启登录（1 是，2 否）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '第三方登录配置' ROW_FORMAT = Dynamic;
@@ -327,8 +327,8 @@ INSERT INTO `blog_third_login_config` VALUES (78261101506068480, 'Github', 'Gith
 -- ----------------------------
 DROP TABLE IF EXISTS `blog_third_user`;
 CREATE TABLE `blog_third_user`  (
-  `id` bigint NOT NULL COMMENT '博客用户 id',
-  `fk_user_id` bigint NULL DEFAULT NULL COMMENT '用户 id',
+  `id` bigint(20) NOT NULL COMMENT '博客用户 id',
+  `fk_user_id` bigint(20) NULL DEFAULT NULL COMMENT '用户 id',
   `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '第三方账号来源',
   `uuid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT '第三方平台 uuid',
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '第三方用户名',
@@ -345,7 +345,7 @@ CREATE TABLE `blog_third_user`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `log_login`;
 CREATE TABLE `log_login`  (
-  `id` bigint NOT NULL COMMENT '登录日志 id',
+  `id` bigint(20) NOT NULL COMMENT '登录日志 id',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '登录用户名',
   `ip_address` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '登录 ip 地址',
   `login_location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '登录位置',
@@ -366,11 +366,11 @@ CREATE TABLE `log_login`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `log_operation`;
 CREATE TABLE `log_operation`  (
-  `id` bigint NOT NULL COMMENT '操作日志 id',
+  `id` bigint(20) NOT NULL COMMENT '操作日志 id',
   `module_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '模块名称',
   `business_type` tinyint(1) NULL DEFAULT 1 COMMENT '业务类型（1 其它，2 新增，3 修改，4 删除）',
   `operate_type` tinyint(1) NULL DEFAULT 1 COMMENT '操作类型（1 其它，2 后台用户，3 手机端用户，4 博客用户）',
-  `fk_user_id` bigint NOT NULL COMMENT '操作用户 id',
+  `fk_user_id` bigint(20) NOT NULL COMMENT '操作用户 id',
   `request_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '请求方式',
   `class_method` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '类方法',
   `request_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '请求地址',
@@ -395,7 +395,7 @@ CREATE TABLE `log_operation`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_api`;
 CREATE TABLE `sys_api`  (
-  `id` bigint NOT NULL COMMENT '接口 id',
+  `id` bigint(20) NOT NULL COMMENT '接口 id',
   `api_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '接口名称',
   `api_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '接口地址',
   `api_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '接口请求方式（如：get，post）',
@@ -403,9 +403,9 @@ CREATE TABLE `sys_api`  (
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口' ROW_FORMAT = DYNAMIC;
@@ -525,14 +525,14 @@ INSERT INTO `sys_api` VALUES (78867348030750720, '更新排序', '/blog/recommen
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_api_category`;
 CREATE TABLE `sys_api_category`  (
-  `id` bigint NOT NULL COMMENT '接口分类 id',
+  `id` bigint(20) NOT NULL COMMENT '接口分类 id',
   `category_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '分类名称',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口分类' ROW_FORMAT = DYNAMIC;
@@ -566,9 +566,9 @@ INSERT INTO `sys_api_category` VALUES (78866987261886464, '推荐管理', 20, 1,
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_api_menu`;
 CREATE TABLE `sys_api_menu`  (
-  `id` bigint NOT NULL COMMENT '接口菜单 id',
-  `fk_api_id` bigint NOT NULL COMMENT '接口 id',
-  `fk_menu_id` bigint NOT NULL COMMENT '菜单 id',
+  `id` bigint(20) NOT NULL COMMENT '接口菜单 id',
+  `fk_api_id` bigint(20) NOT NULL COMMENT '接口 id',
+  `fk_menu_id` bigint(20) NOT NULL COMMENT '菜单 id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统接口菜单' ROW_FORMAT = DYNAMIC;
 
@@ -700,15 +700,15 @@ INSERT INTO `sys_api_menu` VALUES (78867418205650944, 78867348030750720, 7859508
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dictionary`;
 CREATE TABLE `sys_dictionary`  (
-  `id` bigint NOT NULL COMMENT '字典 id',
+  `id` bigint(20) NOT NULL COMMENT '字典 id',
   `dictionary_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典名称',
   `dictionary_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典编码',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典' ROW_FORMAT = DYNAMIC;
@@ -740,7 +740,7 @@ INSERT INTO `sys_dictionary` VALUES (78246041425543168, '通用是否', 'yesNo',
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dictionary_data`;
 CREATE TABLE `sys_dictionary_data`  (
-  `id` bigint NOT NULL COMMENT '字典数据 id',
+  `id` bigint(20) NOT NULL COMMENT '字典数据 id',
   `dictionary_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典标签',
   `dictionary_value` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '字典值',
   `fk_dictionary_id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '所属字典 id',
@@ -748,9 +748,9 @@ CREATE TABLE `sys_dictionary_data`  (
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统字典数据' ROW_FORMAT = DYNAMIC;
@@ -816,9 +816,9 @@ INSERT INTO `sys_dictionary_data` VALUES (78246125886242816, '否', '2', '782460
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
-  `id` bigint NOT NULL COMMENT '菜单 id',
+  `id` bigint(20) NOT NULL COMMENT '菜单 id',
   `menu_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '菜单名称',
-  `parent_id` bigint NULL DEFAULT 0 COMMENT '父菜单ID',
+  `parent_id` bigint(20) NULL DEFAULT 0 COMMENT '父菜单ID',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `menu_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '菜单类型（D 目录，M 菜单，B 按钮）',
   `permission_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '权限标识',
@@ -830,9 +830,9 @@ CREATE TABLE `sys_menu`  (
   `menu_icon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '菜单图标',
   `show_status` tinyint(1) NULL DEFAULT 1 COMMENT '显示状态（1显示，2隐藏）',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统菜单' ROW_FORMAT = DYNAMIC;
@@ -921,16 +921,16 @@ INSERT INTO `sys_menu` VALUES (78595081065463808, '推荐管理', 52099144042414
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_param`;
 CREATE TABLE `sys_param`  (
-  `id` bigint NOT NULL COMMENT '参数 id',
+  `id` bigint(20) NOT NULL COMMENT '参数 id',
   `param_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '参数名称',
   `param_key` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '参数键',
   `param_value` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '参数值',
   `param_type` tinyint(1) NULL DEFAULT NULL COMMENT '参数类型（1 系统参数）',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '参数配置' ROW_FORMAT = DYNAMIC;
@@ -951,15 +951,15 @@ INSERT INTO `sys_param` VALUES (70810422013329408, '评论', 'BLOG_ARTICLE_COMME
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
-  `id` bigint NOT NULL COMMENT '角色 id',
+  `id` bigint(20) NOT NULL COMMENT '角色 id',
   `role_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色名称',
   `role_code` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色编码',
   `sort` int NULL DEFAULT 0 COMMENT '排序',
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_role_code`(`role_code`) USING BTREE COMMENT '角色编码唯一索引'
@@ -976,9 +976,9 @@ INSERT INTO `sys_role` VALUES (43767332559912960, '普通角色', 'commonRole', 
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_role_menu`;
 CREATE TABLE `sys_role_menu`  (
-  `id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色菜单 id',
-  `fk_role_id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '角色 id',
-  `fk_menu_id` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '菜单 id',
+  `id` bigint(20) NOT NULL COMMENT '角色菜单 id',
+  `fk_role_id` bigint(20) NOT NULL COMMENT '角色 id',
+  `fk_menu_id` bigint(20) NOT NULL COMMENT '菜单 id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统角色菜单' ROW_FORMAT = DYNAMIC;
 
@@ -994,7 +994,7 @@ INSERT INTO `sys_role_menu` VALUES ('79363597184008192', '43767332559912960', '5
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE `sys_user`  (
-  `id` bigint NOT NULL COMMENT '用户 id',
+  `id` bigint(20) NOT NULL COMMENT '用户 id',
   `username` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '用户名',
   `nick_name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '昵称',
   `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '密码',
@@ -1006,9 +1006,9 @@ CREATE TABLE `sys_user`  (
   `status` tinyint(1) NULL DEFAULT 1 COMMENT '状态（1 正常，2 停用）',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '备注',
   `del_flag` tinyint(1) NULL DEFAULT 1 COMMENT '删除标志（1 未删除，2 已删除）',
-  `fk_create_user_id` bigint NULL DEFAULT NULL COMMENT '创建人用户 id',
+  `fk_create_user_id` bigint(20) NULL DEFAULT NULL COMMENT '创建人用户 id',
   `gmt_create` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `fk_modify_user_id` bigint NULL DEFAULT NULL COMMENT '修改人用户 id',
+  `fk_modify_user_id` bigint(20) NULL DEFAULT NULL COMMENT '修改人用户 id',
   `gmt_modify` datetime NULL DEFAULT NULL COMMENT '修改时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_username`(`username`) USING BTREE COMMENT '用户名唯一索引'
@@ -1026,9 +1026,9 @@ INSERT INTO `sys_user` VALUES (43767196689629184, 'xgz', '小格子', '$2a$10$mh
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_user_role`;
 CREATE TABLE `sys_user_role`  (
-  `id` bigint NOT NULL COMMENT '用户角色 id',
-  `fk_user_id` bigint NOT NULL COMMENT '用户 id',
-  `fk_role_id` bigint NOT NULL COMMENT '角色 id',
+  `id` bigint(20) NOT NULL COMMENT '用户角色 id',
+  `fk_user_id` bigint(20) NOT NULL COMMENT '用户 id',
+  `fk_role_id` bigint(20) NOT NULL COMMENT '角色 id',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '系统用户角色' ROW_FORMAT = DYNAMIC;
 
