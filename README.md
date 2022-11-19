@@ -69,12 +69,12 @@ Github 下载地址：[https://github.com/geshanzsq/geshanzsq-blog](https://gith
 
 ```yml
 geshanzsq-blog-admin: 后台管理模块
-	geshanzsq-blog-admin-service: 后台管理应用启动和博客业务
+    geshanzsq-blog-admin-application: 后台管理应用启动和博客业务
     geshanzsq-blog-admin-system: 后台管理的系统管理模块
     geshanzsq-blog-admin-system-common: 后台管理的系统管理模块通用模块，目前是客户端需要使用的枚举和 PO
-geshanzsq-blog-cleint
+geshanzsq-blog-cleint:
     geshanzsq-blog-cleint-common: 客户端通用模块，目前是后台管理需要使用的枚举和 PO
-    geshanzsq-blog-cleint-service: 客户端相关逻辑和应用启动
+    geshanzsq-blog-cleint-appication: 客户端相关逻辑和应用启动
 geshanzsq-blog-common: 通用模块
     geshanzsq-blog-common-core: 核心通用模块，包含一些通用工具类
     geshanzsq-blog-common-framework: 通用框架模块
@@ -129,13 +129,13 @@ npm run serve
 
 新建数据库 geshanzsq_blog 数据库，导入 `doc/sql/geshanzsq_blog.sql ` 数据库脚本
 
-在 `geshanzsq-blog/geshanzsq-blog-admin/geshanzsq-blog-admin-service` 和 `geshanzsq-blog/geshanzsq-blog-client/geshanzsq-blog-client-service` 应用启动模块下，有三个配置文件：
+在 `geshanzsq-blog/geshanzsq-blog-admin/geshanzsq-blog-admin-application` 和 `geshanzsq-blog/geshanzsq-blog-client/geshanzsq-blog-client-application 应用启动模块下，有三个配置文件：
 
 | application.yml            | application-dev.yml                               | application-prod.yml                              |
 | -------------------------- | ------------------------------------------------- | ------------------------------------------------- |
 | 主要配置文件，配置公共信息 | 开发环境，配置 MySQL 数据库、Redis 缓存、文件路径 | 生产环境，配置 MySQL 数据库、Redis 缓存、文件路径 |
 
-上述配置完成后，启动后台管理 `geshanzsq-blog-admin-service` 和 客户端 `geshanzsq-blog-client-service` 应用
+上述配置完成后，启动后台管理 `geshanzsq-blog-admin-application` 和 客户端 `geshanzsq-blog-client-application` 应用
 
 ##  使用
 
