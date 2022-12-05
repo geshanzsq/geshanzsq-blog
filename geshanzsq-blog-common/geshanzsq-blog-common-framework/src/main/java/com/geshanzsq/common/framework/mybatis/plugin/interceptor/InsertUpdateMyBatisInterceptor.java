@@ -49,14 +49,13 @@ public class InsertUpdateMyBatisInterceptor {
             String paramKey = "param1";
             String paramEtKey = "et";
             if (((Map) parameter).containsKey(paramKey)) {
-                clazz = ((Map) parameter).containsKey(paramKey);
+                clazz = ((Map) parameter).get(paramKey);
             } else if (((Map) parameter).containsKey(paramEtKey)) {
-                clazz = ((Map) parameter).containsKey(paramEtKey);
+                clazz = ((Map) parameter).get(paramEtKey);
             }
         } else {
             // 批量操作
             clazz = parameter;
-            setParameter(sqlCommandType, parameter, currentUserId);
         }
         setParameter(sqlCommandType, clazz, currentUserId);
 
