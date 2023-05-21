@@ -8,11 +8,10 @@ import { superAdmin } from '@/config/setting.config'
 export default {
   mounted(el, binding, vnode) {
     const { value } = binding
-    const roles = store.getters && store.getters.roles
+    const roles = store.getters['user/roleCodes']
 
     if (value && value instanceof Array && value.length > 0) {
       const roleFlag = value
-
       const hasRole = roles.some((role) => {
         return superAdmin === role || roleFlag.includes(role)
       })
