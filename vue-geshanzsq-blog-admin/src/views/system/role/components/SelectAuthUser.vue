@@ -181,6 +181,13 @@ async function show(roleId) {
  * 搜索
  */
 async function handleQuery() {
+  getPage()
+}
+
+/**
+ * 分页
+ */
+async function getPage() {
   loading.value = true
   const {
     data: { total, list }
