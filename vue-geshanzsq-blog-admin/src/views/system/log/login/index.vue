@@ -136,7 +136,9 @@ const queryParams = ref({
   ipAddress: undefined,
   status: undefined,
   beginGmtLogin: undefined,
-  endLGmtLogin: undefined
+  endGmtLogin: undefined,
+  orderColumn: 'gmtLogin,id',
+  orderType: 'desc,desc'
 })
 
 const loading = ref(true)
