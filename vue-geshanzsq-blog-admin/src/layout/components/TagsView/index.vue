@@ -53,8 +53,6 @@
 </template>
 
 <script setup>
-import ScrollPane from './ScrollPane'
-import { getNormalPath } from '@/utils/geshanzsq'
 import {
   computed,
   getCurrentInstance,
@@ -63,8 +61,11 @@ import {
   ref,
   watch
 } from 'vue'
-import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
+import ScrollPane from './ScrollPane'
+import { getNormalPath } from '@/utils/geshanzsq'
 
 const visible = ref(false)
 const top = ref(0)
@@ -74,9 +75,9 @@ const affixTags = ref([])
 const scrollPaneRef = ref(null)
 
 const { proxy } = getCurrentInstance()
-const store = useStore()
 const route = useRoute()
 const router = useRouter()
+const store = useStore()
 
 const visitedViews = computed(() => store.getters['tagsView/visitedViews'])
 const routes = computed(() => store.getters['permission/routes'])
@@ -114,8 +115,8 @@ function isAffix(tag) {
 function isFirstView() {
   try {
     return (
-      selectedTag.value.fullPath === visitedViews.value[1].fullPath ||
-      selectedTag.value.fullPath === '/index'
+      selectedTag.value.fullPath === '/index' ||
+      selectedTag.value.fullPath === visitedViews.value[1].fullPath
     )
   } catch (err) {
     return false
@@ -166,6 +167,9 @@ function addTags() {
   const { name } = route
   if (name) {
     store.dispatch('tagsView/addView', route)
+    if (route.meta.link) {
+      store.dispatch('tagsView/addIframeView', route)
+    }
   }
   return false
 }
@@ -184,6 +188,9 @@ function moveToCurrentTag() {
 }
 function refreshSelectedTag(view) {
   proxy.$tab.refreshPage(view)
+  if (route.meta.link) {
+    store.dispatch('tagsView/delIframeView', route)
+  }
 }
 function closeSelectedTag(view) {
   proxy.$tab.closePage(view).then(({ visitedViews }) => {
