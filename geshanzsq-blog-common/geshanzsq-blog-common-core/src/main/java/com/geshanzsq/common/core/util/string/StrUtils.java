@@ -2,6 +2,9 @@ package com.geshanzsq.common.core.util.string;
 
 import com.geshanzsq.common.core.constant.CommonConstant;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
+
+import java.util.Collection;
 
 /**
  * 字符串工具类
@@ -69,12 +72,15 @@ public class StrUtils extends StringUtils {
     }
 
     /**
-     * 判断是否为空，包含字符串
+     * 判断是否为空，包含字符串、集合
+     *
      * @param value 值
      * @return 是否为空
      */
     public static boolean isNullBlank(Object value) {
-        return value == null || (value instanceof String && isBlank(String.valueOf(value)));
+        return value == null
+                || (value instanceof String && isBlank(String.valueOf(value)))
+                || (value instanceof Collection && CollectionUtils.isEmpty((Collection) value));
     }
 
     /**
