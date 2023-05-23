@@ -45,6 +45,12 @@
             <artifactId>hutool-all</artifactId>
         </dependency>
 
+        <!-- io 常用工具类 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+
         <!-- MapStruct 对象转换 -->
         <dependency>
             <groupId>org.mapstruct</groupId>
