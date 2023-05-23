@@ -22,6 +22,6 @@ public class BlogCommentPageDTO extends PageDTO implements Serializable {
 
     @ApiModelProperty(value = "用户 id", hidden = true)
     @Query(empty = true)
-    private Long userId;
+    private Long createUserId;
 
 }

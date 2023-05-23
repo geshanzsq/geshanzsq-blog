@@ -45,7 +45,7 @@ public class BlogCommentServiceImpl extends BaseServiceImpl<BlogCommentMapper, B
     public PageVO<BlogCommentPageVO> pageList(BlogCommentPageDTO pageDTO) {
         pageDTO.setOrderColumn("gmtCreate");
         pageDTO.setOrderType("desc");
-        pageDTO.setUserId(SecurityUtils.getUserId());
+        pageDTO.setCreateUserId(SecurityUtils.getUserId());
         PageVO<BlogCommentPageVO> pageVO = BlogCommentConverter.INSTANCE.convert(blogCommentMapper.selectPage(pageDTO));
         pageVO.getList().forEach(comment -> {
             // 渲染 Markdown 内容
