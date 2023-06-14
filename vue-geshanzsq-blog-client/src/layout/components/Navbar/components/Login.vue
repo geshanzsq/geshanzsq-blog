@@ -30,10 +30,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
 import { list } from '@/api/blog/config'
 import { getLoginUrl } from '@/api/auth/login'
+import { setLoginRedirectPath } from '@/utils/auth'
 
 const store = useStore()
+const route = useRoute()
 
 const visible = ref(false)
 
@@ -76,6 +79,8 @@ async function handleLogin(source) {
   const {
     data: { url }
   } = await getLoginUrl(source)
+  // 记录跳转地址，后续做跳转
+  setLoginRedirectPath(route.fullPath)
   window.location.href = url
 }
 

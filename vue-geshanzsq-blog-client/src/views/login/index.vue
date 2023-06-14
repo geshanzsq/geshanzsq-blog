@@ -7,7 +7,12 @@
   ></div>
 </template>
 <script setup>
-import { getToken, setToken } from '@/utils/auth'
+import {
+  getToken,
+  setToken,
+  getLoginRedirectPath,
+  removeLoginRedirectPath
+} from '@/utils/auth'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -21,7 +26,8 @@ function init() {
     token = router.currentRoute.value.query.token
     setToken(token)
   }
-  window.location.href = '/'
+  window.location.href = getLoginRedirectPath() || '/'
+  removeLoginRedirectPath()
 }
 
 init()
