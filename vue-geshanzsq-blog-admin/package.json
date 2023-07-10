@@ -16,7 +16,7 @@
     "@wangeditor/editor-for-vue": "^5.1.12",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
-    "element-plus": "^2.2.19",
+    "element-plus": "^2.3.7",
     "fuse.js": "^6.6.2",
     "js-cookie": "^3.0.1",
     "nprogress": "^0.2.0",
@@ -42,6 +42,7 @@
     "eslint-plugin-promise": "^5.1.0",
     "eslint-plugin-vue": "^8.0.3",
     "lint-staged": "^11.1.2",
+    "postcss": "^8.4.25",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
     "vue-cli-plugin-element-plus": "~0.0.13"
