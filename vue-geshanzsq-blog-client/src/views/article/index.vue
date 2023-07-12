@@ -338,10 +338,12 @@ getArticleContent()
   }
 
   /*设置图片，以防过大*/
-  .article-content >>> img {
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
+  .article-content {
+    :deep(img) {
+      max-width: 100% !important;
+      height: auto;
+      cursor: pointer;
+    }
   }
 
   .reprint {
